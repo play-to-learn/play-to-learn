@@ -1,4 +1,4 @@
-package com.sumedhe.playtolearn.playtolearn;
+package com.avoid.playtolearn;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.sumedhe.playtolearn.playtolearn;
+package com.avoid.playtolearn;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.sumedhe.playtolearn.playtolearn", appContext.getPackageName());
+        assertEquals("com.avoid.playtolearn", appContext.getPackageName());
     }
 }
