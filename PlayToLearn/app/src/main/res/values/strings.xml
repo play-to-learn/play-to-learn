@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Play To Learn</string>
+
+    <string name="throw_button">Throw</string>
 </resources>

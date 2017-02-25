@@ -10,4 +10,21 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.avoid.playtolearn.view.RandomActivity">
 
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dice_value_text_view"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="@string/throw_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/throw_button"
+        android:layout_above="@+id/dice_value_text_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="88dp"
+        android:onClick="onClickThrowButton" />
 </RelativeLayout>
