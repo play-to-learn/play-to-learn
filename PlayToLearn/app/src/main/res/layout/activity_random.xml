@@ -10,4 +10,27 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.avoid.playtolearn.view.RandomActivity">
 
+    <TextView
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="132dp"
+        android:textStyle="bold"
+        android:textSize="80dp"
+        android:id="@+id/random_text_value" />
+
+    <Button
+        android:text="Toss"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/random_text_value"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:textSize="20dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:id="@+id/random_toss_button"
+        android:onClick="onClickTossButton"
+        />
 </RelativeLayout>
