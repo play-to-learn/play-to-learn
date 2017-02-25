@@ -11,6 +11,8 @@ import com.avoid.playtolearn.R;
 import java.util.Random;
 
 public class RandomActivity extends AppCompatActivity {
+    private Button throwButton;
+    private TextView diceValueTextView;
 
     Button tossButton;
     TextView textValue;
@@ -34,4 +36,5 @@ public class RandomActivity extends AppCompatActivity {
         int value = generateRandomNumber();
         textValue.setText(String.valueOf(value));
     }
+
 }
