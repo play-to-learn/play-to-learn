@@ -12,7 +12,13 @@
         <activity android:name=".activity.ProfileActivity" />
         <activity android:name=".activity.BoardActivity" />
         <activity android:name=".activity.RandomActivity" />
-        <activity android:name=".activity.MainMenuActivity" />
+        <activity android:name=".activity.MainMenuActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.LeaderboardActivity"></activity>
     </application>
 
