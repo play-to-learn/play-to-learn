@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.avoid.playtolearn.activity.MainMenuActivity">
+    tools:context="com.avoid.playtolearn.activity.MainMenuActivity"
+    android:background="@drawable/mainmenu_background">
 
     <Button
         android:id="@+id/continue_button"
@@ -15,10 +16,9 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="101dp"
-        android:onClick="onClickContinueButton"/>
+        android:onClick="onClickContinueButton"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/new_game_button" />
 
     <Button
         android:id="@+id/new_game_button"
@@ -29,10 +29,10 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:onClick="onClickNewGameButton"
         app:layout_constraintHorizontal_bias="0.503"
-        android:layout_marginTop="17dp"
-        app:layout_constraintTop_toBottomOf="@+id/continue_button"
-        android:onClick="onClickNewGameButton"/>
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/options_button" />
 
     <Button
         android:id="@+id/options_button"
@@ -43,9 +43,9 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/new_game_button"
-        android:onClick="onClickOptionsButton"/>
+        android:onClick="onClickOptionsButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="100dp" />
 
     <Button
         android:id="@+id/profile_button"
