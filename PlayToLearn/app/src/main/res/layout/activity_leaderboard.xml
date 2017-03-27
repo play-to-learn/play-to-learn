@@ -4,6 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.avoid.playtolearn.activity.LeaderboardActivity">
+    tools:context="com.avoid.playtolearn.activity.LeaderboardActivity"
+    android:background="@drawable/common_background">
 
+    <com.avoid.playtolearn.widget.MainButton
+        android:id="@+id/button"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+
+        android:text="Button"
+        android:layout_marginLeft="42dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="102dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.0" />
 </android.support.constraint.ConstraintLayout>
