@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.avoid.playtolearn.R;
+import com.avoid.playtolearn.global.Session;
+import com.avoid.playtolearn.util.SaveFileHandler;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -13,14 +15,18 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
+        Session.saveFileHandler = new SaveFileHandler(getApplicationContext());
     }
 
 
     public void onClickContinueButton(View view){
+        Session.saveFileHandler.loadGame();
         startActivity(new Intent(MainMenuActivity.this, BoardActivity.class));
     }
 
     public void onClickNewGameButton(View view){
+        Session.saveFileHandler.newGame();
         startActivity(new Intent(MainMenuActivity.this, BoardActivity.class));
     }
 

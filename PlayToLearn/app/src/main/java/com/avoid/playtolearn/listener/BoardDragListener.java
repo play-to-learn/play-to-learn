@@ -4,6 +4,9 @@ import android.view.DragEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.avoid.playtolearn.widget.BoardTileButton;
+import com.avoid.playtolearn.widget.BoardTileLayout;
+
 public class BoardDragListener implements View.OnDragListener {
     @Override
     public boolean onDrag(View v, DragEvent event) {
@@ -15,27 +18,18 @@ public class BoardDragListener implements View.OnDragListener {
             case DragEvent.ACTION_DRAG_EXITED:
                 break;
             case DragEvent.ACTION_DROP:
-//                if (v instanceof BackpackTileLayout) {
-//                    ViewGroup viewGroup = ((BackpackTileLayout) v);
-//
-//                    if (viewGroup.getChildCount() == 0) {
-//                        BackpackItemButton itemButton = (BackpackItemButton) event.getLocalState();
-//
-//                        ViewGroup owner = (ViewGroup) itemButton.getParent();
-//                        owner.removeView(itemButton);
-//
-//                        viewGroup.addView(itemButton, itemButton.getWidth(), itemButton.getHeight());
-//                    }
-//                } else if (v instanceof BackpackActionLayout) {
-//                    ViewGroup viewGroup = ((BackpackActionLayout) v);
-//
-//                    BackpackItemButton itemButton = (BackpackItemButton) event.getLocalState();
-//
-//                    ViewGroup owner = (ViewGroup) itemButton.getParent();
-//                    owner.removeView(itemButton);
-//
-//                    viewGroup.addView(itemButton, itemButton.getWidth(), itemButton.getHeight());
-//                }
+                if (v instanceof BoardTileLayout) {
+                    ViewGroup viewGroup = ((BoardTileLayout) v);
+
+                    if (viewGroup.getChildCount() == 0) {
+                        BoardTileButton boardTileButton = (BoardTileButton) event.getLocalState();
+
+                        ViewGroup owner = (ViewGroup) boardTileButton.getParent();
+                        owner.removeView(boardTileButton);
+
+                        viewGroup.addView(boardTileButton, boardTileButton.getWidth(), boardTileButton.getHeight());
+                    }
+                }
 
                 return true;
             case DragEvent.ACTION_DRAG_ENDED:

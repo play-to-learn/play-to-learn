@@ -2,6 +2,8 @@ package com.avoid.playtolearn.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import com.avoid.playtolearn.listener.BoardDragListener;
 import com.avoid.playtolearn.listener.BoardTouchListener;

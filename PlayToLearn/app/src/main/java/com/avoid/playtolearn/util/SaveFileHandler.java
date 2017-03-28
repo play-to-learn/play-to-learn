@@ -26,7 +26,7 @@ public class SaveFileHandler {
     }
 
     public void newGame() {
-        Session.currentSaveFile = new SaveFile();
+        Session.currentSaveFile = new SaveFile(this.context);
     }
 
     public void loadGame() {

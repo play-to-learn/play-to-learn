@@ -1,24 +1,40 @@
 package com.avoid.playtolearn.model;
 
+import android.content.Context;
+
+import com.avoid.playtolearn.R;
+import com.avoid.playtolearn.widget.BoardTileButton;
+import com.avoid.playtolearn.widget.BoardTileLayout;
+
 import java.util.ArrayList;
 
 public class Board {
-    private ArrayList<ArrayList<BoardTile>> tileColumns = new ArrayList<>();
+    private ArrayList<ArrayList<BoardTile>> tileGrid = new ArrayList<>();
 
-    public Board() {
-        for(int col = 0; col < 6; col++){
+    public Board(Context context) {
+        for(int col = 0; col < 4; col++){
             ArrayList<BoardTile> tileColumn = new ArrayList<>();
             for(int row = 0; row < 10; row++){
-                tileColumn.add(new BoardTile());
+                BoardTile boardTile = new BoardTile();
+                BoardTileLayout boardTileLayout = new BoardTileLayout(context);
+                boardTile.setBoardTileLayout(boardTileLayout);
+
+                if(col == 0 && row == 0){
+                    BoardTileButton boardTileButton = new BoardTileButton(context);
+                    boardTileButton.setIcon(R.drawable.pointer);
+                    boardTileLayout.addView(boardTileButton);
+                }
+                tileColumn.add(boardTile);
             }
+            tileGrid.add(tileColumn);
         }
     }
 
-    public ArrayList<ArrayList<BoardTile>> getTileColumns() {
-        return tileColumns;
+    public ArrayList<ArrayList<BoardTile>> getTileGrid() {
+        return tileGrid;
     }
 
-    public void setTileColumns(ArrayList<ArrayList<BoardTile>> tileColumns) {
-        this.tileColumns = tileColumns;
+    public void setTileGrid(ArrayList<ArrayList<BoardTile>> tileGrid) {
+        this.tileGrid = tileGrid;
     }
 }

@@ -1,7 +1,15 @@
 package com.avoid.playtolearn.model;
 
+import com.avoid.playtolearn.widget.BoardTileLayout;
+
 public class BoardTile {
-    public boolean isEmpty(){
-        return true;
+    private BoardTileLayout boardTileLayout = null;
+
+    public BoardTileLayout getBoardTileLayout() {
+        return boardTileLayout;
+    }
+
+    public void setBoardTileLayout(BoardTileLayout boardTileLayout) {
+        this.boardTileLayout = boardTileLayout;
     }
 }
