@@ -11,7 +11,11 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 
-public class HexButtonDrawable extends Drawable{
+import com.avoid.playtolearn.global.Session;
+
+import java.io.Serializable;
+
+public class HexButtonDrawable extends Drawable implements Serializable {
     private Context context;
 
     private int numberOfSides = 6;
@@ -26,6 +30,10 @@ public class HexButtonDrawable extends Drawable{
     private Bitmap bmp_scaled;
     private int bmp_width = 150;
     private int bmp_height = 150;
+
+    public HexButtonDrawable() {
+        this.context = Session.currentContext;
+    }
 
     public HexButtonDrawable(Context context) {
         this.context = context;

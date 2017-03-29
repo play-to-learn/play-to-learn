@@ -2,6 +2,7 @@ package com.avoid.playtolearn.util;
 
 
 import android.content.Context;
+import android.util.Log;
 
 import com.avoid.playtolearn.global.Session;
 import com.avoid.playtolearn.model.SaveFile;
@@ -53,7 +54,6 @@ public class SaveFileHandler {
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
             objectOutputStream.writeObject(Session.currentSaveFile);
-
             objectOutputStream.close();
             fileOutputStream.close();
         } catch (FileNotFoundException e) {

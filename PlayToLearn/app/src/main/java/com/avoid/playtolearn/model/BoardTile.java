@@ -2,7 +2,9 @@ package com.avoid.playtolearn.model;
 
 import com.avoid.playtolearn.widget.BoardTileLayout;
 
-public class BoardTile {
+import java.io.Serializable;
+
+public class BoardTile implements Serializable{
     private BoardTileLayout boardTileLayout = null;
 
     public BoardTileLayout getBoardTileLayout() {

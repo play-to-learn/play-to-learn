@@ -3,7 +3,9 @@ package com.avoid.playtolearn.listener;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class BoardTouchListener implements View.OnTouchListener {
+import java.io.Serializable;
+
+public class BoardTouchListener implements View.OnTouchListener, Serializable {
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {

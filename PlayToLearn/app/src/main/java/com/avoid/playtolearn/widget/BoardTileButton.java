@@ -2,14 +2,17 @@ package com.avoid.playtolearn.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 
 import com.avoid.playtolearn.listener.BoardDragListener;
 import com.avoid.playtolearn.listener.BoardTouchListener;
 
-public class BoardTileButton extends android.support.v7.widget.AppCompatImageButton{
+import java.io.Serializable;
+
+public class BoardTileButton extends AppCompatImageButtonSerializable implements Serializable{
     private HexButtonDrawable drawable;
+
+    public BoardTileButton() {
+    }
 
     public BoardTileButton(Context context) {
         super(context);
@@ -50,4 +53,6 @@ public class BoardTileButton extends android.support.v7.widget.AppCompatImageBut
 //        params.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
 //        this.setLayoutParams(params);
     }
+
+
 }

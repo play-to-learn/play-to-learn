@@ -19,6 +19,12 @@ public class MainMenuActivity extends AppCompatActivity {
         Session.saveFileHandler = new SaveFileHandler(getApplicationContext());
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Session.currentContext = MainMenuActivity.this;
+    }
 
     public void onClickContinueButton(View view){
         Session.saveFileHandler.loadGame();

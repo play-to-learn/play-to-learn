@@ -1,5 +1,7 @@
 package com.avoid.playtolearn.global;
 
+import android.content.Context;
+
 import com.avoid.playtolearn.model.SaveFile;
 import com.avoid.playtolearn.model.Settings;
 import com.avoid.playtolearn.util.SaveFileHandler;
@@ -13,4 +15,6 @@ public class Session {
     //Settings
     private static SettingsHandler settingsHandler = null;
     public static Settings currentSettings = null;
+
+    public static Context currentContext = null;
 }

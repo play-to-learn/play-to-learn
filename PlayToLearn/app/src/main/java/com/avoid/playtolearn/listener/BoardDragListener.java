@@ -4,10 +4,13 @@ import android.view.DragEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.avoid.playtolearn.global.Session;
 import com.avoid.playtolearn.widget.BoardTileButton;
 import com.avoid.playtolearn.widget.BoardTileLayout;
 
-public class BoardDragListener implements View.OnDragListener {
+import java.io.Serializable;
+
+public class BoardDragListener implements View.OnDragListener, Serializable {
     @Override
     public boolean onDrag(View v, DragEvent event) {
         switch (event.getAction()) {
@@ -31,6 +34,7 @@ public class BoardDragListener implements View.OnDragListener {
                     }
                 }
 
+                Session.saveFileHandler.saveGame();
                 return true;
             case DragEvent.ACTION_DRAG_ENDED:
                 break;

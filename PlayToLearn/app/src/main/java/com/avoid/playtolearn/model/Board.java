@@ -6,9 +6,10 @@ import com.avoid.playtolearn.R;
 import com.avoid.playtolearn.widget.BoardTileButton;
 import com.avoid.playtolearn.widget.BoardTileLayout;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Board {
+public class Board implements Serializable{
     private ArrayList<ArrayList<BoardTile>> tileGrid = new ArrayList<>();
 
     public Board(Context context) {

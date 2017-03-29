@@ -2,7 +2,9 @@ package com.avoid.playtolearn.model;
 
 import android.content.Context;
 
-public class SaveFile {
+import java.io.Serializable;
+
+public class SaveFile implements Serializable{
     private Board board = null;
 
     public SaveFile(Context context) {

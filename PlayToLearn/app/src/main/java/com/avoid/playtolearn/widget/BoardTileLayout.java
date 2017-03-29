@@ -3,13 +3,17 @@ package com.avoid.playtolearn.widget;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.TypedValue;
-import android.widget.FrameLayout;
 
 import com.avoid.playtolearn.R;
 import com.avoid.playtolearn.listener.BoardDragListener;
 
+import java.io.Serializable;
 
-public class BoardTileLayout extends FrameLayout {
+
+public class BoardTileLayout extends FrameLayoutSerializable implements Serializable{
+    public BoardTileLayout() {
+    }
+
     public BoardTileLayout(Context context) {
         super(context);
         this.setOnDragListener(new BoardDragListener());

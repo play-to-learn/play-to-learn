@@ -1,5 +1,7 @@
 package com.avoid.playtolearn.model;
 
-public class Settings {
+import java.io.Serializable;
+
+public class Settings implements Serializable{
 
 }

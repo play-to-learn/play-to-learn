@@ -25,12 +25,28 @@ public class BoardActivity extends AppCompatActivity {
         createBoard();
     }
 
-    private void createBoard() {
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        Session.currentContext = BoardActivity.this;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        Session.saveFileHandler.saveGame();
+    }
+
+    private void createBoard() {
+        Log.d("main", ">>>>>>>>>");
         for (ArrayList<BoardTile> tileArrayList : Session.currentSaveFile.getBoard().getTileGrid()) {
+            Log.d("sub", "------------------------");
             LinearLayout tileColumnLayout = new LinearLayout(BoardActivity.this);
             tileColumnLayout.setOrientation(LinearLayout.VERTICAL);
             for (BoardTile boardTile : tileArrayList) {
+                Log.d("x", "");
                     tileColumnLayout.addView(boardTile.getBoardTileLayout());
             }
             tileGridLayout.addView(tileColumnLayout);
