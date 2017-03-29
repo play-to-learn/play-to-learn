@@ -33,7 +33,7 @@ public class BoardTileLayout extends FrameLayoutSerializable implements Serializ
     }
 
     public void applyCustomDesign(Context context) {
-        setBackgroundResource(R.color.colorAccent);
+        setBackgroundResource(R.drawable.board_tile_background);
         int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5,
                 context.getResources().getDisplayMetrics());
         int size_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70,
