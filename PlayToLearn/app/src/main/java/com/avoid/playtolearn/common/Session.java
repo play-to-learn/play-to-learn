@@ -1,7 +1,8 @@
 package com.avoid.playtolearn.common;
 
-import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 
+import com.avoid.playtolearn.database.DatabaseHelper;
 import com.avoid.playtolearn.model.SaveFile;
 import com.avoid.playtolearn.model.Settings;
 import com.avoid.playtolearn.util.SaveFileHandler;
@@ -13,8 +14,11 @@ public class Session {
     public static SaveFile currentSaveFile = null;
 
     //Settings
-    private static SettingsHandler settingsHandler = null;
+    public static SettingsHandler settingsHandler = null;
     public static Settings currentSettings = null;
 
-    public static Context currentContext = null;
+    //Database
+    public static DatabaseHelper databaseHelper = null;
+    public static SQLiteDatabase readableDatabase = null;
+    public static SQLiteDatabase writableDatabase = null;
 }

@@ -28,8 +28,6 @@ public class BoardActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        Session.currentContext = BoardActivity.this;
     }
 
     @Override

@@ -12,7 +12,7 @@ CREATE TABLE question
     name TEXT,
     description TEXT NOT NULL,
     answer INTEGER NOT NULL,
-    score INT DEFAULT 1 NOT NULL
+    score INTEGER DEFAULT 1 NOT NULL
 );
 INSERT INTO question (name, description, answer, score) VALUES ('One', 'Move one step', 1, 5);
 INSERT INTO question (name, description, answer, score) VALUES ('Two', 'Move two steps', 2, 10);

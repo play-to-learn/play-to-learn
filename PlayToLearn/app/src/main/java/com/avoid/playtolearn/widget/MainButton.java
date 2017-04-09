@@ -7,10 +7,6 @@ import android.util.AttributeSet;
 
 import com.avoid.playtolearn.R;
 
-/**
- * Created by sumedhe on 3/19/17.
- */
-
 public class MainButton extends android.support.v7.widget.AppCompatButton {
     public MainButton(Context context){
         super(context);

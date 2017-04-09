@@ -17,7 +17,5 @@ public class RandomActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        Session.currentContext = RandomActivity.this;
     }
 }

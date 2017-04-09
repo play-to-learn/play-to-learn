@@ -8,6 +8,8 @@ import com.avoid.playtolearn.R;
 import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.database.DatabaseHelper;
 import com.avoid.playtolearn.database.SQLParser;
+import com.avoid.playtolearn.database.cursor.UserSQL;
+import com.avoid.playtolearn.model.Profile;
 
 public class LeaderboardActivity extends AppCompatActivity {
 
@@ -15,17 +17,10 @@ public class LeaderboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
-
-        Log.d("Executing SQL>>>", "---------------------------------");
-        for (String sqlStatement : (new SQLParser(LeaderboardActivity.this)).getSQLStatements(R.raw.init_database)) {
-            Log.d("Executing SQL>>>", sqlStatement);
-        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
-        Session.currentContext = LeaderboardActivity.this;
     }
 }

@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.avoid.playtolearn.R;
 import com.avoid.playtolearn.common.Session;
+import com.avoid.playtolearn.database.DatabaseHelper;
 import com.avoid.playtolearn.util.SaveFileHandler;
 
 public class MainMenuActivity extends AppCompatActivity {
@@ -17,13 +18,13 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         Session.saveFileHandler = new SaveFileHandler(getApplicationContext());
+        Session.databaseHelper = new DatabaseHelper(MainMenuActivity.this);
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
-        Session.currentContext = MainMenuActivity.this;
     }
 
     public void onClickContinueButton(View view){
@@ -45,6 +46,8 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void onClickLeaderboardButton(View view){
+        Session.readableDatabase = Session.databaseHelper.getReadableDatabase();
+//        Session.writableDatabase = Session.databaseHelper.getWritableDatabase();
         startActivity(new Intent(MainMenuActivity.this, LeaderboardActivity.class));
     }
 }
