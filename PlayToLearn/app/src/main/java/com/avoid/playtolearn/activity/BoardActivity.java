@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import com.avoid.playtolearn.R;
 import com.avoid.playtolearn.global.Session;
 import com.avoid.playtolearn.model.BoardTile;
+import com.avoid.playtolearn.widget.BoardTileButton;
 import com.avoid.playtolearn.widget.BoardTileLayout;
 
 import java.util.ArrayList;
@@ -40,14 +41,18 @@ public class BoardActivity extends AppCompatActivity {
     }
 
     private void createBoard() {
-        Log.d("main", ">>>>>>>>>");
         for (ArrayList<BoardTile> tileArrayList : Session.currentSaveFile.getBoard().getTileGrid()) {
-            Log.d("sub", "------------------------");
             LinearLayout tileColumnLayout = new LinearLayout(BoardActivity.this);
             tileColumnLayout.setOrientation(LinearLayout.VERTICAL);
             for (BoardTile boardTile : tileArrayList) {
-                Log.d("x", "");
-                    tileColumnLayout.addView(boardTile.getBoardTileLayout());
+                BoardTileLayout boardTileLayout = new BoardTileLayout(BoardActivity.this);
+                boardTileLayout.setRow(boardTile.getRow());
+                boardTileLayout.setColumn(boardTile.getColumn());
+
+                if(boardTile.isHasPointer()){
+                    boardTileLayout.addView(new BoardTileButton(BoardActivity.this));
+                }
+                tileColumnLayout.addView(boardTileLayout);
             }
             tileGridLayout.addView(tileColumnLayout);
         }

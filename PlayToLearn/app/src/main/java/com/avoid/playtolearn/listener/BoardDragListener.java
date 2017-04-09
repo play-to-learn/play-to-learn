@@ -2,7 +2,6 @@ package com.avoid.playtolearn.listener;
 
 import android.view.DragEvent;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.avoid.playtolearn.global.Session;
 import com.avoid.playtolearn.widget.BoardTileButton;
@@ -22,15 +21,22 @@ public class BoardDragListener implements View.OnDragListener, Serializable {
                 break;
             case DragEvent.ACTION_DROP:
                 if (v instanceof BoardTileLayout) {
-                    ViewGroup viewGroup = ((BoardTileLayout) v);
+                    BoardTileLayout newBoardTileLayout = ((BoardTileLayout) v);
 
-                    if (viewGroup.getChildCount() == 0) {
+                    if (newBoardTileLayout.getChildCount() == 0) {
                         BoardTileButton boardTileButton = (BoardTileButton) event.getLocalState();
 
-                        ViewGroup owner = (ViewGroup) boardTileButton.getParent();
-                        owner.removeView(boardTileButton);
+                        BoardTileLayout previousBoardTileLayout = (BoardTileLayout) boardTileButton.getParent();
 
-                        viewGroup.addView(boardTileButton, boardTileButton.getWidth(), boardTileButton.getHeight());
+                        int preRow = previousBoardTileLayout.getRow();
+                        int preColumn = previousBoardTileLayout.getColumn();
+                        Session.currentSaveFile.getBoard().getBoardTile(preRow, preColumn).setHasPointer(false);
+                        previousBoardTileLayout.removeView(boardTileButton);
+
+                        int newRow = newBoardTileLayout.getRow();
+                        int newColumn = newBoardTileLayout.getColumn();
+                        Session.currentSaveFile.getBoard().getBoardTile(newRow, newColumn).setHasPointer(true);
+                        newBoardTileLayout.addView(boardTileButton, boardTileButton.getWidth(), boardTileButton.getHeight());
                     }
                 }
 
