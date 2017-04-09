@@ -16,7 +16,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
 
-        Log.d("Executing SQL>>>", "cccccccc");
+        Log.d("Executing SQL>>>", "---------------------------------");
         for (String sqlStatement : (new SQLParser(LeaderboardActivity.this)).getSQLStatements(R.raw.init_database)) {
             Log.d("Executing SQL>>>", sqlStatement);
         }
