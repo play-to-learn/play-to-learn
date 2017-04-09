@@ -12,6 +12,7 @@ import java.io.Serializable;
 public class BoardTileLayout extends FrameLayoutSerializable implements Serializable{
     private int row;
     private int column;
+    private int state;  // 0:NotPassed 1:Passed 2:ProblemPoint
 
     public BoardTileLayout(Context context) {
         super(context);
@@ -47,8 +48,24 @@ public class BoardTileLayout extends FrameLayoutSerializable implements Serializ
         this.column = column;
     }
 
+    public void setState(int state){
+        this.state = state;
+        if (state == 0){
+            setBackgroundResource(R.drawable.board_tile_background_0);
+        } else if (state == 1){
+            setBackgroundResource(R.drawable.board_tile_background_1);
+        } else if (state == 2){
+            setBackgroundResource(R.drawable.board_tile_background_2);
+        }
+    }
+
+    public int getState(){
+        return this.state;
+    }
+
+
     public void applyCustomDesign(Context context) {
-        setBackgroundResource(R.drawable.board_tile_background);
+        setState(1);
         int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5,
                 context.getResources().getDisplayMetrics());
         int size_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70,
