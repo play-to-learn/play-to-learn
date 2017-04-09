@@ -7,4 +7,6 @@
     tools:context="com.avoid.playtolearn.activity.ProfileActivity"
     android:background="@drawable/common_background">
 
+
+
 </android.support.constraint.ConstraintLayout>

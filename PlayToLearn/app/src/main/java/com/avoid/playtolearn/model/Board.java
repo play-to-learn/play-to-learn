@@ -13,7 +13,7 @@ public class Board implements Serializable{
     private ArrayList<ArrayList<BoardTile>> tileGrid = new ArrayList<>();
 
     public Board(Context context) {
-        for(int col = 0; col < 4; col++){
+        for(int col = 0; col < 10; col++){
             ArrayList<BoardTile> tileColumn = new ArrayList<>();
             for(int row = 0; row < 10; row++){
                 BoardTile boardTile = new BoardTile();
