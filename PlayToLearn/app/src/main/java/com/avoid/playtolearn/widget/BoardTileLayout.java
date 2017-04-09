@@ -6,9 +6,9 @@ import android.util.TypedValue;
 import android.widget.FrameLayout;
 
 import com.avoid.playtolearn.R;
+import com.avoid.playtolearn.common.Global;
+import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.listener.BoardDragListener;
-
-import java.io.Serializable;
 
 public class BoardTileLayout extends FrameLayout {
     private int row;
@@ -50,10 +50,16 @@ public class BoardTileLayout extends FrameLayout {
 
     public void applyCustomDesign(Context context) {
         setBackgroundResource(R.drawable.board_tile_background);
-        int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5,
-                context.getResources().getDisplayMetrics());
-        int size_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70,
-                context.getResources().getDisplayMetrics());
+
+        int effectiveWidth = (int) (Session.SCREEN_WIDTH * 0.95);
+
+//        int size_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50,
+//                context.getResources().getDisplayMetrics());
+        int size_px = (int) (effectiveWidth / (Global.COLUMN_COUNT + 0.5));
+
+        //        int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3,
+//                context.getResources().getDisplayMetrics());
+        int margin_px = (effectiveWidth - (size_px * Global.COLUMN_COUNT)) / (Global.COLUMN_COUNT * 2);
 
         LayoutParams params = new LayoutParams(size_px, size_px);
         params.setMargins(margin_px, margin_px, margin_px, margin_px);

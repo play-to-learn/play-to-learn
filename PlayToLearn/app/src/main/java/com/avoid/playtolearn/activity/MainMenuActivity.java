@@ -1,6 +1,7 @@
 package com.avoid.playtolearn.activity;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +20,11 @@ public class MainMenuActivity extends AppCompatActivity {
 
         Session.saveFileHandler = new SaveFileHandler(getApplicationContext());
         Session.databaseHelper = new DatabaseHelper(MainMenuActivity.this);
+        Session.readableDatabase = Session.databaseHelper.getReadableDatabase();
+        Session.writableDatabase = Session.databaseHelper.getWritableDatabase();
 
+        Session.SCREEN_WIDTH = Resources.getSystem().getDisplayMetrics().widthPixels;
+        Session.SCREEN_HEIGHT = Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
     @Override
@@ -46,8 +51,6 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void onClickLeaderboardButton(View view){
-        Session.readableDatabase = Session.databaseHelper.getReadableDatabase();
-//        Session.writableDatabase = Session.databaseHelper.getWritableDatabase();
         startActivity(new Intent(MainMenuActivity.this, LeaderboardActivity.class));
     }
 }

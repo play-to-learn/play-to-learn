@@ -21,4 +21,8 @@ public class Session {
     public static DatabaseHelper databaseHelper = null;
     public static SQLiteDatabase readableDatabase = null;
     public static SQLiteDatabase writableDatabase = null;
+
+    //Device
+    public static int SCREEN_WIDTH;
+    public static int SCREEN_HEIGHT;
 }
