@@ -11,9 +11,6 @@ import java.io.Serializable;
 public class BoardTileButton extends AppCompatImageButtonSerializable implements Serializable{
     private HexButtonDrawable drawable;
 
-    public BoardTileButton() {
-    }
-
     public BoardTileButton(Context context) {
         super(context);
         constructorWork(context);

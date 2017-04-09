@@ -9,10 +9,9 @@ import com.avoid.playtolearn.listener.BoardDragListener;
 
 import java.io.Serializable;
 
-
 public class BoardTileLayout extends FrameLayoutSerializable implements Serializable{
-    public BoardTileLayout() {
-    }
+    private int row;
+    private int column;
 
     public BoardTileLayout(Context context) {
         super(context);
@@ -30,6 +29,22 @@ public class BoardTileLayout extends FrameLayoutSerializable implements Serializ
         super(context, attrs, defStyleAttr);
         this.setOnDragListener(new BoardDragListener());
         applyCustomDesign(context);
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public void setColumn(int column) {
+        this.column = column;
     }
 
     public void applyCustomDesign(Context context) {

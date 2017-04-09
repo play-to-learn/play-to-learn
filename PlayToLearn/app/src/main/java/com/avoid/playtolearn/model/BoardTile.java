@@ -1,17 +1,33 @@
 package com.avoid.playtolearn.model;
 
-import com.avoid.playtolearn.widget.BoardTileLayout;
-
 import java.io.Serializable;
 
 public class BoardTile implements Serializable{
-    private BoardTileLayout boardTileLayout = null;
+    private int row = 0;
+    private int column = 0;
+    private boolean hasPointer = false;
 
-    public BoardTileLayout getBoardTileLayout() {
-        return boardTileLayout;
+    public int getRow() {
+        return row;
     }
 
-    public void setBoardTileLayout(BoardTileLayout boardTileLayout) {
-        this.boardTileLayout = boardTileLayout;
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public void setColumn(int column) {
+        this.column = column;
+    }
+
+    public boolean isHasPointer() {
+        return hasPointer;
+    }
+
+    public void setHasPointer(boolean hasPointer) {
+        this.hasPointer = hasPointer;
     }
 }
