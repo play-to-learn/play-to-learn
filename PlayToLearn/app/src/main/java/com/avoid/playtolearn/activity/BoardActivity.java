@@ -2,11 +2,10 @@ package com.avoid.playtolearn.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.avoid.playtolearn.R;
-import com.avoid.playtolearn.global.Session;
+import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.model.BoardTile;
 import com.avoid.playtolearn.widget.BoardTileButton;
 import com.avoid.playtolearn.widget.BoardTileLayout;

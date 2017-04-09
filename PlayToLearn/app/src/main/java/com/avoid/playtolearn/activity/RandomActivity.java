@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.avoid.playtolearn.R;
-import com.avoid.playtolearn.global.Session;
+import com.avoid.playtolearn.common.Session;
 
 public class RandomActivity extends AppCompatActivity {
 

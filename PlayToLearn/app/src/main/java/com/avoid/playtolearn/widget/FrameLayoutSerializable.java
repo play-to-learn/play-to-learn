@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
-import com.avoid.playtolearn.global.Session;
+import com.avoid.playtolearn.common.Session;
 
 public class FrameLayoutSerializable extends FrameLayout{
     public FrameLayoutSerializable() {

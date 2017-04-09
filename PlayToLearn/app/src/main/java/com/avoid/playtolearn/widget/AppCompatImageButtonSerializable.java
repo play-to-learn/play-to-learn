@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.AppCompatImageButton;
 import android.util.AttributeSet;
 
-import com.avoid.playtolearn.global.Session;
+import com.avoid.playtolearn.common.Session;
 
 public class AppCompatImageButtonSerializable extends AppCompatImageButton{
     public AppCompatImageButtonSerializable() {

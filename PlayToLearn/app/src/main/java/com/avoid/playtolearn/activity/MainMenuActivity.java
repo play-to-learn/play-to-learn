@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.avoid.playtolearn.R;
-import com.avoid.playtolearn.global.Session;
+import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.util.SaveFileHandler;
 
 public class MainMenuActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.avoid.playtolearn.global;
+package com.avoid.playtolearn.common;
 
 import android.content.Context;
 

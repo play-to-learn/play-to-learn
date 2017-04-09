@@ -11,7 +11,7 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 
-import com.avoid.playtolearn.global.Session;
+import com.avoid.playtolearn.common.Session;
 
 import java.io.Serializable;
 
