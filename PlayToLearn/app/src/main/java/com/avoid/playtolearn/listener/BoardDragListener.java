@@ -3,7 +3,7 @@ package com.avoid.playtolearn.listener;
 import android.view.DragEvent;
 import android.view.View;
 
-import com.avoid.playtolearn.global.Session;
+import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.widget.BoardTileButton;
 import com.avoid.playtolearn.widget.BoardTileLayout;
 

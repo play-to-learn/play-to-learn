@@ -2,9 +2,8 @@ package com.avoid.playtolearn.util;
 
 
 import android.content.Context;
-import android.util.Log;
 
-import com.avoid.playtolearn.global.Session;
+import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.model.SaveFile;
 
 import java.io.FileInputStream;

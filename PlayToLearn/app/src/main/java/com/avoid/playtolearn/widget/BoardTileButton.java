@@ -1,14 +1,13 @@
 package com.avoid.playtolearn.widget;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatImageButton;
 import android.util.AttributeSet;
 
 import com.avoid.playtolearn.listener.BoardDragListener;
 import com.avoid.playtolearn.listener.BoardTouchListener;
 
-import java.io.Serializable;
-
-public class BoardTileButton extends AppCompatImageButtonSerializable implements Serializable{
+public class BoardTileButton extends AppCompatImageButton {
     private HexButtonDrawable drawable;
 
     public BoardTileButton(Context context) {

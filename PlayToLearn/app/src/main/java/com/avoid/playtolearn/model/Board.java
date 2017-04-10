@@ -2,7 +2,7 @@ package com.avoid.playtolearn.model;
 
 import android.content.Context;
 
-import com.avoid.playtolearn.global.Rule;
+import com.avoid.playtolearn.common.Global;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,9 +11,9 @@ public class Board implements Serializable{
     private ArrayList<ArrayList<BoardTile>> tileGrid = new ArrayList<>();
 
     public Board(Context context) {
-        for(int col = 0; col < Rule.COLUMN_COUNT; col++){
+        for(int col = 0; col < Global.COLUMN_COUNT; col++){
             ArrayList<BoardTile> tileColumn = new ArrayList<>();
-            for(int row = 0; row < Rule.ROW_COUNT; row++){
+            for(int row = 0; row < Global.ROW_COUNT; row++){
                 BoardTile boardTile = new BoardTile();
                 boardTile.setRow(row);
                 boardTile.setColumn(col);

@@ -11,11 +11,9 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 
-import com.avoid.playtolearn.global.Session;
-
 import java.io.Serializable;
 
-public class HexButtonDrawable extends Drawable implements Serializable {
+public class HexButtonDrawable extends Drawable {
     private Context context;
 
     private int numberOfSides = 6;
@@ -30,10 +28,6 @@ public class HexButtonDrawable extends Drawable implements Serializable {
     private Bitmap bmp_scaled;
     private int bmp_width = 150;
     private int bmp_height = 150;
-
-    public HexButtonDrawable() {
-        this.context = Session.currentContext;
-    }
 
     public HexButtonDrawable(Context context) {
         this.context = context;
@@ -75,7 +69,7 @@ public class HexButtonDrawable extends Drawable implements Serializable {
         invalidateSelf();
     }
 
-    public void setIcon(int drawable){
+    public void setIcon(int drawable) {
         Bitmap bmp_original = BitmapFactory.decodeResource(context.getResources(), drawable);
         bmp_scaled = Bitmap.createScaledBitmap(bmp_original, bmp_width, bmp_height, false);
     }
@@ -103,8 +97,8 @@ public class HexButtonDrawable extends Drawable implements Serializable {
                 (float) (centerY + radius * Math.sin(0)));
 
         for (int i = 1; i < numberOfSides; i++) {
-            polygonPath.lineTo((float)(centerX + radius * Math.cos(section * i)),
-                    (float)(centerY + radius * Math.sin(section * i)));
+            polygonPath.lineTo((float) (centerX + radius * Math.cos(section * i)),
+                    (float) (centerY + radius * Math.sin(section * i)));
         }
 
         polygonPath.close();
