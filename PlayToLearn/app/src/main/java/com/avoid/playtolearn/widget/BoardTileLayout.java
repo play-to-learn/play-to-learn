@@ -72,7 +72,7 @@ public class BoardTileLayout extends FrameLayout {
 
 //        int size_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50,
 //                context.getResources().getDisplayMetrics());
-        int size_px = (int) (effectiveWidth / (Global.COLUMN_COUNT + 0.5));
+        int size_px = (int) (effectiveWidth / (Global.COLUMN_COUNT + 1));
 
         //        int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3,
 //                context.getResources().getDisplayMetrics());

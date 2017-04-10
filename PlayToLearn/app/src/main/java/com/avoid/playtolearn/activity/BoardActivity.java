@@ -1,7 +1,9 @@
 package com.avoid.playtolearn.activity;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Dialog;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.avoid.playtolearn.R;
@@ -9,6 +11,7 @@ import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.model.BoardTile;
 import com.avoid.playtolearn.widget.BoardTileButton;
 import com.avoid.playtolearn.widget.BoardTileLayout;
+import com.avoid.playtolearn.widget.ProblemDialog;
 
 import java.util.ArrayList;
 
@@ -53,5 +56,10 @@ public class BoardActivity extends AppCompatActivity {
             }
             tileGridLayout.addView(tileColumnLayout);
         }
+    }
+
+    public void onClickNextButton(View view) {
+        ProblemDialog problemDialog = new ProblemDialog(BoardActivity.this);
+        problemDialog.show();
     }
 }

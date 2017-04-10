@@ -19,7 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LeaderboardActivity"></activity>
+        <activity android:name=".activity.LeaderboardActivity" />
+        <activity android:name=".widget.ProblemDialog" />
+        <activity android:name=".activity.HelpActivity"></activity>
     </application>
 
 </manifest>

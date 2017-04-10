@@ -56,11 +56,6 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void onClickHelpButton(View view){
-        //startActivity(new Intent(MainMenuActivity.this, HelpActivity.class));
-
-        // Test Problem Popup
-        Dialog dialog = new Dialog(this, R.style.ProblemDialog);
-        dialog.setContentView(R.layout.activity_problem);
-        dialog.show();
+        startActivity(new Intent(MainMenuActivity.this, HelpActivity.class));
     }
 }

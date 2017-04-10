@@ -1,1 +1,0 @@
-INSERT INTO user (first_name, last_name, score) VALUES ('John', 'Doe', 0);
