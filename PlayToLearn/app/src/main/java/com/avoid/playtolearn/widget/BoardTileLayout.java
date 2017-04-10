@@ -13,6 +13,7 @@ import com.avoid.playtolearn.listener.BoardDragListener;
 public class BoardTileLayout extends FrameLayout {
     private int row;
     private int column;
+    private int state;  // 0:NotPassed 1:Passed 2:ProblemPoint
 
     public BoardTileLayout(Context context) {
         super(context);
@@ -48,8 +49,24 @@ public class BoardTileLayout extends FrameLayout {
         this.column = column;
     }
 
+    public void setState(int state){
+        this.state = state;
+        if (state == 0){
+            setBackgroundResource(R.drawable.board_tile_background_0);
+        } else if (state == 1){
+            setBackgroundResource(R.drawable.board_tile_background_1);
+        } else if (state == 2){
+            setBackgroundResource(R.drawable.board_tile_background_2);
+        }
+    }
+
+    public int getState(){
+        return this.state;
+    }
+
+
     public void applyCustomDesign(Context context) {
-        setBackgroundResource(R.drawable.board_tile_background);
+        setState(1);
 
         int effectiveWidth = (int) (Session.SCREEN_WIDTH * 0.95);
 

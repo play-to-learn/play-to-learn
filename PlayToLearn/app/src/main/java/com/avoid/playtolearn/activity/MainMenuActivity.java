@@ -1,5 +1,6 @@
 package com.avoid.playtolearn.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
@@ -52,5 +53,14 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void onClickLeaderboardButton(View view){
         startActivity(new Intent(MainMenuActivity.this, LeaderboardActivity.class));
+    }
+
+    public void onClickHelpButton(View view){
+        //startActivity(new Intent(MainMenuActivity.this, HelpActivity.class));
+
+        // Test Problem Popup
+        Dialog dialog = new Dialog(this, R.style.ProblemDialog);
+        dialog.setContentView(R.layout.activity_problem);
+        dialog.show();
     }
 }
