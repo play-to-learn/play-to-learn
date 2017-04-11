@@ -5,25 +5,80 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
-    tools:context="com.avoid.playtolearn.activity.BoardActivity">
+    tools:context="com.avoid.playtolearn.activity.BoardActivity"
+    android:background="@drawable/common_background">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout_status_top"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginStart="0dp"
+        android:background="@color/colorDarkGlass"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/gold_status_image"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="2dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:scaleType="fitStart"
+            app:layout_constraintBottom_toBottomOf="@+id/time_status_image"
+            app:layout_constraintHorizontal_bias="0.34"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/time_status_image"
+            app:layout_constraintVertical_bias="0.428"
+            app:srcCompat="@drawable/board_status_gold" />
+
+        <ImageView
+            android:id="@+id/time_status_image"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="2dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:scaleType="fitEnd"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.75"
+            app:layout_constraintLeft_toLeftOf="@+id/gold_status_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/board_status_time" />
+
+    </android.support.constraint.ConstraintLayout>
 
     <ScrollView
         android:id="@+id/tile_scroll_view"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="400dp"
         android:layout_marginEnd="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:background="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/layout_status_top"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/layout_status_bottom"
+        app:layout_constraintVertical_bias="0.35000002">
 
         <LinearLayout
             android:id="@+id/tile_grid_layout"
@@ -32,5 +87,17 @@
             android:orientation="horizontal" />
 
     </ScrollView>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout_status_bottom"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="@color/colorDarkGlass"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
