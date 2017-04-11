@@ -57,9 +57,4 @@ public class BoardActivity extends AppCompatActivity {
             tileGridLayout.addView(tileColumnLayout);
         }
     }
-
-    public void onClickNextButton(View view) {
-        ProblemDialog problemDialog = new ProblemDialog(BoardActivity.this);
-        problemDialog.show();
-    }
 }

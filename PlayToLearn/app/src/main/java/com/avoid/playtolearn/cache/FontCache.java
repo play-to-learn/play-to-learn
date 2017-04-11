@@ -1,4 +1,4 @@
-package com.avoid.playtolearn.util;
+package com.avoid.playtolearn.cache;
 
 import android.content.Context;
 import android.graphics.Typeface;

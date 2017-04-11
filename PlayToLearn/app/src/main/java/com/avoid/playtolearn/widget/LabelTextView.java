@@ -6,7 +6,7 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 
 import com.avoid.playtolearn.common.Font;
-import com.avoid.playtolearn.util.FontCache;
+import com.avoid.playtolearn.cache.FontCache;
 
 public class LabelTextView extends android.support.v7.widget.AppCompatTextView {
     public LabelTextView(Context context) {
