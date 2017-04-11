@@ -6,6 +6,7 @@ import android.widget.FrameLayout;
 import com.avoid.playtolearn.R;
 import com.avoid.playtolearn.common.Global;
 import com.avoid.playtolearn.common.Session;
+import com.avoid.playtolearn.game.QuestionLogic;
 import com.avoid.playtolearn.listener.BoardDragListener;
 import com.avoid.playtolearn.model.BoardTile;
 import com.avoid.playtolearn.model.BoardTileState;
@@ -25,12 +26,32 @@ public class BoardTileLayout extends FrameLayout {
         }
     }
 
-    public void setBoardTileState(BoardTileState boardTileState) {
-        this.boardTile.setBoardTileState(boardTileState);
-        this.refreshState();
+    public BoardTile getBoardTile() {
+        return boardTile;
     }
 
-    public void refreshState(){
+    public void setBoardTileState(BoardTileState boardTileState) {
+        this.boardTile.setBoardTileState(boardTileState);
+        this.refreshStateChanges();
+    }
+
+    public int getRow(){
+        return this.boardTile.getRow();
+    }
+
+    public int getColumn(){
+        return  this.boardTile.getColumn();
+    }
+
+    public void generateQuestion(){
+        this.boardTile.setQuestion(QuestionLogic.getRandomQuestion());
+    }
+
+    public int getScore(){
+        return this.boardTile.getQuestion().getDifficulty().getScore();
+    }
+
+    public void refreshStateChanges(){
         BoardTileState boardTileState = boardTile.getBoardTileState();
         switch (boardTileState){
             case NOT_VISITED:
@@ -69,6 +90,6 @@ public class BoardTileLayout extends FrameLayout {
         params.setMargins(margin_px, margin_px, margin_px, margin_px);
         this.setLayoutParams(params);
 
-        refreshState();
+        refreshStateChanges();
     }
 }

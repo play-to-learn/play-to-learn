@@ -3,7 +3,7 @@ package com.avoid.playtolearn.model;
 import android.content.Context;
 
 import com.avoid.playtolearn.common.Global;
-import com.avoid.playtolearn.game.GameLogic;
+import com.avoid.playtolearn.game.QuestionLogic;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class Board implements Serializable{
 
                 if(col == currentX && row == currentY){
                     boardTile.setBoardTileState(BoardTileState.CURRENT);
-                    boardTile.setQuestion(GameLogic.getRandomQuestion());
+                    boardTile.setQuestion(QuestionLogic.getRandomQuestion());
                 }
                 tileColumn.add(boardTile);
             }

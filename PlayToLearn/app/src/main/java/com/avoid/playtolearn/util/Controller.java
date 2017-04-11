@@ -1,7 +1,6 @@
-package com.avoid.playtolearn.game;
+package com.avoid.playtolearn.util;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.avoid.playtolearn.cache.QuestionCache;
 import com.avoid.playtolearn.database.cursor.QuestionSQL;

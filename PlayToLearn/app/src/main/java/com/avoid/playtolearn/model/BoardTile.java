@@ -7,14 +7,12 @@ public class BoardTile implements Serializable{
     private int column;
     private BoardTileState boardTileState;
     private Question question;
-    private boolean answered;
 
     public BoardTile() {
         this.row = 0;
         this.column = 0;
         this.boardTileState = BoardTileState.NOT_VISITED;
         this.question = null;
-        this.answered = false;
     }
 
     public int getRow() {
@@ -47,13 +45,5 @@ public class BoardTile implements Serializable{
 
     public void setQuestion(Question question) {
         this.question = question;
-    }
-
-    public boolean isAnswered() {
-        return answered;
-    }
-
-    public void setAnswered(boolean answered) {
-        this.answered = answered;
     }
 }

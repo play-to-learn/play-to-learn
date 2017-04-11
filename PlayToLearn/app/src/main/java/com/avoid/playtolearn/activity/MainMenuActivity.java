@@ -1,6 +1,5 @@
 package com.avoid.playtolearn.activity;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +9,7 @@ import android.view.View;
 import com.avoid.playtolearn.R;
 import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.database.DatabaseHelper;
-import com.avoid.playtolearn.game.Controller;
+import com.avoid.playtolearn.util.Controller;
 import com.avoid.playtolearn.util.SaveFileHandler;
 
 public class MainMenuActivity extends AppCompatActivity {

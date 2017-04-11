@@ -1,7 +1,5 @@
 package com.avoid.playtolearn.game;
 
-import android.util.Log;
-
 import com.avoid.playtolearn.cache.QuestionCache;
 import com.avoid.playtolearn.model.Category;
 import com.avoid.playtolearn.model.Difficulty;
@@ -10,7 +8,7 @@ import com.avoid.playtolearn.model.Question;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class GameLogic {
+public class QuestionLogic {
     public static Category getRandomCategory() {
         Random random = new Random();
         int i = random.nextInt(2);
@@ -42,8 +40,8 @@ public class GameLogic {
     }
 
     public static Question getRandomQuestion(){
-        Category category = GameLogic.getRandomCategory();
-        Difficulty difficulty = GameLogic.getRandomDifficulty();
+        Category category = getRandomCategory();
+        Difficulty difficulty = getRandomDifficulty();
 
         ArrayList<Question> tempQuestionList = new ArrayList<>();
         for(Question question: QuestionCache.getQuestionArrayList()){
