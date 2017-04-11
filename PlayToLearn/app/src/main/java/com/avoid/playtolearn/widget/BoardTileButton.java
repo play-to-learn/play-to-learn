@@ -12,7 +12,7 @@ public class BoardTileButton extends AppCompatImageButton {
     public BoardTileButton(Context context) {
         super(context);
 
-        this.setOnTouchListener(new BoardTouchListener());
+        this.setOnTouchListener(new BoardTouchListener(context));
         this.setOnDragListener(new BoardDragListener());
         applyCustomLayout(context);
         applyCustomShape(context);

@@ -1,15 +1,13 @@
 package com.avoid.playtolearn.listener;
 
 import android.view.DragEvent;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.Toast;
 
 import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.game.BoardLogic;
 import com.avoid.playtolearn.model.BoardTileState;
 import com.avoid.playtolearn.model.Result;
-import com.avoid.playtolearn.util.MyApp;
+import com.avoid.playtolearn.test.TestingFunction;
 import com.avoid.playtolearn.widget.BoardTileButton;
 import com.avoid.playtolearn.widget.BoardTileLayout;
 
@@ -56,9 +54,7 @@ public class BoardDragListener implements View.OnDragListener, Serializable {
                             newBoardTileLayout.generateQuestion();
                             break;
                         case INVALID:
-                            Toast toast = Toast.makeText(MyApp.context, "Invalid move", Toast.LENGTH_LONG);
-                            toast.setGravity(Gravity.CENTER, 0, 0);
-                            toast.show();
+                            TestingFunction.print("Invalid move notification");
                             break;
                     }
                 }

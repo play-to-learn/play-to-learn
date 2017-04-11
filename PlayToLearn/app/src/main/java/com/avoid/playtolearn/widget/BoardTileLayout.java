@@ -8,6 +8,7 @@ import com.avoid.playtolearn.common.Global;
 import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.game.QuestionLogic;
 import com.avoid.playtolearn.listener.BoardDragListener;
+import com.avoid.playtolearn.listener.BoardTouchListener;
 import com.avoid.playtolearn.model.BoardTile;
 import com.avoid.playtolearn.model.BoardTileState;
 
@@ -17,6 +18,7 @@ public class BoardTileLayout extends FrameLayout {
     public BoardTileLayout(Context context, BoardTile boardTile) {
         super(context);
         this.boardTile = boardTile;
+        this.setOnTouchListener(new BoardTouchListener(context));
         this.setOnDragListener(new BoardDragListener());
 
         applyCustomDesign();

@@ -7,8 +7,10 @@ import com.avoid.playtolearn.database.cursor.QuestionSQL;
 import com.avoid.playtolearn.widget.ProblemDialog;
 
 public class Controller {
-    public static void showQuestionDialog(Context context){
+    public static void showQuestionDialog(Context context, String title, String description){
         ProblemDialog problemDialog = new ProblemDialog(context);
+        problemDialog.setTitle(title);
+        problemDialog.setDescription(description);
         problemDialog.show();
     }
 

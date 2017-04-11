@@ -25,7 +25,8 @@ public class QuestionLogic {
         int i = random.nextInt(2);
 
         if (i == 0) {
-            return Difficulty.Very_easy;
+//            return Difficulty.Very_easy;
+            return Difficulty.Easy;
         } else if (i == 1) {
             return Difficulty.Easy;
         } else if (i == 2) {
@@ -33,19 +34,21 @@ public class QuestionLogic {
         } else if (i == 3) {
             return Difficulty.Hard;
         } else if (i == 4) {
-            return Difficulty.Very_hard;
+//            return Difficulty.Very_hard;
+            return Difficulty.Medium;
         } else {
-            return Difficulty.Expert;
+//            return Difficulty.Expert;
+            return Difficulty.Hard;
         }
     }
 
-    public static Question getRandomQuestion(){
+    public static Question getRandomQuestion() {
         Category category = getRandomCategory();
         Difficulty difficulty = getRandomDifficulty();
 
         ArrayList<Question> tempQuestionList = new ArrayList<>();
-        for(Question question: QuestionCache.getQuestionArrayList()){
-            if(question.getCategory() == category && question.getDifficulty() == difficulty){
+        for (Question question : QuestionCache.getQuestionArrayList()) {
+            if (question.getCategory() == category && question.getDifficulty() == difficulty) {
                 tempQuestionList.add(question);
             }
         }
