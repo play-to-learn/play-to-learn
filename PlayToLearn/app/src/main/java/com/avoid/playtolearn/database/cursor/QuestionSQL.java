@@ -1,17 +1,17 @@
 package com.avoid.playtolearn.database.cursor;
 
 import android.database.Cursor;
+import android.util.Log;
 
 import com.avoid.playtolearn.common.Session;
-import com.avoid.playtolearn.model.Profile;
 import com.avoid.playtolearn.model.Question;
+import com.avoid.playtolearn.util.Factory;
 
 import java.util.ArrayList;
 
 public class QuestionSQL {
     public ArrayList<Question> getQuestions(){
         ArrayList<Question> questionArrayList = new ArrayList<>();
-
         Cursor cursor = Session.readableDatabase.query(
                 "question",
                 new String[]{"id", "name", "description", "answer", "question_category_id", "question_difficulty_id"},
@@ -34,7 +34,9 @@ public class QuestionSQL {
             question.setName(name);
             question.setDescription(description);
             question.setAnswer(answer);
-
+            question.setCategory(Factory.getCategoryById(cagoryId));
+            question.setDifficulty(Factory.getDifficultyById(difficultyId));
+            questionArrayList.add(question);
         }
 
         return questionArrayList;

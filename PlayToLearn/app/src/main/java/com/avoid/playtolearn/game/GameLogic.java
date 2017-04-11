@@ -1,5 +1,7 @@
 package com.avoid.playtolearn.game;
 
+import android.util.Log;
+
 import com.avoid.playtolearn.cache.QuestionCache;
 import com.avoid.playtolearn.model.Category;
 import com.avoid.playtolearn.model.Difficulty;

@@ -3,9 +3,19 @@ package com.avoid.playtolearn.model;
 import java.io.Serializable;
 
 public class BoardTile implements Serializable{
-    private int row = 0;
-    private int column = 0;
-    private boolean hasPointer = false;
+    private int row;
+    private int column;
+    private BoardTileState boardTileState;
+    private Question question;
+    private boolean answered;
+
+    public BoardTile() {
+        this.row = 0;
+        this.column = 0;
+        this.boardTileState = BoardTileState.NOT_VISITED;
+        this.question = null;
+        this.answered = false;
+    }
 
     public int getRow() {
         return row;
@@ -23,11 +33,27 @@ public class BoardTile implements Serializable{
         this.column = column;
     }
 
-    public boolean isHasPointer() {
-        return hasPointer;
+    public BoardTileState getBoardTileState() {
+        return boardTileState;
     }
 
-    public void setHasPointer(boolean hasPointer) {
-        this.hasPointer = hasPointer;
+    public void setBoardTileState(BoardTileState boardTileState) {
+        this.boardTileState = boardTileState;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    public boolean isAnswered() {
+        return answered;
+    }
+
+    public void setAnswered(boolean answered) {
+        this.answered = answered;
     }
 }

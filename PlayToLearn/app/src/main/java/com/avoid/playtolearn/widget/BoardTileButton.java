@@ -2,7 +2,6 @@ package com.avoid.playtolearn.widget;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatImageButton;
-import android.util.AttributeSet;
 
 import com.avoid.playtolearn.listener.BoardDragListener;
 import com.avoid.playtolearn.listener.BoardTouchListener;
@@ -12,20 +11,7 @@ public class BoardTileButton extends AppCompatImageButton {
 
     public BoardTileButton(Context context) {
         super(context);
-        constructorWork(context);
-    }
 
-    public BoardTileButton(Context context, AttributeSet attrs) {
-        super(context);
-        constructorWork(context);
-    }
-
-    public BoardTileButton(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context);
-        constructorWork(context);
-    }
-
-    private void constructorWork(Context context){
         this.setOnTouchListener(new BoardTouchListener());
         this.setOnDragListener(new BoardDragListener());
         applyCustomLayout(context);

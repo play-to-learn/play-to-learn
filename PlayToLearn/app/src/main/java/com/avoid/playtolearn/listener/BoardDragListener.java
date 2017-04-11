@@ -4,6 +4,7 @@ import android.view.DragEvent;
 import android.view.View;
 
 import com.avoid.playtolearn.common.Session;
+import com.avoid.playtolearn.model.BoardTileState;
 import com.avoid.playtolearn.widget.BoardTileButton;
 import com.avoid.playtolearn.widget.BoardTileLayout;
 
@@ -27,15 +28,10 @@ public class BoardDragListener implements View.OnDragListener, Serializable {
                         BoardTileButton boardTileButton = (BoardTileButton) event.getLocalState();
 
                         BoardTileLayout previousBoardTileLayout = (BoardTileLayout) boardTileButton.getParent();
-
-                        int preRow = previousBoardTileLayout.getRow();
-                        int preColumn = previousBoardTileLayout.getColumn();
-                        Session.currentSaveFile.getBoard().getBoardTile(preRow, preColumn).setHasPointer(false);
+                        previousBoardTileLayout.setBoardTileState(BoardTileState.VISITED);
                         previousBoardTileLayout.removeView(boardTileButton);
 
-                        int newRow = newBoardTileLayout.getRow();
-                        int newColumn = newBoardTileLayout.getColumn();
-                        Session.currentSaveFile.getBoard().getBoardTile(newRow, newColumn).setHasPointer(true);
+                        newBoardTileLayout.setBoardTileState(BoardTileState.CURRENT);
                         newBoardTileLayout.addView(boardTileButton, boardTileButton.getWidth(), boardTileButton.getHeight());
                     }
                 }

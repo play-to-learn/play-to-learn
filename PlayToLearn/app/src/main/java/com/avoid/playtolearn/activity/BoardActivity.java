@@ -1,17 +1,13 @@
 package com.avoid.playtolearn.activity;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.LinearLayout;
 
 import com.avoid.playtolearn.R;
 import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.model.BoardTile;
-import com.avoid.playtolearn.widget.BoardTileButton;
 import com.avoid.playtolearn.widget.BoardTileLayout;
-import com.avoid.playtolearn.widget.ProblemDialog;
 
 import java.util.ArrayList;
 
@@ -45,13 +41,7 @@ public class BoardActivity extends AppCompatActivity {
             LinearLayout tileColumnLayout = new LinearLayout(BoardActivity.this);
             tileColumnLayout.setOrientation(LinearLayout.VERTICAL);
             for (BoardTile boardTile : tileArrayList) {
-                BoardTileLayout boardTileLayout = new BoardTileLayout(BoardActivity.this);
-                boardTileLayout.setRow(boardTile.getRow());
-                boardTileLayout.setColumn(boardTile.getColumn());
-
-                if(boardTile.isHasPointer()){
-                    boardTileLayout.addView(new BoardTileButton(BoardActivity.this));
-                }
+                BoardTileLayout boardTileLayout = new BoardTileLayout(BoardActivity.this, boardTile);
                 tileColumnLayout.addView(boardTileLayout);
             }
             tileGridLayout.addView(tileColumnLayout);

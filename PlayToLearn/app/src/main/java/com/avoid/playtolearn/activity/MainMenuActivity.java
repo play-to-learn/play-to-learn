@@ -10,6 +10,7 @@ import android.view.View;
 import com.avoid.playtolearn.R;
 import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.database.DatabaseHelper;
+import com.avoid.playtolearn.game.Controller;
 import com.avoid.playtolearn.util.SaveFileHandler;
 
 public class MainMenuActivity extends AppCompatActivity {
@@ -34,11 +35,13 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void onClickContinueButton(View view){
+        Controller.loadQuestions();
         Session.saveFileHandler.loadGame();
         startActivity(new Intent(MainMenuActivity.this, BoardActivity.class));
     }
 
     public void onClickNewGameButton(View view){
+        Controller.loadQuestions();
         Session.saveFileHandler.newGame();
         startActivity(new Intent(MainMenuActivity.this, BoardActivity.class));
     }
