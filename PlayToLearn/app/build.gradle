@@ -36,3 +36,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.facebook.android:facebook-android-sdk:4.21.1'
 }
+
+apply plugin: 'com.google.gms.google-services'

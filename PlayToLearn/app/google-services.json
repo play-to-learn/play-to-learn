@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "249934953162",
+    "firebase_url": "https://play-to-learn.firebaseio.com",
+    "project_id": "play-to-learn",
+    "storage_bucket": "play-to-learn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249934953162:android:f66d193606de88be",
+        "android_client_info": {
+          "package_name": "com.avoid.playtolearn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "249934953162-35nne4ci3mb2en3453negi2l2sapbv2r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9cu2F3iQ-sFn-IeleiXHg-8mHlTJsaBo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
