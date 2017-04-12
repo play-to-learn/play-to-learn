@@ -18,4 +18,12 @@ public class Controller {
         QuestionSQL questionSQL = new QuestionSQL();
         QuestionCache.setQuestionArrayList(questionSQL.getQuestions());
     }
+
+    public static void applySoundSettings(Context context){
+
+    }
+
+    public static void applyMusicSettings(Context context){
+
+    }
 }

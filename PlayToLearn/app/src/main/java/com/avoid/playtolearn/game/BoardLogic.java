@@ -20,8 +20,8 @@ public class BoardLogic {
             }else if(newY == preY + 1){
                 difference += (Global.COLUMN_COUNT - preX - 1) + (newX + 1);
             }else {
-                difference += (Global.COLUMN_COUNT - preX - 1) + (newX);
-                difference += ((newY - preY) * Global.COLUMN_COUNT);
+                difference += (Global.COLUMN_COUNT - preX - 1) + (newX + 1);
+                difference += ((newY - preY - 1) * Global.COLUMN_COUNT);
             }
 
             if (preBoardTile.getQuestion().getAnswer() == difference){

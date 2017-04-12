@@ -45,10 +45,12 @@ public class BoardTouchListener implements View.OnTouchListener, Serializable {
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (isOnClick && (Math.abs(mDownX - event.getX()) > SCROLL_THRESHOLD || Math.abs(mDownY - event.getY()) > SCROLL_THRESHOLD)) {
-                    View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
-                    v.startDrag(null, shadowBuilder, v, 0);
-                    isOnClick = false;
+                if(v instanceof BoardTileButton){
+                    if (isOnClick && (Math.abs(mDownX - event.getX()) > SCROLL_THRESHOLD || Math.abs(mDownY - event.getY()) > SCROLL_THRESHOLD)) {
+                        View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
+                        v.startDrag(null, shadowBuilder, v, 0);
+                        isOnClick = false;
+                    }
                 }
                 break;
             default:
