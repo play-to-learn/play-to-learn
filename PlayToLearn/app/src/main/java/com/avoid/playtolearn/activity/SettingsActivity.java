@@ -26,11 +26,6 @@ public class SettingsActivity extends AppCompatActivity {
         refreshUI();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
     public void closeButtonOnClick(View view) {
         finish();
     }

@@ -13,14 +13,21 @@ import com.avoid.playtolearn.util.Controller;
 import com.avoid.playtolearn.util.SaveFileHandler;
 import com.avoid.playtolearn.util.SettingsHandler;
 import com.facebook.appevents.AppEventsLogger;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class MainMenuActivity extends AppCompatActivity {
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        //Firebase
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        //Facebook events
         AppEventsLogger.activateApp(getApplication());
 
         Session.saveFileHandler = new SaveFileHandler(getApplicationContext());
@@ -41,11 +48,6 @@ public class MainMenuActivity extends AppCompatActivity {
         Session.SCREEN_HEIGHT = Resources.getSystem().getDisplayMetrics().heightPixels;
 
         Controller.loadQuestions();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
     public void onClickContinueButton(View view){
