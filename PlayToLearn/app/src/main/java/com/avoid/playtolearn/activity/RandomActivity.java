@@ -13,9 +13,4 @@ public class RandomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random);
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 }

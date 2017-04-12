@@ -9,18 +9,30 @@ import android.view.View;
 import com.avoid.playtolearn.R;
 import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.database.DatabaseHelper;
+import com.avoid.playtolearn.listener.FirebaseAuthStateListener;
 import com.avoid.playtolearn.util.Controller;
 import com.avoid.playtolearn.util.SaveFileHandler;
 import com.avoid.playtolearn.util.SettingsHandler;
 import com.facebook.appevents.AppEventsLogger;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainMenuActivity extends AppCompatActivity {
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        // Initialize Firebase Auth
+        Session.firebaseAuth = FirebaseAuth.getInstance();
+        Session.authStateListener = new FirebaseAuthStateListener();
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        //Facebook events
         AppEventsLogger.activateApp(getApplication());
 
         Session.saveFileHandler = new SaveFileHandler(getApplicationContext());
@@ -44,9 +56,18 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    public void onStart() {
+        super.onStart();
+        Session.firebaseAuth.addAuthStateListener(Session.authStateListener);
     }
+
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        if (Session.authStateListener != null) {
+//            Session.firebaseAuth.removeAuthStateListener(Session.authStateListener);
+//        }
+//    }
 
     public void onClickContinueButton(View view){
         Session.saveFileHandler.loadGame();
