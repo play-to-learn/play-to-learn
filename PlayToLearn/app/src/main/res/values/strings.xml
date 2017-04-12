@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">Play To Learn</string>
-
-    <string name="throw_button">Throw</string>
+    <string name="facebook_app_id">697603560424719</string>
 </resources>
