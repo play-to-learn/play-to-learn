@@ -35,8 +35,10 @@ public class BoardTouchListener implements View.OnTouchListener, Serializable {
                     BoardTileLayout boardTileLayout;
                     if (v instanceof BoardTileLayout) {
                         boardTileLayout = (BoardTileLayout) v;
-                        Controller.showQuestionDialog(context, boardTileLayout.getBoardTile().getQuestion().getName(),
-                                boardTileLayout.getBoardTile().getQuestion().getDescription());
+                        if (boardTileLayout.getBoardTile().getQuestion() != null) {
+                            Controller.showQuestionDialog(context, boardTileLayout.getBoardTile().getQuestion().getName(),
+                                    boardTileLayout.getBoardTile().getQuestion().getDescription());
+                        }
                     } else if (v instanceof BoardTileButton) {
                         boardTileLayout = (BoardTileLayout) v.getParent();
                         Controller.showQuestionDialog(context, boardTileLayout.getBoardTile().getQuestion().getName(),
@@ -45,7 +47,7 @@ public class BoardTouchListener implements View.OnTouchListener, Serializable {
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                if(v instanceof BoardTileButton){
+                if (v instanceof BoardTileButton) {
                     if (isOnClick && (Math.abs(mDownX - event.getX()) > SCROLL_THRESHOLD || Math.abs(mDownY - event.getY()) > SCROLL_THRESHOLD)) {
                         View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
                         v.startDrag(null, shadowBuilder, v, 0);

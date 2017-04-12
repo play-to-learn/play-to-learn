@@ -12,6 +12,7 @@ import com.avoid.playtolearn.database.DatabaseHelper;
 import com.avoid.playtolearn.util.Controller;
 import com.avoid.playtolearn.util.SaveFileHandler;
 import com.avoid.playtolearn.util.SettingsHandler;
+import com.facebook.appevents.AppEventsLogger;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -19,6 +20,8 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
+        AppEventsLogger.activateApp(getApplication());
 
         Session.saveFileHandler = new SaveFileHandler(getApplicationContext());
 
