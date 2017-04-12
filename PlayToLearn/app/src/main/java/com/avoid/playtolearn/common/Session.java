@@ -7,6 +7,7 @@ import com.avoid.playtolearn.model.SaveFile;
 import com.avoid.playtolearn.model.Settings;
 import com.avoid.playtolearn.util.SaveFileHandler;
 import com.avoid.playtolearn.util.SettingsHandler;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Session {
     //Save files
@@ -25,4 +26,8 @@ public class Session {
     //Device
     public static int SCREEN_WIDTH;
     public static int SCREEN_HEIGHT;
+
+    //Firebase
+    public static FirebaseAuth firebaseAuth = null;
+    public static FirebaseAuth.AuthStateListener authStateListener = null;
 }
