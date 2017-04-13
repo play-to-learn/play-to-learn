@@ -63,7 +63,7 @@ public class BoardTileLayout extends FrameLayout {
                 setBackgroundResource(R.drawable.board_tile_background_visited);
                 break;
             case CURRENT:
-                setBackgroundResource(R.drawable.board_tile_background_current);
+                setBackgroundResource(R.color.colorTransparent);
                 break;
             case CORRECT_ANSWER:
                 setBackgroundResource(R.drawable.board_tile_background_correct);

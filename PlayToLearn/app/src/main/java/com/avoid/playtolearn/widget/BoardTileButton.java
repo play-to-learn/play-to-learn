@@ -3,6 +3,7 @@ package com.avoid.playtolearn.widget;
 import android.content.Context;
 import android.support.v7.widget.AppCompatImageButton;
 
+import com.avoid.playtolearn.R;
 import com.avoid.playtolearn.listener.BoardDragListener;
 import com.avoid.playtolearn.listener.BoardTouchListener;
 
@@ -23,8 +24,9 @@ public class BoardTileButton extends AppCompatImageButton {
     }
 
     private void applyCustomShape(Context context) {
-        drawable = new HexButtonDrawable(context);
-        setBackground(drawable);
+        setBackgroundResource(R.drawable.sprite);
+//        drawable = new HexButtonDrawable(context);
+//        setBackground(drawable);
     }
 
     private void applyCustomLayout(Context context){
