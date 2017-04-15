@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorDarkGlass">#33000000</color>
     <color name="colorTransparent">#00000000</color>
+    <color name="colorWoodText">#874f21</color>
+    <color name="colorWhite">#eeeeee</color>
 </resources>
