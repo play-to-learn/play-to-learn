@@ -7,4 +7,5 @@
     <color name="colorTransparent">#00000000</color>
     <color name="colorWoodText">#874f21</color>
     <color name="colorWhite">#eeeeee</color>
+    <color name="colorYellow">#FFFF00</color>
 </resources>

@@ -19,12 +19,14 @@
         app:layout_constraintTop_toBottomOf="@+id/facebook_login_button"
         android:background="@drawable/common_window_panel"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/load_button">
+        app:layout_constraintBottom_toTopOf="@+id/load_button"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
 
         <ImageView
             android:id="@+id/profile_image_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
@@ -33,7 +35,9 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@color/colorWoodText" />
+            app:srcCompat="@color/colorWoodText"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
     </android.support.constraint.ConstraintLayout>
 
     <com.facebook.login.widget.LoginButton
