@@ -100,9 +100,6 @@ public class BoardTileLayout extends FrameLayout {
 //                context.getResources().getDisplayMetrics());
         int margin_px = (effectiveWidth - (size_px * Global.COLUMN_COUNT)) / (Global.COLUMN_COUNT * 2);
 
-        Log.d("--------size", String.valueOf(size_px));
-        Log.d("--------margin", String.valueOf(margin_px));
-
         LayoutParams params = new LayoutParams(size_px, size_px);
         params.setMargins(margin_px, margin_px, margin_px, margin_px);
         this.setLayoutParams(params);
