@@ -1,17 +1,10 @@
 package com.avoid.playtolearn.widget;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.util.TypedValue;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import com.avoid.playtolearn.R;
-import com.avoid.playtolearn.activity.ProfileActivity;
 import com.avoid.playtolearn.common.Global;
 import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.game.QuestionLogic;
@@ -19,8 +12,6 @@ import com.avoid.playtolearn.listener.BoardDragListener;
 import com.avoid.playtolearn.listener.BoardTouchListener;
 import com.avoid.playtolearn.model.BoardTile;
 import com.avoid.playtolearn.model.BoardTileState;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 public class BoardTileLayout extends FrameLayout {
     private BoardTile boardTile;

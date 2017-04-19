@@ -7,7 +7,10 @@ import com.avoid.playtolearn.model.SaveFile;
 import com.avoid.playtolearn.model.Settings;
 import com.avoid.playtolearn.util.SaveFileHandler;
 import com.avoid.playtolearn.util.SettingsHandler;
+import com.avoid.playtolearn.widget.BoardTileLayout;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
 
 public class Session {
     //Save files
@@ -30,4 +33,6 @@ public class Session {
     //Firebase
     public static FirebaseAuth firebaseAuth = null;
     public static FirebaseAuth.AuthStateListener authStateListener = null;
+
+    public static ArrayList<ArrayList<BoardTileLayout>> boardLayoutGrid = new ArrayList<>();
 }

@@ -38,13 +38,16 @@ public class BoardActivity extends AppCompatActivity {
 
     private void createBoard() {
         for (ArrayList<BoardTile> tileArrayList : Session.currentSaveFile.getBoard().getTileGrid()) {
+            ArrayList<BoardTileLayout> layoutArrayList = new ArrayList<>();
             LinearLayout tileColumnLayout = new LinearLayout(BoardActivity.this);
             tileColumnLayout.setOrientation(LinearLayout.VERTICAL);
             for (BoardTile boardTile : tileArrayList) {
                 BoardTileLayout boardTileLayout = new BoardTileLayout(BoardActivity.this, boardTile);
                 tileColumnLayout.addView(boardTileLayout);
+                layoutArrayList.add(boardTileLayout);
             }
             tileGridLayout.addView(tileColumnLayout);
+            Session.boardLayoutGrid.add(layoutArrayList);
         }
     }
 }
