@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.avoid.playtolearn.R;
 import com.avoid.playtolearn.common.Session;
@@ -19,11 +20,14 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainMenuActivity extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
+    private LinearLayout tileGridLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
+        this.tileGridLayout = (LinearLayout) findViewById(R.id.tile_grid_layout);
 
         // Initialize Firebase Auth
         Session.firebaseAuth = FirebaseAuth.getInstance();
