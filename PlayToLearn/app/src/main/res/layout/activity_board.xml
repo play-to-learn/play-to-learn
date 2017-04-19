@@ -20,9 +20,9 @@
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp">
+        android:layout_marginEnd="8dp"
+        app:layout_constraintHorizontal_bias="0.0">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="115dp"
@@ -102,7 +102,6 @@
         android:layout_height="60dp"
         android:background="@drawable/board_status_bg_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
@@ -118,11 +117,14 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
             android:background="@drawable/common_restart_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/settings_button"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp" />
 
         <Button
             android:id="@+id/settings_button"
@@ -130,7 +132,7 @@
             android:layout_height="50dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/common_settings_button"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -142,13 +144,16 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/common_menu_button"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/back_button"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginLeft="8dp"
+            app:layout_constraintHorizontal_bias="0.0" />
 
         <Button
             android:id="@+id/back_button"
@@ -162,6 +167,50 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="98dp"
+            android:layout_height="27dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintVertical_bias="0.86"
+            tools:layout_editor_absoluteY="24dp"
+            android:background="@drawable/board_status_time"
+            tools:layout_editor_absoluteX="133dp"
+            android:id="@+id/constraintLayout2">
+
+            <TextView
+                android:id="@+id/time_status_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="0dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="0dp"
+                android:text="00:00:19"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorWoodText"
+                android:textSize="18sp"
+                android:textAlignment="center"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
+        </android.support.constraint.ConstraintLayout>
     </android.support.constraint.ConstraintLayout>
 
     <ScrollView
