@@ -1,6 +1,7 @@
 package com.avoid.playtolearn.widget;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.TypedValue;
 import android.widget.FrameLayout;
 
@@ -60,6 +61,7 @@ public class BoardTileLayout extends FrameLayout {
         switch (boardTileState){
             case NOT_VISITED:
                 setBackgroundResource(R.drawable.board_tile_background_not_visited0);
+//                setBackgroundColor(Color.parseColor("#00ff00"));
                 break;
             case VISITED:
                 setBackgroundResource(R.drawable.board_tile_background_visited);
@@ -75,6 +77,7 @@ public class BoardTileLayout extends FrameLayout {
                 break;
             default:
                 setBackgroundResource(R.drawable.board_tile_background_not_visited0);
+//                setBackgroundColor(Color.parseColor("#00ff00"));
                 break;
         }
     }
