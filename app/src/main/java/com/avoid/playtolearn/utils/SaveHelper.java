@@ -15,11 +15,6 @@ import java.io.ObjectOutputStream;
 
 public class SaveHelper {
     private Context context;
-    private FileOutputStream fileOutputStream;
-    private ObjectOutputStream objectOutputStream;
-
-    private FileInputStream fileInputStream;
-    private ObjectInputStream objectInputStream;
 
     public SaveHelper(Context context) {
         this.context = context;
@@ -31,32 +26,26 @@ public class SaveHelper {
 
     public void loadGame() {
         try {
-            fileInputStream = context.openFileInput("saveFile");
-            objectInputStream = new ObjectInputStream(fileInputStream);
+            FileInputStream fileInputStream = context.openFileInput("saveFile");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
             Session.currentSaveFile = (SaveFile) objectInputStream.readObject();
 
             objectInputStream.close();
             fileInputStream.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
     }
 
     public void saveGame() {
         try {
-            fileOutputStream = context.openFileOutput("saveFile", Context.MODE_PRIVATE);
-            objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            FileOutputStream fileOutputStream = context.openFileOutput("saveFile", Context.MODE_PRIVATE);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
             objectOutputStream.writeObject(Session.currentSaveFile);
             objectOutputStream.close();
             fileOutputStream.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,7 +53,7 @@ public class SaveHelper {
 
     public boolean saveExists() {
         try {
-            fileInputStream = context.openFileInput("saveFile");
+            FileInputStream fileInputStream = context.openFileInput("saveFile");
             return fileInputStream != null;
         } catch (FileNotFoundException e) {
             e.printStackTrace();

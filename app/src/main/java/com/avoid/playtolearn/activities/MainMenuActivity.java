@@ -22,31 +22,11 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        this.tileGridLayout = (LinearLayout) findViewById(R.id.tile_grid_layout);
+        this.tileGridLayout = findViewById(R.id.tile_grid_layout);
 
-        Session.saveHelper = new SaveHelper(getApplicationContext());
+        this.initializeSession();
 
-        Session.settingsHelper = new SettingsHelper(getApplicationContext());
-        if(Session.settingsHelper.settingsExists()){
-            Session.settingsHelper.loadSettings();
-        }else{
-            Session.settingsHelper.newSettings();
-            Session.settingsHelper.saveSettings();
-        }
-
-        Session.SCREEN_WIDTH = Resources.getSystem().getDisplayMetrics().widthPixels;
-        Session.SCREEN_HEIGHT = Resources.getSystem().getDisplayMetrics().heightPixels;
-
-        loadQuestions();
-
-
-        // Sample questions
-        Question q1 = new Question();
-
-
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        database.getReference("question/easy/category/conditional_structures").push().setValue(q1);
+        this.loadQuestions();
     }
 
     @Override
@@ -80,7 +60,85 @@ public class MainMenuActivity extends AppCompatActivity {
         startActivity(new Intent(MainMenuActivity.this, HelpActivity.class));
     }
 
-    public static void loadQuestions(){
-        throw new UnsupportedOperationException();
+    public void initializeSession(){
+        Session.saveHelper = new SaveHelper(getApplicationContext());
+
+        Session.settingsHelper = new SettingsHelper(getApplicationContext());
+        if(Session.settingsHelper.settingsExists()){
+            Session.settingsHelper.loadSettings();
+        }else{
+            Session.settingsHelper.newSettings();
+            Session.settingsHelper.saveSettings();
+        }
+
+        Session.SCREEN_WIDTH = Resources.getSystem().getDisplayMetrics().widthPixels;
+        Session.SCREEN_HEIGHT = Resources.getSystem().getDisplayMetrics().heightPixels;
+
+        Session.database = FirebaseDatabase.getInstance();
+    }
+
+    public void loadQuestions(){
+        // Sample questions
+        Question q1 = new Question();
+        q1.setTitle("One");
+        q1.setDescription("X = 1\n" +
+                "Y = 2\n" +
+                "Z = X + Y\n" +
+                "GO Z steps forward");
+        q1.setAnswer(3);
+
+        Question q2 = new Question();
+        q2.setTitle("Two");
+        q2.setDescription("A = 3\n" +
+                "B = 4\n" +
+                "C = 5\n" +
+                "X = A - B + C\n" +
+                "GO X steps forward");
+        q2.setAnswer(4);
+
+        Question q3 = new Question();
+        q3.setTitle("Three");
+        q3.setDescription("X = 10\n" +
+                "Y = 17\n" +
+                "Z = (X+Y)%X\n" +
+                "GO Z steps forward");
+        q3.setAnswer(7);
+
+        Question q4 = new Question();
+        q4.setTitle("Four");
+        q4.setDescription("A = 25\n" +
+                "B = 13\n" +
+                "C = 11\n" +
+                "IF (B+C < A) THEN\n" +
+                "X = 7\n" +
+                "ELSE\n" +
+                "X = 9\n" +
+                "GO X steps forward");
+        q4.setAnswer(7);
+
+        Question q5 = new Question();
+        q5.setTitle("Five");
+        q5.setDescription("X = 2\n" +
+                "WHILE X < 10\n" +
+                "\tX = X + 1\n" +
+                "\tGO 1 step forward");
+        q5.setAnswer(8);
+
+        Question q6 = new Question();
+        q6.setTitle("Six");
+        q6.setDescription("X = 5\n" +
+                "Y = 6\n" +
+                "WHILE X > 3\n" +
+                "\tX = X - 1\n" +
+                "\tY = Y + 1\n" +
+                "GO Y steps forward");
+        q6.setAnswer(8);
+
+        Session.database.getReference("question/easy/category/conditional_structures").push().setValue(q1);
+        Session.database.getReference("question/easy/category/conditional_structures").push().setValue(q2);
+        Session.database.getReference("question/easy/category/conditional_structures").push().setValue(q3);
+        Session.database.getReference("question/easy/category/conditional_structures").push().setValue(q4);
+        Session.database.getReference("question/easy/category/loops").push().setValue(q5);
+        Session.database.getReference("question/easy/category/loops").push().setValue(q6);
     }
 }

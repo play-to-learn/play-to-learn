@@ -17,8 +17,6 @@
             android:screenOrientation="sensorPortrait"/>
         <activity android:name=".activities.BoardActivity"
             android:screenOrientation="sensorPortrait"/>
-        <activity android:name=".activities.RandomActivity"
-            android:screenOrientation="sensorPortrait"/>
         <activity android:name=".activities.MainMenuActivity"
             android:screenOrientation="sensorPortrait">
             <intent-filter>

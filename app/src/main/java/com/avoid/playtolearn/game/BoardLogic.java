@@ -1,6 +1,6 @@
 package com.avoid.playtolearn.game;
 
-import com.avoid.playtolearn.common.Global;
+import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.models.BoardTile;
 import com.avoid.playtolearn.models.Result;
 import com.avoid.playtolearn.models.Tuple;
@@ -26,26 +26,26 @@ public class BoardLogic {
                     visitedTileArrayList.add(new Tuple<>(i, preY));
                 }
             }else if(newY == preY + 1){
-                difference += (Global.COLUMN_COUNT - preX - 1) + (newX + 1);
+                difference += (Session.COLUMN_COUNT - preX - 1) + (newX + 1);
 
-                for(int i = preX + 1; i < Global.COLUMN_COUNT; i++){
+                for(int i = preX + 1; i < Session.COLUMN_COUNT; i++){
                     visitedTileArrayList.add(new Tuple<>(i, preY));
                 }
                 for(int i = 0; i < newX; i++){
                     visitedTileArrayList.add(new Tuple<>(i, newY));
                 }
             }else {
-                difference += (Global.COLUMN_COUNT - preX - 1) + (newX + 1);
-                difference += ((newY - preY - 1) * Global.COLUMN_COUNT);
+                difference += (Session.COLUMN_COUNT - preX - 1) + (newX + 1);
+                difference += ((newY - preY - 1) * Session.COLUMN_COUNT);
 
-                for(int i = preX + 1; i < Global.COLUMN_COUNT; i++){
+                for(int i = preX + 1; i < Session.COLUMN_COUNT; i++){
                     visitedTileArrayList.add(new Tuple<>(i, preY));
                 }
                 for(int i = 0; i < newX; i++){
                     visitedTileArrayList.add(new Tuple<>(i, newY));
                 }
                 for(int i = preY + 1; i < newY; i++){
-                    for(int j = 0; j < Global.COLUMN_COUNT; j++){
+                    for(int j = 0; j < Session.COLUMN_COUNT; j++){
                         visitedTileArrayList.add(new Tuple<>(j, i));
                     }
                 }

@@ -5,7 +5,6 @@ import android.util.TypedValue;
 import android.widget.FrameLayout;
 
 import com.avoid.playtolearn.R;
-import com.avoid.playtolearn.common.Global;
 import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.game.QuestionCache;
 import com.avoid.playtolearn.listeners.BoardDragListener;
@@ -88,11 +87,11 @@ public class BoardTileLayout extends FrameLayout {
 
 //        int size_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50,
 //                context.getResources().getDisplayMetrics());
-        int size_px = (int) (effectiveWidth / (Global.COLUMN_COUNT + 1));
+        int size_px = (int) (effectiveWidth / (Session.COLUMN_COUNT + 1));
 
         //        int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3,
 //                context.getResources().getDisplayMetrics());
-        int margin_px = (effectiveWidth - (size_px * Global.COLUMN_COUNT)) / (Global.COLUMN_COUNT * 2);
+        int margin_px = (effectiveWidth - (size_px * Session.COLUMN_COUNT)) / (Session.COLUMN_COUNT * 2);
 
         LayoutParams params = new LayoutParams(size_px, size_px);
         params.setMargins(margin_px, margin_px, margin_px, margin_px);

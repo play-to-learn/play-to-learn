@@ -2,7 +2,7 @@ package com.avoid.playtolearn.models;
 
 import android.content.Context;
 
-import com.avoid.playtolearn.common.Global;
+import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.game.QuestionCache;
 
 import java.io.Serializable;
@@ -19,9 +19,9 @@ public class Board implements Serializable{
     }
 
     public void initializeBoard(){
-        for(int col = 0; col < Global.COLUMN_COUNT; col++){
+        for(int col = 0; col < Session.COLUMN_COUNT; col++){
             ArrayList<BoardTile> tileColumn = new ArrayList<>();
-            for(int row = 0; row < Global.ROW_COUNT; row++){
+            for(int row = 0; row < Session.ROW_COUNT; row++){
                 BoardTile boardTile = new BoardTile();
                 boardTile.setRow(row);
                 boardTile.setColumn(col);

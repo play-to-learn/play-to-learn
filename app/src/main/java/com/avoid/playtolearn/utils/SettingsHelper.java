@@ -14,11 +14,6 @@ import java.io.ObjectOutputStream;
 
 public class SettingsHelper {
     private Context context;
-    private FileOutputStream fileOutputStream;
-    private ObjectOutputStream objectOutputStream;
-
-    private FileInputStream fileInputStream;
-    private ObjectInputStream objectInputStream;
 
     public SettingsHelper(Context context) {
         this.context = context;
@@ -30,32 +25,26 @@ public class SettingsHelper {
 
     public void loadSettings() {
         try {
-            fileInputStream = context.openFileInput("settingsFile");
-            objectInputStream = new ObjectInputStream(fileInputStream);
+            FileInputStream fileInputStream = context.openFileInput("settingsFile");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
             Session.currentSettings = (Settings) objectInputStream.readObject();
 
             objectInputStream.close();
             fileInputStream.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
     }
 
     public void saveSettings() {
         try {
-            fileOutputStream = context.openFileOutput("settingsFile", Context.MODE_PRIVATE);
-            objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            FileOutputStream fileOutputStream = context.openFileOutput("settingsFile", Context.MODE_PRIVATE);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
             objectOutputStream.writeObject(Session.currentSettings);
             objectOutputStream.close();
             fileOutputStream.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,7 +52,7 @@ public class SettingsHelper {
 
     public boolean settingsExists() {
         try {
-            fileInputStream = context.openFileInput("settingsFile");
+            FileInputStream fileInputStream = context.openFileInput("settingsFile");
             return fileInputStream != null;
         } catch (FileNotFoundException e) {
             e.printStackTrace();

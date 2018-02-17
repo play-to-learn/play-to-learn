@@ -19,7 +19,7 @@ public class BoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
 
-        tileGridLayout = (LinearLayout) findViewById(R.id.tile_grid_layout);
+        tileGridLayout = findViewById(R.id.tile_grid_layout);
 
         createBoard();
     }
