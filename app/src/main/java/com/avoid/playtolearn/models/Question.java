@@ -3,27 +3,27 @@ package com.avoid.playtolearn.models;
 import java.io.Serializable;
 
 public class Question implements Serializable {
-    private int id;
-    private String name;
+    private String id;
+    private String title;
     private String description;
     private int answer;
-    private Category category;
-    private Difficulty difficulty;
+    private String category;
+    private String difficulty;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -42,19 +42,19 @@ public class Question implements Serializable {
         this.answer = answer;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
-    public Difficulty getDifficulty() {
+    public String getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(Difficulty difficulty) {
+    public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
     }
 }

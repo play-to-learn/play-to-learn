@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import com.avoid.playtolearn.R;
 import com.avoid.playtolearn.common.Global;
 import com.avoid.playtolearn.common.Session;
-import com.avoid.playtolearn.game.QuestionLogic;
+import com.avoid.playtolearn.game.QuestionCache;
 import com.avoid.playtolearn.listeners.BoardDragListener;
 import com.avoid.playtolearn.listeners.BoardTouchListener;
 import com.avoid.playtolearn.models.BoardTile;
@@ -48,11 +48,12 @@ public class BoardTileLayout extends FrameLayout {
     }
 
     public void generateQuestion(){
-        this.boardTile.setQuestion(QuestionLogic.getRandomQuestion());
+        this.boardTile.setQuestion(QuestionCache.getQuestionArrayList().get(1));
     }
 
     public int getScore(){
-        return this.boardTile.getQuestion().getDifficulty().getScore();
+        //Should fix
+        return 1;
     }
 
     public void refreshStateChanges(){

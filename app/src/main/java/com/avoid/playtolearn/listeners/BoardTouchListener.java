@@ -36,12 +36,12 @@ public class BoardTouchListener implements View.OnTouchListener, Serializable {
                     if (v instanceof BoardTileLayout) {
                         boardTileLayout = (BoardTileLayout) v;
                         if (boardTileLayout.getBoardTile().getQuestion() != null) {
-                            showQuestionDialog(context, boardTileLayout.getBoardTile().getQuestion().getName(),
+                            showQuestionDialog(context, boardTileLayout.getBoardTile().getQuestion().getTitle(),
                                     boardTileLayout.getBoardTile().getQuestion().getDescription());
                         }
                     } else if (v instanceof BoardTileButton) {
                         boardTileLayout = (BoardTileLayout) v.getParent();
-                        showQuestionDialog(context, boardTileLayout.getBoardTile().getQuestion().getName(),
+                        showQuestionDialog(context, boardTileLayout.getBoardTile().getQuestion().getTitle(),
                                 boardTileLayout.getBoardTile().getQuestion().getDescription());
                     }
                 }

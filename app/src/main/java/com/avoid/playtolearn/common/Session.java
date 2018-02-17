@@ -1,8 +1,5 @@
 package com.avoid.playtolearn.common;
 
-import android.database.sqlite.SQLiteDatabase;
-
-import com.avoid.playtolearn.database.DatabaseHelper;
 import com.avoid.playtolearn.models.SaveFile;
 import com.avoid.playtolearn.models.Settings;
 import com.avoid.playtolearn.utils.SaveHelper;
@@ -19,11 +16,6 @@ public class Session {
     //SettingsHelper
     public static SettingsHelper settingsHelper = null;
     public static Settings currentSettings = null;
-
-    //Database
-    public static DatabaseHelper databaseHelper = null;
-    public static SQLiteDatabase readableDatabase = null;
-    public static SQLiteDatabase writableDatabase = null;
 
     //Device
     public static int SCREEN_WIDTH;
