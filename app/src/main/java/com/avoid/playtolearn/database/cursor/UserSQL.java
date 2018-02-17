@@ -3,7 +3,7 @@ package com.avoid.playtolearn.database.cursor;
 import android.database.Cursor;
 
 import com.avoid.playtolearn.common.Session;
-import com.avoid.playtolearn.model.Profile;
+import com.avoid.playtolearn.models.Profile;
 
 import java.util.ArrayList;
 

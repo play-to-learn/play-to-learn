@@ -3,23 +3,22 @@ package com.avoid.playtolearn.common;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.avoid.playtolearn.database.DatabaseHelper;
-import com.avoid.playtolearn.model.SaveFile;
-import com.avoid.playtolearn.model.Settings;
-import com.avoid.playtolearn.util.SaveFileHandler;
-import com.avoid.playtolearn.util.SettingsHandler;
-import com.avoid.playtolearn.widget.BoardTileLayout;
+import com.avoid.playtolearn.models.SaveFile;
+import com.avoid.playtolearn.utils.Save;
+import com.avoid.playtolearn.utils.Settings;
+import com.avoid.playtolearn.widgets.BoardTileLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
 public class Session {
     //Save files
-    public static SaveFileHandler saveFileHandler = null;
+    public static Save save = null;
     public static SaveFile currentSaveFile = null;
 
     //Settings
-    public static SettingsHandler settingsHandler = null;
-    public static Settings currentSettings = null;
+    public static Settings settings = null;
+    public static com.avoid.playtolearn.models.Settings currentSettings = null;
 
     //Database
     public static DatabaseHelper databaseHelper = null;

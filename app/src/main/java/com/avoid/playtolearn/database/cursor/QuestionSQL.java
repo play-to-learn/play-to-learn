@@ -1,11 +1,10 @@
 package com.avoid.playtolearn.database.cursor;
 
 import android.database.Cursor;
-import android.util.Log;
 
 import com.avoid.playtolearn.common.Session;
-import com.avoid.playtolearn.model.Question;
-import com.avoid.playtolearn.util.Factory;
+import com.avoid.playtolearn.models.Question;
+import com.avoid.playtolearn.utils.Factory;
 
 import java.util.ArrayList;
 

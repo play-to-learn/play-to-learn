@@ -1,9 +1,8 @@
 package com.avoid.playtolearn.game;
 
-import com.avoid.playtolearn.cache.QuestionCache;
-import com.avoid.playtolearn.model.Category;
-import com.avoid.playtolearn.model.Difficulty;
-import com.avoid.playtolearn.model.Question;
+import com.avoid.playtolearn.models.Category;
+import com.avoid.playtolearn.models.Difficulty;
+import com.avoid.playtolearn.models.Question;
 
 import java.util.ArrayList;
 import java.util.Random;

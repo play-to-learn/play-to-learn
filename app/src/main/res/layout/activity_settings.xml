@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.avoid.playtolearn.activity.SettingsActivity"
+    tools:context="com.avoid.playtolearn.activities.SettingsActivity"
     android:background="@drawable/common_background">
 
     <android.support.constraint.ConstraintLayout
@@ -43,7 +43,7 @@
             app:srcCompat="@drawable/common_window_panel"
             android:layout_marginBottom="32dp" />
 
-        <com.avoid.playtolearn.widget.WindowTitle
+        <com.avoid.playtolearn.widgets.WindowTitle
             android:id="@+id/panel_title"
             android:layout_width="150dp"
             android:layout_height="45dp"
@@ -61,7 +61,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.00999999" />
 
-        <com.avoid.playtolearn.widget.Switch
+        <com.avoid.playtolearn.widgets.Switch
             android:id="@+id/sound_switch"
             android:layout_width="0dp"
             android:layout_height="32dp"
@@ -78,7 +78,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/panel_title" />
 
-        <com.avoid.playtolearn.widget.Switch
+        <com.avoid.playtolearn.widgets.Switch
             android:id="@+id/music_switch"
             android:layout_width="0dp"
             android:layout_height="32dp"
@@ -95,7 +95,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sound_switch" />
 
-        <com.avoid.playtolearn.widget.Switch
+        <com.avoid.playtolearn.widgets.Switch
             android:id="@+id/hints_switch"
             android:layout_width="0dp"
             android:layout_height="32dp"

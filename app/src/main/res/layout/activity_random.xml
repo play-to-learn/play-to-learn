@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.avoid.playtolearn.activity.RandomActivity"
+    tools:context="com.avoid.playtolearn.activities.RandomActivity"
     android:background="@drawable/common_background">
 
 </android.support.constraint.ConstraintLayout>

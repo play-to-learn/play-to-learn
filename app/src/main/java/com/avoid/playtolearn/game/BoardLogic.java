@@ -1,9 +1,9 @@
 package com.avoid.playtolearn.game;
 
 import com.avoid.playtolearn.common.Global;
-import com.avoid.playtolearn.model.BoardTile;
-import com.avoid.playtolearn.model.Result;
-import com.avoid.playtolearn.model.Tuple;
+import com.avoid.playtolearn.models.BoardTile;
+import com.avoid.playtolearn.models.Result;
+import com.avoid.playtolearn.models.Tuple;
 
 import java.util.ArrayList;
 

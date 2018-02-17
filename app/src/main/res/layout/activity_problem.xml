@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
-    tools:context="com.avoid.playtolearn.activity.RandomActivity">
+    tools:context="com.avoid.playtolearn.activities.RandomActivity">
 
 
     <android.support.constraint.ConstraintLayout
@@ -59,7 +59,7 @@
             app:srcCompat="@drawable/common_window_panel"
             app:layout_constraintHorizontal_bias="0.0" />
 
-        <com.avoid.playtolearn.widget.WindowTitle
+        <com.avoid.playtolearn.widgets.WindowTitle
             android:id="@+id/panel_title"
             android:layout_width="160dp"
             android:layout_height="38dp"
