@@ -33,7 +33,7 @@ public class BoardActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        Session.save.saveGame();
+        Session.saveHelper.saveGame();
     }
 
     private void createBoard() {

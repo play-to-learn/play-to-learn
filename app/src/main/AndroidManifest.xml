@@ -30,16 +30,6 @@
             android:screenOrientation="sensorPortrait"/>
         <activity android:name=".activities.HelpActivity"
             android:screenOrientation="sensorPortrait" />
-        <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            tools:replace="android:theme"
-            android:screenOrientation="sensorPortrait"/>
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
     </application>
 
 </manifest>

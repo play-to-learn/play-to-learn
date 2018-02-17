@@ -6,7 +6,6 @@ import android.view.View;
 
 import com.avoid.playtolearn.R;
 import com.avoid.playtolearn.common.Session;
-import com.avoid.playtolearn.utils.App;
 import com.avoid.playtolearn.widgets.Switch;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -19,9 +18,9 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        this.soundsSwitch = (Switch) findViewById(R.id.sound_switch);
-        this.musicSwitch = (Switch) findViewById(R.id.music_switch);
-        this.hintsSwitch = (Switch) findViewById(R.id.hints_switch);
+        this.soundsSwitch = findViewById(R.id.sound_switch);
+        this.musicSwitch = findViewById(R.id.music_switch);
+        this.hintsSwitch = findViewById(R.id.hints_switch);
 
         refreshUI();
     }
@@ -34,27 +33,27 @@ public class SettingsActivity extends AppCompatActivity {
         Session.currentSettings.setSoundsOn(Session.currentSettings.isSoundsOnDefault());
         Session.currentSettings.setMusicOn(Session.currentSettings.isMusicOnDefault());
         Session.currentSettings.setHintsOn(Session.currentSettings.isHintsOnDefault());
-        Session.settings.saveSettings();
+        Session.settingsHelper.saveSettings();
 
-        App.applySoundSettings(SettingsActivity.this);
-        App.applyMusicSettings(SettingsActivity.this);
+        applySoundSettings(SettingsActivity.this);
+        applyMusicSettings(SettingsActivity.this);
 
         refreshUI();
     }
 
     public void okButtonOnClick(View view) {
-        Session.settings.saveSettings();
+        Session.settingsHelper.saveSettings();
         finish();
     }
 
     public void soundsSwitchOnClick(View view) {
         Session.currentSettings.setSoundsOn(this.soundsSwitch.isEnabled());
-        App.applySoundSettings(SettingsActivity.this);
+        applySoundSettings(SettingsActivity.this);
     }
 
     public void musicSwitchOnClick(View view) {
         Session.currentSettings.setMusicOn(this.musicSwitch.isEnabled());
-        App.applyMusicSettings(SettingsActivity.this);
+        applyMusicSettings(SettingsActivity.this);
     }
 
     public void hintsSwitchOnClick(View view) {
@@ -66,4 +65,15 @@ public class SettingsActivity extends AppCompatActivity {
         this.musicSwitch.setChecked(Session.currentSettings.isMusicOn());
         this.hintsSwitch.setChecked(Session.currentSettings.isHintsOn());
     }
+
+
+    private void applyMusicSettings(SettingsActivity settingsActivity) {
+
+    }
+
+    private void applySoundSettings(SettingsActivity settingsActivity) {
+
+    }
+
+
 }

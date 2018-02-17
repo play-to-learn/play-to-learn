@@ -4,9 +4,9 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.avoid.playtolearn.utils.App;
 import com.avoid.playtolearn.widgets.BoardTileButton;
 import com.avoid.playtolearn.widgets.BoardTileLayout;
+import com.avoid.playtolearn.widgets.ProblemDialog;
 
 import java.io.Serializable;
 
@@ -36,12 +36,12 @@ public class BoardTouchListener implements View.OnTouchListener, Serializable {
                     if (v instanceof BoardTileLayout) {
                         boardTileLayout = (BoardTileLayout) v;
                         if (boardTileLayout.getBoardTile().getQuestion() != null) {
-                            App.showQuestionDialog(context, boardTileLayout.getBoardTile().getQuestion().getName(),
+                            showQuestionDialog(context, boardTileLayout.getBoardTile().getQuestion().getName(),
                                     boardTileLayout.getBoardTile().getQuestion().getDescription());
                         }
                     } else if (v instanceof BoardTileButton) {
                         boardTileLayout = (BoardTileLayout) v.getParent();
-                        App.showQuestionDialog(context, boardTileLayout.getBoardTile().getQuestion().getName(),
+                        showQuestionDialog(context, boardTileLayout.getBoardTile().getQuestion().getName(),
                                 boardTileLayout.getBoardTile().getQuestion().getDescription());
                     }
                 }
@@ -60,5 +60,12 @@ public class BoardTouchListener implements View.OnTouchListener, Serializable {
         }
 
         return true;
+    }
+
+    public static void showQuestionDialog(Context context, String title, String description){
+        ProblemDialog problemDialog = new ProblemDialog(context);
+        problemDialog.setTitle(title);
+        problemDialog.setDescription(description);
+        problemDialog.show();
     }
 }

@@ -72,7 +72,7 @@ public class BoardDragListener implements View.OnDragListener, Serializable {
                     }
                 }
 
-                Session.save.saveGame();
+                Session.saveHelper.saveGame();
                 return true;
             case DragEvent.ACTION_DRAG_ENDED:
                 break;

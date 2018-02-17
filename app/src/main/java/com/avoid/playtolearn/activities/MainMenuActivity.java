@@ -10,16 +10,14 @@ import android.widget.LinearLayout;
 import com.avoid.playtolearn.R;
 import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.database.DatabaseHelper;
-import com.avoid.playtolearn.listeners.FirebaseAuthStateListener;
-import com.avoid.playtolearn.utils.App;
-import com.avoid.playtolearn.utils.Save;
-import com.avoid.playtolearn.utils.Settings;
-import com.facebook.appevents.AppEventsLogger;
-import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.auth.FirebaseAuth;
+import com.avoid.playtolearn.database.cursor.QuestionSQL;
+import com.avoid.playtolearn.game.QuestionCache;
+import com.avoid.playtolearn.utils.SaveHelper;
+import com.avoid.playtolearn.utils.SettingsHelper;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainMenuActivity extends AppCompatActivity {
-    private FirebaseAnalytics mFirebaseAnalytics;
     private LinearLayout tileGridLayout;
 
     @Override
@@ -29,24 +27,14 @@ public class MainMenuActivity extends AppCompatActivity {
 
         this.tileGridLayout = (LinearLayout) findViewById(R.id.tile_grid_layout);
 
-        // Initialize Firebase Auth
-        Session.firebaseAuth = FirebaseAuth.getInstance();
-        Session.authStateListener = new FirebaseAuthStateListener();
+        Session.saveHelper = new SaveHelper(getApplicationContext());
 
-        // Obtain the FirebaseAnalytics instance.
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
-        //Facebook events
-        AppEventsLogger.activateApp(getApplication());
-
-        Session.save = new Save(getApplicationContext());
-
-        Session.settings = new Settings(getApplicationContext());
-        if(Session.settings.settingsExists()){
-            Session.settings.loadSettings();
+        Session.settingsHelper = new SettingsHelper(getApplicationContext());
+        if(Session.settingsHelper.settingsExists()){
+            Session.settingsHelper.loadSettings();
         }else{
-            Session.settings.newSettings();
-            Session.settings.saveSettings();
+            Session.settingsHelper.newSettings();
+            Session.settingsHelper.saveSettings();
         }
 
         Session.databaseHelper = new DatabaseHelper(MainMenuActivity.this);
@@ -56,30 +44,28 @@ public class MainMenuActivity extends AppCompatActivity {
         Session.SCREEN_WIDTH = Resources.getSystem().getDisplayMetrics().widthPixels;
         Session.SCREEN_HEIGHT = Resources.getSystem().getDisplayMetrics().heightPixels;
 
-        App.loadQuestions();
+        loadQuestions();
+
+
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.setValue("Hello, World!");
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Session.firebaseAuth.addAuthStateListener(Session.authStateListener);
     }
 
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        if (Session.authStateListener != null) {
-//            Session.firebaseAuth.removeAuthStateListener(Session.authStateListener);
-//        }
-//    }
-
     public void onClickContinueButton(View view){
-        Session.save.loadGame();
+        Session.saveHelper.loadGame();
         startActivity(new Intent(MainMenuActivity.this, BoardActivity.class));
     }
 
     public void onClickNewGameButton(View view){
-        Session.save.newGame();
+        Session.saveHelper.newGame();
         startActivity(new Intent(MainMenuActivity.this, BoardActivity.class));
     }
 
@@ -97,5 +83,10 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void onClickHelpButton(View view){
         startActivity(new Intent(MainMenuActivity.this, HelpActivity.class));
+    }
+
+    public static void loadQuestions(){
+        QuestionSQL questionSQL = new QuestionSQL();
+        QuestionCache.setQuestionArrayList(questionSQL.getQuestions());
     }
 }
