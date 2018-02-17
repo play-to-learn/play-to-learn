@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import com.avoid.playtolearn.R;
 import com.avoid.playtolearn.common.Session;
 import com.avoid.playtolearn.listeners.CustomFacebookCallback;
-import com.avoid.playtolearn.test.TestingFunction;
 import com.facebook.CallbackManager;
 import com.facebook.login.widget.LoginButton;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,7 +42,6 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void onClickLoadButton(View view) {
         FirebaseUser user = Session.firebaseAuth.getCurrentUser();
-        TestingFunction.print(user.getPhotoUrl().toString());
 //        new ImageLoadTask(user.getPhotoUrl().toString(), this.profileImageView);
         Picasso.with(ProfileActivity.this).load(user.getPhotoUrl().toString()).fit().into(this.profileImageView);
     }

@@ -6,7 +6,6 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 
 import com.avoid.playtolearn.common.Font;
-import com.avoid.playtolearn.common.font.FontCache;
 
 public class LabelTextView extends android.support.v7.widget.AppCompatTextView {
     public LabelTextView(Context context) {
@@ -32,7 +31,7 @@ public class LabelTextView extends android.support.v7.widget.AppCompatTextView {
     }
 
     private void applyCustomFont(Context context) {
-        Typeface customFont = FontCache.getTypeface(Font.ACTION_MAN_BOLD_FONT, context);
+        Typeface customFont = Font.getTypeface(Font.ACTION_MAN_BOLD_FONT, context);
         setTypeface(customFont);
 
         setTextColor(Color.WHITE);
