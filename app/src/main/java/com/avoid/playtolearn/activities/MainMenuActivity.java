@@ -20,10 +20,8 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-
+        this.initializeFirebase();
         this.initializeSession();
-        this.loadQuestions();
     }
 
     @Override
@@ -33,12 +31,12 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void onClickContinueButton(View view){
         Session.saveHelper.loadGame();
-        startActivity(new Intent(MainMenuActivity.this, BoardActivity.class));
+        startActivity(new Intent(MainMenuActivity.this, LevelsActivity.class));
     }
 
     public void onClickNewGameButton(View view){
         Session.saveHelper.newGame();
-        startActivity(new Intent(MainMenuActivity.this, BoardActivity.class));
+        startActivity(new Intent(MainMenuActivity.this, LevelsActivity.class));
     }
 
     public void onClickOptionsButton(View view){
@@ -57,6 +55,10 @@ public class MainMenuActivity extends AppCompatActivity {
         startActivity(new Intent(MainMenuActivity.this, HelpActivity.class));
     }
 
+    public void initializeFirebase(){
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+    }
+
     public void initializeSession(){
         Session.saveHelper = new SaveHelper(getApplicationContext());
 
@@ -72,10 +74,12 @@ public class MainMenuActivity extends AppCompatActivity {
         Session.SCREEN_HEIGHT = Resources.getSystem().getDisplayMetrics().heightPixels;
 
         Session.database = FirebaseDatabase.getInstance();
+
+        this.addFirebaseData();
     }
 
-    public void loadQuestions(){
-        // Sample questions
+    public void addFirebaseData(){
+         // Sample questions
         Question q1 = new Question();
         q1.setTitle("One");
         q1.setDescription("X = 1\n" +
@@ -131,31 +135,30 @@ public class MainMenuActivity extends AppCompatActivity {
                 "GO Y steps forward");
         q6.setAnswer(8);
 
-
         // Creating the categories
         Session.database.getReference("categories/conditional_structures").child("name").setValue("Conditional Structures");
         Session.database.getReference("categories/loops").child("name").setValue("Loops");
+        Session.database.getReference("categories/syntax").child("name").setValue("Syntax");
+        Session.database.getReference("categories/semantics").child("name").setValue("Semantics");
+        Session.database.getReference("categories/variables").child("name").setValue("Variables");
+        Session.database.getReference("categories/error_handling").child("name").setValue("Error Handling");
+        Session.database.getReference("categories/threads").child("name").setValue("Threads");
 
-        // Creating the difficulties
-        Session.database.getReference("difficulties/easy").child("name").setValue("Easy");
-        Session.database.getReference("difficulties/easy").child("difficulty_index").setValue("1");
-        Session.database.getReference("difficulties/medium").child("name").setValue("Medium");
-        Session.database.getReference("difficulties/medium").child("difficulty_index").setValue("2");
-        Session.database.getReference("difficulties/hard").child("name").setValue("Hard");
-        Session.database.getReference("difficulties/hard").child("difficulty_index").setValue("3");
+        // Creating the levels
+        Session.database.getReference("levels").push().child("id").setValue("1");
+        Session.database.getReference("levels").push().child("id").setValue("2");
+        Session.database.getReference("levels").push().child("id").setValue("3");
+        Session.database.getReference("levels").push().child("id").setValue("4");
+        Session.database.getReference("levels").push().child("id").setValue("5");
+        Session.database.getReference("levels").push().child("id").setValue("6");
+        Session.database.getReference("levels").push().child("id").setValue("7");
 
         // Set the questions
-        Session.database.getReference("questions/difficulty/easy/category/conditional_structures").push().setValue(q1);
-        Session.database.getReference("questions/category/conditional_structures/easy").push().setValue(q1);
-        Session.database.getReference("questions/difficulty/easy/category/conditional_structures").push().setValue(q2);
-        Session.database.getReference("questions/category/conditional_structures/easy").push().setValue(q2);
-        Session.database.getReference("questions/difficulty/easy/category/conditional_structures").push().setValue(q3);
-        Session.database.getReference("questions/category/conditional_structures/easy").push().setValue(q3);
-        Session.database.getReference("questions/difficulty/easy/category/conditional_structures").push().setValue(q4);
-        Session.database.getReference("questions/category/conditional_structures/easy").push().setValue(q4);
-        Session.database.getReference("questions/difficulty/easy/category/loops").push().setValue(q5);
-        Session.database.getReference("questions/category/loops/easy").push().setValue(q5);
-        Session.database.getReference("questions/difficulty/easy/category/loops").push().setValue(q6);
-        Session.database.getReference("questions/category/loops/easy").push().setValue(q6);
+        Session.database.getReference("questions/level/1/category/conditional_structures").push().setValue(q1);
+        Session.database.getReference("questions/level/1/category/conditional_structures").push().setValue(q2);
+        Session.database.getReference("questions/level/1/category/conditional_structures").push().setValue(q3);
+        Session.database.getReference("questions/level/1/category/conditional_structures").push().setValue(q4);
+        Session.database.getReference("questions/level/1/category/loops").push().setValue(q5);
+        Session.database.getReference("questions/level/1/category/loops").push().setValue(q6);
     }
 }

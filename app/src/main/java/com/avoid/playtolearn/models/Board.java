@@ -3,7 +3,6 @@ package com.avoid.playtolearn.models;
 import android.content.Context;
 
 import com.avoid.playtolearn.common.Session;
-import com.avoid.playtolearn.game.QuestionCache;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public class Board implements Serializable{
 
                 if(col == currentX && row == currentY){
                     boardTile.setBoardTileState(BoardTileState.CURRENT);
-                    boardTile.setQuestion(QuestionCache.getQuestionArrayList().get(1));
+//                    boardTile.setQuestion(QuestionCache.getQuestionArrayList().get(1));
                 }
                 tileColumn.add(boardTile);
             }

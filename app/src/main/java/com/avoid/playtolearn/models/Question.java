@@ -8,7 +8,6 @@ public class Question implements Serializable {
     private String description;
     private int answer;
     private String category;
-    private String difficulty;
 
     public String getId() {
         return id;
@@ -48,13 +47,5 @@ public class Question implements Serializable {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public String getDifficulty() {
-        return difficulty;
-    }
-
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
     }
 }
