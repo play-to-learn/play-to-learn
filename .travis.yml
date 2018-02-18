@@ -3,8 +3,8 @@ android:
   components:
     # Uncomment the lines below if you want to
     # use the latest revision of Android SDK Tools
-#     - tools
-#     - platform-tools
+    # - tools
+    # - platform-tools
 
     # The BuildTools version used by your project
     - build-tools-27.0.3
@@ -22,3 +22,6 @@ android:
     # if you need to run emulator(s) during your tests
     - sys-img-armeabi-v7a-android-26
     - sys-img-armeabi-v7a-android-17
+
+before_install:
+  - yes | sdkmanager "platforms;android-27"
