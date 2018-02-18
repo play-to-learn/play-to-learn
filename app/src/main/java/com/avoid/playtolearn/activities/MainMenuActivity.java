@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.avoid.playtolearn.R;
 import com.avoid.playtolearn.common.Session;
@@ -15,17 +14,15 @@ import com.avoid.playtolearn.utils.SettingsHelper;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainMenuActivity extends AppCompatActivity {
-    private LinearLayout tileGridLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        this.tileGridLayout = findViewById(R.id.tile_grid_layout);
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         this.initializeSession();
-
         this.loadQuestions();
     }
 
@@ -134,11 +131,31 @@ public class MainMenuActivity extends AppCompatActivity {
                 "GO Y steps forward");
         q6.setAnswer(8);
 
-        Session.database.getReference("question/easy/category/conditional_structures").push().setValue(q1);
-        Session.database.getReference("question/easy/category/conditional_structures").push().setValue(q2);
-        Session.database.getReference("question/easy/category/conditional_structures").push().setValue(q3);
-        Session.database.getReference("question/easy/category/conditional_structures").push().setValue(q4);
-        Session.database.getReference("question/easy/category/loops").push().setValue(q5);
-        Session.database.getReference("question/easy/category/loops").push().setValue(q6);
+
+        // Creating the categories
+        Session.database.getReference("categories/conditional_structures").child("name").setValue("Conditional Structures");
+        Session.database.getReference("categories/loops").child("name").setValue("Loops");
+
+        // Creating the difficulties
+        Session.database.getReference("difficulties/easy").child("name").setValue("Easy");
+        Session.database.getReference("difficulties/easy").child("difficulty_index").setValue("1");
+        Session.database.getReference("difficulties/medium").child("name").setValue("Medium");
+        Session.database.getReference("difficulties/medium").child("difficulty_index").setValue("2");
+        Session.database.getReference("difficulties/hard").child("name").setValue("Hard");
+        Session.database.getReference("difficulties/hard").child("difficulty_index").setValue("3");
+
+        // Set the questions
+        Session.database.getReference("questions/difficulty/easy/category/conditional_structures").push().setValue(q1);
+        Session.database.getReference("questions/category/conditional_structures/easy").push().setValue(q1);
+        Session.database.getReference("questions/difficulty/easy/category/conditional_structures").push().setValue(q2);
+        Session.database.getReference("questions/category/conditional_structures/easy").push().setValue(q2);
+        Session.database.getReference("questions/difficulty/easy/category/conditional_structures").push().setValue(q3);
+        Session.database.getReference("questions/category/conditional_structures/easy").push().setValue(q3);
+        Session.database.getReference("questions/difficulty/easy/category/conditional_structures").push().setValue(q4);
+        Session.database.getReference("questions/category/conditional_structures/easy").push().setValue(q4);
+        Session.database.getReference("questions/difficulty/easy/category/loops").push().setValue(q5);
+        Session.database.getReference("questions/category/loops/easy").push().setValue(q5);
+        Session.database.getReference("questions/difficulty/easy/category/loops").push().setValue(q6);
+        Session.database.getReference("questions/category/loops/easy").push().setValue(q6);
     }
 }
