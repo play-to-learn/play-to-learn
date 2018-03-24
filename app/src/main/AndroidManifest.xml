@@ -1,28 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.avoid.playtolearn">
-
-    <uses-permission android:name="android.permission.INTERNET" />
+    package="com.ivantha.playtolearn">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity
-            android:name=".activities.SettingsActivity"
-            android:screenOrientation="sensorPortrait" />
-        <activity
-            android:name=".activities.ProfileActivity"
-            android:screenOrientation="sensorPortrait" />
-        <activity
-            android:name=".activities.BoardActivity"
-            android:screenOrientation="sensorPortrait" />
-        <activity
-            android:name=".activities.MainMenuActivity"
-            android:screenOrientation="sensorPortrait">
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.MainMenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,12 +17,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.LeaderboardActivity"
-            android:screenOrientation="sensorPortrait" />
-        <activity
-            android:name=".activities.HelpActivity"
-            android:screenOrientation="sensorPortrait" />
-        <activity android:name=".activities.LevelsActivity"></activity>
+            android:name=".activity.BoardActivity"
+            android:label="@string/title_activity_board"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.HelpActivity" />
+        <activity android:name=".activity.LeaderboardActivity" />
+        <activity android:name=".activity.LevelsActivity" />
+        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.SettingsActivity" />
     </application>
 
 </manifest>

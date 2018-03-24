@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
-    tools:context="com.avoid.playtolearn.activities.BoardActivity"
+    tools:context=".activity.BoardActivity"
     android:background="@drawable/board_background"
     tools:layout_editor_absoluteY="25dp"
     tools:layout_editor_absoluteX="0dp">
