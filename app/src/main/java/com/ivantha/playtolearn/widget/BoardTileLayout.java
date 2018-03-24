@@ -9,7 +9,6 @@ import com.ivantha.playtolearn.common.Session;
 import com.ivantha.playtolearn.listener.BoardDragListener;
 import com.ivantha.playtolearn.listener.BoardTouchListener;
 import com.ivantha.playtolearn.model.BoardTile;
-import com.ivantha.playtolearn.model.BoardTileState;
 
 public class BoardTileLayout extends FrameLayout {
     private BoardTile boardTile;
@@ -23,7 +22,7 @@ public class BoardTileLayout extends FrameLayout {
 
         applyCustomDesign(context);
 
-        if(boardTile.getBoardTileState() == BoardTileState.CURRENT){
+        if(boardTile.getBoardTileState() == BoardTile.BoardTileState.CURRENT){
             this.addView(new BoardTileButton(context));
         }
     }
@@ -32,7 +31,7 @@ public class BoardTileLayout extends FrameLayout {
         return boardTile;
     }
 
-    public void setBoardTileState(BoardTileState boardTileState) {
+    public void setBoardTileState(BoardTile.BoardTileState boardTileState) {
         this.boardTile.setBoardTileState(boardTileState);
         this.refreshStateChanges();
     }
@@ -55,7 +54,7 @@ public class BoardTileLayout extends FrameLayout {
     }
 
     public void refreshStateChanges(){
-        BoardTileState boardTileState = boardTile.getBoardTileState();
+        BoardTile.BoardTileState boardTileState = boardTile.getBoardTileState();
         switch (boardTileState){
             case NOT_VISITED:
                 setBackgroundResource(R.drawable.board_tile_background_not_visited0);
@@ -82,11 +81,11 @@ public class BoardTileLayout extends FrameLayout {
 
     public void applyCustomDesign(Context context) {
         int outer_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, context.getResources().getDisplayMetrics());
-        int effectiveWidth = (int) (Session.SCREEN_WIDTH);
+        int effectiveWidth = Session.SCREEN_WIDTH;
 
 //        int size_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50,
 //                context.getResources().getDisplayMetrics());
-        int size_px = (int) (effectiveWidth / (Session.COLUMN_COUNT + 1));
+        int size_px = effectiveWidth / (Session.COLUMN_COUNT + 1);
 
         //        int margin_px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3,
 //                context.getResources().getDisplayMetrics());

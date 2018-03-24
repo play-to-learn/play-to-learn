@@ -14,8 +14,8 @@ public class ProblemDialog extends Dialog {
         super(context, R.style.ProblemDialog);
         this.setContentView(R.layout.dialog_problem);
 
-        this.titleTextView = (LabelTextView) findViewById(R.id.title_text_view);
-        this.descriptionTextView = (LabelTextView) findViewById(R.id.description_text_view);
+        this.titleTextView = findViewById(R.id.title_text_view);
+        this.descriptionTextView = findViewById(R.id.description_text_view);
     }
 
     public void setTitle(String title){

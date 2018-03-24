@@ -46,4 +46,12 @@ public class BoardTile implements Serializable{
     public void setQuestion(Question question) {
         this.question = question;
     }
+
+    public static enum BoardTileState {
+        NOT_VISITED,
+        VISITED,
+        CURRENT,
+        CORRECT_ANSWER,
+        WRONG_ANSWER;
+    }
 }

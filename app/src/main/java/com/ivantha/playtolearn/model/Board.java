@@ -26,7 +26,7 @@ public class Board implements Serializable{
                 boardTile.setColumn(col);
 
                 if(col == currentX && row == currentY){
-                    boardTile.setBoardTileState(BoardTileState.CURRENT);
+                    boardTile.setBoardTileState(BoardTile.BoardTileState.CURRENT);
 //                    boardTile.setQuestion(QuestionCache.getQuestionArrayList().get(1));
                 }
                 tileColumn.add(boardTile);

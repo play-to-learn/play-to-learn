@@ -1,10 +1,9 @@
-package com.ivantha.playtolearn.activity;
+package com.ivantha.playtolearn;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.ivantha.playtolearn.R;
 import com.ivantha.playtolearn.common.Session;
 import com.ivantha.playtolearn.widget.Switch;
 

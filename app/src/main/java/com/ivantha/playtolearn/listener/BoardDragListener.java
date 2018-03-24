@@ -5,9 +5,9 @@ import android.view.View;
 
 import com.ivantha.playtolearn.common.Session;
 import com.ivantha.playtolearn.game.BoardLogic;
-import com.ivantha.playtolearn.model.BoardTileState;
-import com.ivantha.playtolearn.model.Result;
-import com.ivantha.playtolearn.model.Tuple;
+import com.ivantha.playtolearn.model.BoardTile;
+import com.ivantha.playtolearn.model.Question;
+import com.ivantha.playtolearn.utils.Tuple;
 import com.ivantha.playtolearn.widget.BoardTileButton;
 import com.ivantha.playtolearn.widget.BoardTileLayout;
 
@@ -31,38 +31,38 @@ public class BoardDragListener implements View.OnDragListener, Serializable {
                     BoardTileLayout previousBoardTileLayout = (BoardTileLayout) boardTileButton.getParent();
                     BoardTileLayout newBoardTileLayout = ((BoardTileLayout) v);
 
-                    Tuple<Result, ArrayList<Tuple<Integer, Integer>>> ret =
+                    Tuple<Question.Result, ArrayList<Tuple<Integer, Integer>>> ret =
                             BoardLogic.verifyMove(previousBoardTileLayout.getBoardTile(), newBoardTileLayout.getBoardTile());
-                    Result result = ret.x;
+                    Question.Result result = ret.x;
 
                     switch (result) {
                         case CORRECT:
-                            previousBoardTileLayout.setBoardTileState(BoardTileState.CORRECT_ANSWER);
+                            previousBoardTileLayout.setBoardTileState(BoardTile.BoardTileState.CORRECT_ANSWER);
                             previousBoardTileLayout.removeView(boardTileButton);
                             Session.currentSaveFile.getProfile().setScore(Session.currentSaveFile.getProfile().getScore()
                                     + previousBoardTileLayout.getScore());
 
-                            newBoardTileLayout.setBoardTileState(BoardTileState.CURRENT);
+                            newBoardTileLayout.setBoardTileState(BoardTile.BoardTileState.CURRENT);
                             newBoardTileLayout.addView(boardTileButton, boardTileButton.getWidth(), boardTileButton.getHeight());
                             newBoardTileLayout.generateQuestion();
 
                             for(Tuple<Integer, Integer> tile: ret.y){
-                                Session.boardLayoutGrid.get(tile.x).get(tile.y).setBoardTileState(BoardTileState.VISITED);
+                                Session.boardLayoutGrid.get(tile.x).get(tile.y).setBoardTileState(BoardTile.BoardTileState.VISITED);
                             }
 
                             break;
                         case WRONG:
-                            previousBoardTileLayout.setBoardTileState(BoardTileState.WRONG_ANSWER);
+                            previousBoardTileLayout.setBoardTileState(BoardTile.BoardTileState.WRONG_ANSWER);
                             previousBoardTileLayout.removeView(boardTileButton);
                             Session.currentSaveFile.getProfile().setScore(Session.currentSaveFile.getProfile().getScore()
                                     - previousBoardTileLayout.getScore());
 
-                            newBoardTileLayout.setBoardTileState(BoardTileState.CURRENT);
+                            newBoardTileLayout.setBoardTileState(BoardTile.BoardTileState.CURRENT);
                             newBoardTileLayout.addView(boardTileButton, boardTileButton.getWidth(), boardTileButton.getHeight());
                             newBoardTileLayout.generateQuestion();
 
                             for(Tuple<Integer, Integer> tile: ret.y){
-                                Session.boardLayoutGrid.get(tile.x).get(tile.y).setBoardTileState(BoardTileState.VISITED);
+                                Session.boardLayoutGrid.get(tile.x).get(tile.y).setBoardTileState(BoardTile.BoardTileState.VISITED);
                             }
 
                             break;

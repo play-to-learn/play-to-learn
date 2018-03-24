@@ -1,4 +1,4 @@
-package com.ivantha.playtolearn.model;
+package com.ivantha.playtolearn.utils;
 
 public class Tuple<X, Y> {
     public final X x;

@@ -48,4 +48,10 @@ public class Question implements Serializable {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public static enum Result {
+        CORRECT,
+        WRONG,
+        INVALID;
+    }
 }

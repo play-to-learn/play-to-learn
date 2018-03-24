@@ -1,10 +1,9 @@
-package com.ivantha.playtolearn.activity;
+package com.ivantha.playtolearn;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
 
-import com.ivantha.playtolearn.R;
 import com.ivantha.playtolearn.common.Session;
 import com.ivantha.playtolearn.model.BoardTile;
 import com.ivantha.playtolearn.widget.BoardTileLayout;

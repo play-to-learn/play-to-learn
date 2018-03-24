@@ -2,20 +2,20 @@ package com.ivantha.playtolearn.game;
 
 import com.ivantha.playtolearn.common.Session;
 import com.ivantha.playtolearn.model.BoardTile;
-import com.ivantha.playtolearn.model.Result;
-import com.ivantha.playtolearn.model.Tuple;
+import com.ivantha.playtolearn.model.Question;
+import com.ivantha.playtolearn.utils.Tuple;
 
 import java.util.ArrayList;
 
 public class BoardLogic {
-    public static Tuple<Result, ArrayList<Tuple<Integer, Integer>>> verifyMove(BoardTile preBoardTile, BoardTile newBoardTile){
+    public static Tuple<Question.Result, ArrayList<Tuple<Integer, Integer>>> verifyMove(BoardTile preBoardTile, BoardTile newBoardTile){
         int preX = preBoardTile.getColumn();
         int preY = preBoardTile.getRow();
         int newX = newBoardTile.getColumn();
         int newY = newBoardTile.getRow();
 
         if(((newX < preX) && (newY <= preY)) || ((newX == preX) && (newY <= preY))){
-            return new Tuple<>(Result.INVALID, null);
+            return new Tuple<>(Question.Result.INVALID, null);
         }else{
             int difference = 0;
             ArrayList<Tuple<Integer, Integer>> visitedTileArrayList = new ArrayList<>();
@@ -52,9 +52,9 @@ public class BoardLogic {
             }
 
             if (preBoardTile.getQuestion().getAnswer() == difference){
-                return new Tuple<>(Result.CORRECT, visitedTileArrayList);
+                return new Tuple<>(Question.Result.CORRECT, visitedTileArrayList);
             }else{
-                return new Tuple<>(Result.WRONG, visitedTileArrayList);
+                return new Tuple<>(Question.Result.WRONG, visitedTileArrayList);
             }
         }
     }

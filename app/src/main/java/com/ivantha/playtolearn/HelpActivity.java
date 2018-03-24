@@ -1,4 +1,4 @@
-package com.ivantha.playtolearn.activity;
+package com.ivantha.playtolearn;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

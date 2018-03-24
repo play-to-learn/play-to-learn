@@ -7,7 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.google.firebase.database.FirebaseDatabase;
+import com.ivantha.playtolearn.HelpActivity;
+import com.ivantha.playtolearn.LeaderboardActivity;
+import com.ivantha.playtolearn.LevelsActivity;
+import com.ivantha.playtolearn.ProfileActivity;
 import com.ivantha.playtolearn.R;
+import com.ivantha.playtolearn.SettingsActivity;
 import com.ivantha.playtolearn.common.Session;
 import com.ivantha.playtolearn.model.Question;
 import com.ivantha.playtolearn.utils.SaveHelper;
@@ -79,6 +84,8 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void addFirebaseData(){
+        Session.database.getReference("/").setValue(null);
+
         // Sample questions
         Question q1 = new Question();
         q1.setTitle("One");

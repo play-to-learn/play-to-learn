@@ -1,4 +1,4 @@
-package com.ivantha.playtolearn.activity;
+package com.ivantha.playtolearn;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
