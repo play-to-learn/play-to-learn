@@ -4,8 +4,7 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.ivantha.playtolearn.widget.BoardTileButton;
-import com.ivantha.playtolearn.widget.BoardTileLayout;
+import com.ivantha.playtolearn.BoardActivity;
 import com.ivantha.playtolearn.widget.ProblemDialog;
 
 import java.io.Serializable;
@@ -32,22 +31,22 @@ public class BoardTouchListener implements View.OnTouchListener, Serializable {
                 break;
             case MotionEvent.ACTION_UP:
                 if (isOnClick) {
-                    BoardTileLayout boardTileLayout;
-                    if (v instanceof BoardTileLayout) {
-                        boardTileLayout = (BoardTileLayout) v;
+                    BoardActivity.BoardTileLayout boardTileLayout;
+                    if (v instanceof BoardActivity.BoardTileLayout) {
+                        boardTileLayout = (BoardActivity.BoardTileLayout) v;
                         if (boardTileLayout.getBoardTile().getQuestion() != null) {
                             showQuestionDialog(context, boardTileLayout.getBoardTile().getQuestion().getTitle(),
                                     boardTileLayout.getBoardTile().getQuestion().getDescription());
                         }
-                    } else if (v instanceof BoardTileButton) {
-                        boardTileLayout = (BoardTileLayout) v.getParent();
+                    } else if (v instanceof BoardActivity.BoardTileButton) {
+                        boardTileLayout = (BoardActivity.BoardTileLayout) v.getParent();
                         showQuestionDialog(context, boardTileLayout.getBoardTile().getQuestion().getTitle(),
                                 boardTileLayout.getBoardTile().getQuestion().getDescription());
                     }
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (v instanceof BoardTileButton) {
+                if (v instanceof BoardActivity.BoardTileButton) {
                     if (isOnClick && (Math.abs(mDownX - event.getX()) > SCROLL_THRESHOLD || Math.abs(mDownY - event.getY()) > SCROLL_THRESHOLD)) {
                         View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
                         v.startDrag(null, shadowBuilder, v, 0);

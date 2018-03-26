@@ -3,13 +3,11 @@ package com.ivantha.playtolearn.listener;
 import android.view.DragEvent;
 import android.view.View;
 
+import com.ivantha.playtolearn.BoardActivity;
 import com.ivantha.playtolearn.common.Session;
-import com.ivantha.playtolearn.game.BoardLogic;
 import com.ivantha.playtolearn.model.BoardTile;
 import com.ivantha.playtolearn.model.Question;
 import com.ivantha.playtolearn.utils.Tuple;
-import com.ivantha.playtolearn.widget.BoardTileButton;
-import com.ivantha.playtolearn.widget.BoardTileLayout;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,14 +23,14 @@ public class BoardDragListener implements View.OnDragListener, Serializable {
             case DragEvent.ACTION_DRAG_EXITED:
                 break;
             case DragEvent.ACTION_DROP:
-                if (v instanceof BoardTileLayout) {
-                    BoardTileButton boardTileButton = (BoardTileButton) event.getLocalState();
+                if (v instanceof BoardActivity.BoardTileLayout) {
+                    BoardActivity.BoardTileButton boardTileButton = (BoardActivity.BoardTileButton) event.getLocalState();
 
-                    BoardTileLayout previousBoardTileLayout = (BoardTileLayout) boardTileButton.getParent();
-                    BoardTileLayout newBoardTileLayout = ((BoardTileLayout) v);
+                    BoardActivity.BoardTileLayout previousBoardTileLayout = (BoardActivity.BoardTileLayout) boardTileButton.getParent();
+                    BoardActivity.BoardTileLayout newBoardTileLayout = ((BoardActivity.BoardTileLayout) v);
 
                     Tuple<Question.Result, ArrayList<Tuple<Integer, Integer>>> ret =
-                            BoardLogic.verifyMove(previousBoardTileLayout.getBoardTile(), newBoardTileLayout.getBoardTile());
+                            BoardActivity.verifyMove(previousBoardTileLayout.getBoardTile(), newBoardTileLayout.getBoardTile());
                     Question.Result result = ret.x;
 
                     switch (result) {

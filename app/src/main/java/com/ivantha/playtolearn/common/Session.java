@@ -1,11 +1,11 @@
 package com.ivantha.playtolearn.common;
 
 import com.google.firebase.database.FirebaseDatabase;
+import com.ivantha.playtolearn.BoardActivity;
 import com.ivantha.playtolearn.model.SaveFile;
 import com.ivantha.playtolearn.model.Settings;
 import com.ivantha.playtolearn.utils.SaveHelper;
 import com.ivantha.playtolearn.utils.SettingsHelper;
-import com.ivantha.playtolearn.widget.BoardTileLayout;
 
 import java.util.ArrayList;
 
@@ -25,7 +25,7 @@ public class Session {
     // Board
     public static int COLUMN_COUNT = 6;
     public static int ROW_COUNT = 10;
-    public static ArrayList<ArrayList<BoardTileLayout>> boardLayoutGrid = new ArrayList<>();
+    public static ArrayList<ArrayList<BoardActivity.BoardTileLayout>> boardLayoutGrid = new ArrayList<>();
 
     // Firebase
     public static FirebaseDatabase database;
