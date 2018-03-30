@@ -15,8 +15,8 @@ import com.ivantha.playtolearn.R;
 import com.ivantha.playtolearn.SettingsActivity;
 import com.ivantha.playtolearn.common.Session;
 import com.ivantha.playtolearn.model.Question;
-import com.ivantha.playtolearn.utils.SaveHelper;
-import com.ivantha.playtolearn.utils.SettingsHelper;
+import com.ivantha.playtolearn.common.SaveHelper;
+import com.ivantha.playtolearn.common.SettingsHelper;
 
 public class MainMenuActivity extends AppCompatActivity {
 

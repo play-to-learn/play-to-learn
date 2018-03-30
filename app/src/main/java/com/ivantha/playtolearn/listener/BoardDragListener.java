@@ -7,7 +7,7 @@ import com.ivantha.playtolearn.BoardActivity;
 import com.ivantha.playtolearn.common.Session;
 import com.ivantha.playtolearn.model.BoardTile;
 import com.ivantha.playtolearn.model.Question;
-import com.ivantha.playtolearn.utils.Tuple;
+import com.ivantha.playtolearn.common.Tuple;
 
 import java.io.Serializable;
 import java.util.ArrayList;

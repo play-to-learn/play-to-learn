@@ -1,9 +1,10 @@
-package com.ivantha.playtolearn.utils;
+package com.ivantha.playtolearn.common;
+
 
 import android.content.Context;
 
 import com.ivantha.playtolearn.common.Session;
-import com.ivantha.playtolearn.model.Settings;
+import com.ivantha.playtolearn.model.SaveFile;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,23 +13,23 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class SettingsHelper {
+public class SaveHelper {
     private Context context;
 
-    public SettingsHelper(Context context) {
+    public SaveHelper(Context context) {
         this.context = context;
     }
 
-    public void newSettings() {
-        Session.currentSettings = new Settings();
+    public void newGame() {
+        Session.currentSaveFile = new SaveFile(this.context);
     }
 
-    public void loadSettings() {
+    public void loadGame() {
         try {
-            FileInputStream fileInputStream = context.openFileInput("settingsFile");
+            FileInputStream fileInputStream = context.openFileInput("saveFile");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-            Session.currentSettings = (Settings) objectInputStream.readObject();
+            Session.currentSaveFile = (SaveFile) objectInputStream.readObject();
 
             objectInputStream.close();
             fileInputStream.close();
@@ -37,12 +38,12 @@ public class SettingsHelper {
         }
     }
 
-    public void saveSettings() {
+    public void saveGame() {
         try {
-            FileOutputStream fileOutputStream = context.openFileOutput("settingsFile", Context.MODE_PRIVATE);
+            FileOutputStream fileOutputStream = context.openFileOutput("saveFile", Context.MODE_PRIVATE);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
-            objectOutputStream.writeObject(Session.currentSettings);
+            objectOutputStream.writeObject(Session.currentSaveFile);
             objectOutputStream.close();
             fileOutputStream.close();
         } catch (IOException e) {
@@ -50,9 +51,9 @@ public class SettingsHelper {
         }
     }
 
-    public boolean settingsExists() {
+    public boolean saveExists() {
         try {
-            FileInputStream fileInputStream = context.openFileInput("settingsFile");
+            FileInputStream fileInputStream = context.openFileInput("saveFile");
             return fileInputStream != null;
         } catch (FileNotFoundException e) {
             e.printStackTrace();

@@ -13,7 +13,7 @@ import com.ivantha.playtolearn.listener.BoardDragListener;
 import com.ivantha.playtolearn.listener.BoardTouchListener;
 import com.ivantha.playtolearn.model.BoardTile;
 import com.ivantha.playtolearn.model.Question;
-import com.ivantha.playtolearn.utils.Tuple;
+import com.ivantha.playtolearn.common.Tuple;
 import com.ivantha.playtolearn.widget.HexButtonDrawable;
 
 import java.util.ArrayList;

@@ -2,12 +2,11 @@ package com.ivantha.playtolearn;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 
-import com.ivantha.playtolearn.common.Session;
 import com.ivantha.playtolearn.model.Level;
 
 import java.util.ArrayList;
@@ -20,11 +19,8 @@ public class LevelsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_levels);
 
-        GridView levelsGridView = findViewById(R.id.levelsGridView);
-        LevelAdapter levelAdapter = new LevelAdapter();
-        levelsGridView.setAdapter(levelAdapter);
+        RecyclerView levelsRecyclerView = findViewById(R.id.levelsRecyclerView);
 
-//        Session.database.getReference("levels").
     }
 
     private class LevelAdapter extends BaseAdapter {

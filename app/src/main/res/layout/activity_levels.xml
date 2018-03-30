@@ -36,15 +36,10 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <GridView
-            android:id="@+id/levelsGridView"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/levelsRecyclerView"
             android:layout_width="315dp"
             android:layout_height="268dp" />
-
-        <!--ROW 01-->
-
-        <!--ROW 02-->
-
 
     </LinearLayout>
 
