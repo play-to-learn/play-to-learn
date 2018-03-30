@@ -1,7 +1,7 @@
 package com.ivantha.playtolearn.common;
 
 import com.google.firebase.database.FirebaseDatabase;
-import com.ivantha.playtolearn.BoardActivity;
+import com.ivantha.playtolearn.activity.BoardActivity;
 import com.ivantha.playtolearn.model.SaveFile;
 import com.ivantha.playtolearn.model.Settings;
 

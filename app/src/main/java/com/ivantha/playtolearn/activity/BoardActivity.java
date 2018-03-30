@@ -1,4 +1,4 @@
-package com.ivantha.playtolearn;
+package com.ivantha.playtolearn.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.util.TypedValue;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import com.ivantha.playtolearn.R;
 import com.ivantha.playtolearn.common.Session;
 import com.ivantha.playtolearn.listener.BoardDragListener;
 import com.ivantha.playtolearn.listener.BoardTouchListener;

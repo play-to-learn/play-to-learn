@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.View
 
 import com.google.firebase.database.FirebaseDatabase
-import com.ivantha.playtolearn.LevelsActivity
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.model.Question

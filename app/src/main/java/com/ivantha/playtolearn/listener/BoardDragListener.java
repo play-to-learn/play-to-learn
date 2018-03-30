@@ -3,7 +3,7 @@ package com.ivantha.playtolearn.listener;
 import android.view.DragEvent;
 import android.view.View;
 
-import com.ivantha.playtolearn.BoardActivity;
+import com.ivantha.playtolearn.activity.BoardActivity;
 import com.ivantha.playtolearn.common.Session;
 import com.ivantha.playtolearn.model.BoardTile;
 import com.ivantha.playtolearn.model.Question;

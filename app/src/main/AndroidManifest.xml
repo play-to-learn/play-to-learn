@@ -17,12 +17,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BoardActivity"
+            android:name=".activity.BoardActivity"
             android:label="@string/title_activity_board"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.HelpActivity" />
         <activity android:name=".activity.LeaderboardActivity" />
-        <activity android:name=".LevelsActivity" />
+        <activity android:name=".activity.LevelsActivity" />
         <activity android:name=".activity.ProfileActivity" />
         <activity android:name=".activity.SettingsActivity" />
     </application>

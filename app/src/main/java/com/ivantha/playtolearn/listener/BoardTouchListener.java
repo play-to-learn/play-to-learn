@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.ivantha.playtolearn.BoardActivity;
+import com.ivantha.playtolearn.activity.BoardActivity;
 import com.ivantha.playtolearn.widget.ProblemDialog;
 
 import java.io.Serializable;
