@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LeaderboardActivity"
+    tools:context=".activity.LeaderboardActivity"
     android:background="@drawable/common_background">
 
     <com.avoid.playtolearn.widgets.MainButton

@@ -26,8 +26,8 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <com.avoid.playtolearn.widgets.LabelTextView
-        android:id="@+id/title_text_view"
+    <com.ivantha.playtolearn.widget.LabelTextView
+        android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -39,8 +39,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout3" />
 
-    <com.avoid.playtolearn.widgets.LabelTextView
-        android:id="@+id/description_text_view"
+    <com.ivantha.playtolearn.widget.LabelTextView
+        android:id="@+id/descriptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -50,5 +50,5 @@
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_text_view" />
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 </android.support.constraint.ConstraintLayout>

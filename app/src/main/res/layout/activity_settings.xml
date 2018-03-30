@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity"
+    tools:context=".activity.SettingsActivity"
     android:background="@drawable/common_background">
 
     <android.support.constraint.ConstraintLayout
@@ -43,7 +43,7 @@
             app:srcCompat="@drawable/common_window_panel"
             android:layout_marginBottom="32dp" />
 
-        <com.avoid.playtolearn.widgets.WindowTitle
+        <com.ivantha.playtolearn.widget.WindowTitle
             android:id="@+id/panel_title"
             android:layout_width="150dp"
             android:layout_height="45dp"
@@ -61,8 +61,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.00999999" />
 
-        <com.avoid.playtolearn.widgets.Switch
-            android:id="@+id/sound_switch"
+        <com.ivantha.playtolearn.widget.Switch
+            android:id="@+id/soundSwitch"
             android:layout_width="0dp"
             android:layout_height="32dp"
             android:layout_marginEnd="32dp"
@@ -71,15 +71,14 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:checked="true"
-            android:onClick="soundsSwitchOnClick"
             android:text="Sounds"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/panel_title" />
 
-        <com.avoid.playtolearn.widgets.Switch
-            android:id="@+id/music_switch"
+        <com.ivantha.playtolearn.widget.Switch
+            android:id="@+id/musicSwitch"
             android:layout_width="0dp"
             android:layout_height="32dp"
             android:layout_marginEnd="32dp"
@@ -88,43 +87,37 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:checked="true"
-            android:onClick="musicSwitchOnClick"
             android:text="Music"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sound_switch" />
+            app:layout_constraintTop_toBottomOf="@+id/soundSwitch" />
 
-        <com.avoid.playtolearn.widgets.Switch
-            android:id="@+id/hints_switch"
+        <com.ivantha.playtolearn.widget.Switch
+            android:id="@+id/hintsSwitch"
             android:layout_width="0dp"
             android:layout_height="32dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
-            android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:checked="true"
-            android:onClick="hintsSwitchOnClick"
             android:text="Hints"
             app:layout_constraintBottom_toBottomOf="@+id/panel_bg"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/music_switch"
+            app:layout_constraintTop_toBottomOf="@+id/musicSwitch"
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/close_button"
+            android:id="@+id/closeButton"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="0dp"
             android:background="@drawable/common_close"
-            android:onClick="closeButtonOnClick"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -133,7 +126,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/ok_button"
+            android:id="@+id/okButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginBottom="8dp"
@@ -141,24 +134,22 @@
             android:layout_marginRight="6dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/common_done"
-            android:onClick="okButtonOnClick"
             android:text=""
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.23"
-            app:layout_constraintLeft_toRightOf="@+id/reset_button"
+            app:layout_constraintLeft_toRightOf="@+id/resetButton"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
 
         <Button
-            android:id="@+id/reset_button"
+            android:id="@+id/resetButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="51dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/common_reset"
-            android:onClick="resetButtonOnClick"
             android:text=""
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

@@ -20,11 +20,11 @@
             android:name=".BoardActivity"
             android:label="@string/title_activity_board"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".HelpActivity" />
-        <activity android:name=".LeaderboardActivity" />
+        <activity android:name=".activity.HelpActivity" />
+        <activity android:name=".activity.LeaderboardActivity" />
         <activity android:name=".LevelsActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".SettingsActivity" />
+        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.SettingsActivity" />
     </application>
 
 </manifest>
