@@ -25,7 +25,7 @@ class BoardActivity : AppCompatActivity() {
     }
 
     private fun createBoard() {
-        for (tileArrayList in Session.currentSaveFile!!.board!!.tileGrid) {
+        for (tileArrayList in Session.saveHelper!!.currentSaveFile!!.board!!.tileGrid) {
             val layoutArrayList = ArrayList<BoardTileLayout>()
             val tileColumnLayout = LinearLayout(this@BoardActivity)
             tileColumnLayout.orientation = LinearLayout.VERTICAL

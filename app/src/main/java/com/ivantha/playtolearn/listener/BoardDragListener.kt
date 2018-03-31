@@ -32,27 +32,27 @@ class BoardDragListener : View.OnDragListener, Serializable {
                         Result.CORRECT -> {
                             previousBoardTileLayout.setBoardTileState(BoardTile.BoardTileState.CORRECT_ANSWER)
                             previousBoardTileLayout.removeView(boardTileButton)
-                            Session.currentSaveFile!!.profile!!.score = Session.currentSaveFile!!.profile!!.score + previousBoardTileLayout.score
+                            Session.saveHelper!!.currentSaveFile!!.profile!!.score = Session.saveHelper!!.currentSaveFile!!.profile!!.score + previousBoardTileLayout.score
 
                             v.setBoardTileState(BoardTile.BoardTileState.CURRENT)
                             v.addView(boardTileButton, boardTileButton.width, boardTileButton.height)
                             v.generateQuestion()
 
-                            for (tile in ret.y) {
-                                Session.boardLayoutGrid[tile.x][tile.y].setBoardTileState(BoardTile.BoardTileState.VISITED)
+                            for (tile in ret.y!!) {
+                                Session.boardLayoutGrid[tile.x][tile.y!!].setBoardTileState(BoardTile.BoardTileState.VISITED)
                             }
                         }
                         Result.WRONG -> {
                             previousBoardTileLayout.setBoardTileState(BoardTile.BoardTileState.WRONG_ANSWER)
                             previousBoardTileLayout.removeView(boardTileButton)
-                            Session.currentSaveFile!!.profile!!.score = Session.currentSaveFile!!.profile!!.score - previousBoardTileLayout.score
+                            Session.saveHelper!!.currentSaveFile!!.profile!!.score = Session.saveHelper!!.currentSaveFile!!.profile!!.score - previousBoardTileLayout.score
 
                             v.setBoardTileState(BoardTile.BoardTileState.CURRENT)
                             v.addView(boardTileButton, boardTileButton.width, boardTileButton.height)
                             v.generateQuestion()
 
-                            for (tile in ret.y) {
-                                Session.boardLayoutGrid[tile.x][tile.y].setBoardTileState(BoardTile.BoardTileState.VISITED)
+                            for (tile in ret.y!!) {
+                                Session.boardLayoutGrid[tile.x][tile.y!!].setBoardTileState(BoardTile.BoardTileState.VISITED)
                             }
                         }
                         Result.INVALID ->

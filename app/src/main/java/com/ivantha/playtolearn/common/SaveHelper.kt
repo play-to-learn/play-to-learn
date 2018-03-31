@@ -10,8 +10,10 @@ import java.io.ObjectOutputStream
 
 class SaveHelper {
 
+    var currentSaveFile: SaveFile? = null
+
     fun newGame() {
-        Session.currentSaveFile = SaveFile()
+        currentSaveFile = SaveFile()
     }
 
     fun loadGame(context: Context) {
@@ -19,7 +21,7 @@ class SaveHelper {
             val fileInputStream = context.openFileInput("saveFile")
             val objectInputStream = ObjectInputStream(fileInputStream)
 
-            Session.currentSaveFile = objectInputStream.readObject() as SaveFile
+            currentSaveFile = objectInputStream.readObject() as SaveFile
 
             objectInputStream.close()
             fileInputStream.close()
@@ -36,7 +38,7 @@ class SaveHelper {
             val fileOutputStream = context.openFileOutput("saveFile", Context.MODE_PRIVATE)
             val objectOutputStream = ObjectOutputStream(fileOutputStream)
 
-            objectOutputStream.writeObject(Session.currentSaveFile)
+            objectOutputStream.writeObject(currentSaveFile)
             objectOutputStream.close()
             fileOutputStream.close()
         } catch (e: IOException) {

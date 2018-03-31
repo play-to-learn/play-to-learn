@@ -13,17 +13,17 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_settings)
 
         soundSwitch.setOnClickListener({
-            Session.currentSettings!!.isSoundsOn = soundSwitch.isEnabled
+            Session.settingsHelper!!.currentSettings!!.soundsOn = soundSwitch.isChecked
             applySoundSettings()
         })
 
         musicSwitch.setOnClickListener({
-            Session.currentSettings!!.isMusicOn = this.musicSwitch.isEnabled
+            Session.settingsHelper!!.currentSettings!!.musicOn = musicSwitch.isChecked
             applyMusicSettings()
         })
 
         hintsSwitch.setOnClickListener({
-            Session.currentSettings!!.isHintsOn = this.hintsSwitch.isEnabled
+            Session.settingsHelper!!.currentSettings!!.hintsOn = hintsSwitch.isChecked
         })
 
         closeButton.setOnClickListener({
@@ -31,9 +31,9 @@ class SettingsActivity : AppCompatActivity() {
         })
 
         resetButton.setOnClickListener({
-            Session.currentSettings!!.isSoundsOn = Session.currentSettings!!.isSoundsOnDefault
-            Session.currentSettings!!.isMusicOn = Session.currentSettings!!.isMusicOnDefault
-            Session.currentSettings!!.isHintsOn = Session.currentSettings!!.isHintsOnDefault
+            Session.settingsHelper!!.currentSettings!!.soundsOn = Session.settingsHelper!!.currentSettings!!.soundsOnDefault
+            Session.settingsHelper!!.currentSettings!!.musicOn = Session.settingsHelper!!.currentSettings!!.musicOnDefault
+            Session.settingsHelper!!.currentSettings!!.hintsOn = Session.settingsHelper!!.currentSettings!!.hintsOnDefault
             Session.settingsHelper!!.saveSettings(applicationContext)
 
             applySoundSettings()
@@ -51,9 +51,9 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun refreshUI() {
-        soundSwitch.isChecked = Session.currentSettings!!.isSoundsOn
-        musicSwitch.isChecked = Session.currentSettings!!.isMusicOn
-        hintsSwitch.isChecked = Session.currentSettings!!.isHintsOn
+        soundSwitch.isChecked = Session.settingsHelper!!.currentSettings!!.soundsOn
+        musicSwitch.isChecked = Session.settingsHelper!!.currentSettings!!.musicOn
+        hintsSwitch.isChecked = Session.settingsHelper!!.currentSettings!!.hintsOn
     }
 
     private fun applyMusicSettings() {

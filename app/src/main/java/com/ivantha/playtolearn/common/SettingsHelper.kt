@@ -9,8 +9,10 @@ import java.io.ObjectOutputStream
 
 class SettingsHelper {
 
+    var currentSettings: Settings? = null
+
     fun newSettings() {
-        Session.currentSettings = Settings()
+        currentSettings = Settings()
     }
 
     fun loadSettings(context: Context) {
@@ -18,7 +20,7 @@ class SettingsHelper {
             val fileInputStream = context.openFileInput("settingsFile")
             val objectInputStream = ObjectInputStream(fileInputStream)
 
-            Session.currentSettings = objectInputStream.readObject() as Settings
+            currentSettings = objectInputStream.readObject() as Settings
 
             objectInputStream.close()
             fileInputStream.close()
@@ -35,7 +37,7 @@ class SettingsHelper {
             val fileOutputStream = context.openFileOutput("settingsFile", Context.MODE_PRIVATE)
             val objectOutputStream = ObjectOutputStream(fileOutputStream)
 
-            objectOutputStream.writeObject(Session.currentSettings)
+            objectOutputStream.writeObject(currentSettings)
             objectOutputStream.close()
             fileOutputStream.close()
         } catch (e: IOException) {

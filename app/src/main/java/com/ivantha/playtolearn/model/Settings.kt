@@ -3,10 +3,10 @@ package com.ivantha.playtolearn.model
 import java.io.Serializable
 
 class Settings : Serializable {
-    val isSoundsOnDefault: Boolean = true
-    var isSoundsOn: Boolean = true
-    val isMusicOnDefault: Boolean = true
-    var isMusicOn: Boolean = true
-    val isHintsOnDefault: Boolean = true
-    var isHintsOn: Boolean = true
+    val soundsOnDefault: Boolean = true
+    var soundsOn: Boolean = true
+    val musicOnDefault: Boolean = true
+    var musicOn: Boolean = true
+    val hintsOnDefault: Boolean = true
+    var hintsOn: Boolean = true
 }
