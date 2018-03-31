@@ -7,10 +7,4 @@ class Question : Serializable {
     var title: String? = null
     var description: String? = null
     var answer: Int = 0
-
-    enum class Result {
-        CORRECT,
-        WRONG,
-        INVALID
-    }
 }

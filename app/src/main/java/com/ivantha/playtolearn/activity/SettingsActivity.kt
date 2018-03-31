@@ -13,17 +13,17 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_settings)
 
         soundSwitch.setOnClickListener({
-            Session.currentSettings.isSoundsOn = soundSwitch.isEnabled
+            Session.currentSettings!!.isSoundsOn = soundSwitch.isEnabled
             applySoundSettings()
         })
 
         musicSwitch.setOnClickListener({
-            Session.currentSettings.isMusicOn = this.musicSwitch.isEnabled
+            Session.currentSettings!!.isMusicOn = this.musicSwitch.isEnabled
             applyMusicSettings()
         })
 
         hintsSwitch.setOnClickListener({
-            Session.currentSettings.isHintsOn = this.hintsSwitch.isEnabled
+            Session.currentSettings!!.isHintsOn = this.hintsSwitch.isEnabled
         })
 
         closeButton.setOnClickListener({
@@ -31,10 +31,10 @@ class SettingsActivity : AppCompatActivity() {
         })
 
         resetButton.setOnClickListener({
-            Session.currentSettings.isSoundsOn = Session.currentSettings.isSoundsOnDefault
-            Session.currentSettings.isMusicOn = Session.currentSettings.isMusicOnDefault
-            Session.currentSettings.isHintsOn = Session.currentSettings.isHintsOnDefault
-            Session.settingsHelper.saveSettings()
+            Session.currentSettings!!.isSoundsOn = Session.currentSettings!!.isSoundsOnDefault
+            Session.currentSettings!!.isMusicOn = Session.currentSettings!!.isMusicOnDefault
+            Session.currentSettings!!.isHintsOn = Session.currentSettings!!.isHintsOnDefault
+            Session.settingsHelper!!.saveSettings(applicationContext)
 
             applySoundSettings()
             applyMusicSettings()
@@ -43,7 +43,7 @@ class SettingsActivity : AppCompatActivity() {
         })
 
         okButton.setOnClickListener({
-            Session.settingsHelper.saveSettings()
+            Session.settingsHelper!!.saveSettings(applicationContext)
             finish()
         })
 
@@ -51,9 +51,9 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun refreshUI() {
-        soundSwitch.isChecked = Session.currentSettings.isSoundsOn
-        musicSwitch.isChecked = Session.currentSettings.isMusicOn
-        hintsSwitch.isChecked = Session.currentSettings.isHintsOn
+        soundSwitch.isChecked = Session.currentSettings!!.isSoundsOn
+        musicSwitch.isChecked = Session.currentSettings!!.isMusicOn
+        hintsSwitch.isChecked = Session.currentSettings!!.isHintsOn
     }
 
     private fun applyMusicSettings() {

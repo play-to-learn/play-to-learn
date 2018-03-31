@@ -2,82 +2,93 @@ package com.ivantha.playtolearn.activity
 
 import android.content.Intent
 import android.content.res.Resources
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-
+import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.ivantha.playtolearn.R
-import com.ivantha.playtolearn.common.Session
-import com.ivantha.playtolearn.model.Question
 import com.ivantha.playtolearn.common.SaveHelper
+import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.common.SettingsHelper
+import com.ivantha.playtolearn.model.Question
+import kotlinx.android.synthetic.main.activity_main_menu.*
+
 
 class MainMenuActivity : AppCompatActivity() {
+
+    private var mAuth: FirebaseAuth? = FirebaseAuth.getInstance()
+    private var currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
+    private var firebaseDatabase: FirebaseDatabase? = FirebaseDatabase.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
 
+        continueButton.setOnClickListener({
+            Session.saveHelper!!.loadGame(applicationContext)
+            startActivity(Intent(this@MainMenuActivity, LevelsActivity::class.java))
+        })
+
+        newGameButton.setOnClickListener({
+            Session.saveHelper!!.newGame()
+            startActivity(Intent(this@MainMenuActivity, LevelsActivity::class.java))
+        })
+
+        optionsButton.setOnClickListener({
+            startActivity(Intent(this@MainMenuActivity, SettingsActivity::class.java))
+        })
+
+        profileButton.setOnClickListener({
+            startActivity(Intent(this@MainMenuActivity, ProfileActivity::class.java))
+        })
+
+        leaderboardButton.setOnClickListener({
+            startActivity(Intent(this@MainMenuActivity, LeaderboardActivity::class.java))
+        })
+
+        helpButton.setOnClickListener({
+            startActivity(Intent(this@MainMenuActivity, HelpActivity::class.java))
+        })
+
         this.initializeFirebase()
         this.initializeSession()
     }
 
-    public override fun onStart() {
-        super.onStart()
-    }
+    private fun initializeFirebase() {
+        // Sign in anonymously
+        if (currentUser == null) {
+            mAuth!!.signInAnonymously().addOnCompleteListener(this) { task ->
+                if (!task.isSuccessful) {
+                    Toast.makeText(this, "Anonymouse login unsuccessful", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
 
-    fun onClickContinueButton(view: View) {
-        Session.saveHelper.loadGame()
-        startActivity(Intent(this@MainMenuActivity, LevelsActivity::class.java))
-    }
-
-    fun onClickNewGameButton(view: View) {
-        Session.saveHelper.newGame()
-        startActivity(Intent(this@MainMenuActivity, LevelsActivity::class.java))
-    }
-
-    fun onClickOptionsButton(view: View) {
-        startActivity(Intent(this@MainMenuActivity, SettingsActivity::class.java))
-    }
-
-    fun onClickProfileButton(view: View) {
-        startActivity(Intent(this@MainMenuActivity, ProfileActivity::class.java))
-    }
-
-    fun onClickLeaderboardButton(view: View) {
-        startActivity(Intent(this@MainMenuActivity, LeaderboardActivity::class.java))
-    }
-
-    fun onClickHelpButton(view: View) {
-        startActivity(Intent(this@MainMenuActivity, HelpActivity::class.java))
-    }
-
-    fun initializeFirebase() {
+        // Enable Firebase database persistence
         FirebaseDatabase.getInstance().setPersistenceEnabled(true)
     }
 
     private fun initializeSession() {
-        Session.saveHelper = SaveHelper(applicationContext)
+        Session.saveHelper = SaveHelper()
 
-        Session.settingsHelper = SettingsHelper(applicationContext)
-        if (Session.settingsHelper.settingsExists()) {
-            Session.settingsHelper.loadSettings()
+        Session.settingsHelper = SettingsHelper()
+        if (Session.settingsHelper!!.settingsExists(applicationContext)) {
+            Session.settingsHelper!!.loadSettings(applicationContext)
         } else {
-            Session.settingsHelper.newSettings()
-            Session.settingsHelper.saveSettings()
+            Session.settingsHelper!!.newSettings()
+            Session.settingsHelper!!.saveSettings(applicationContext)
         }
 
         Session.SCREEN_WIDTH = Resources.getSystem().displayMetrics.widthPixels
         Session.SCREEN_HEIGHT = Resources.getSystem().displayMetrics.heightPixels
 
-        Session.database = FirebaseDatabase.getInstance()
-
         this.addFirebaseData()
     }
 
     private fun addFirebaseData() {
-        Session.database.getReference("/").setValue(null)
+        firebaseDatabase!!.getReference("/").setValue(null)
 
         // Sample questions
         val q1 = Question()
@@ -136,29 +147,30 @@ class MainMenuActivity : AppCompatActivity() {
         q6.answer = 8
 
         // Creating the categories
-        Session.database.getReference("categories/conditional_structures").child("name").setValue("Conditional Structures")
-        Session.database.getReference("categories/loops").child("name").setValue("Loops")
-        Session.database.getReference("categories/syntax").child("name").setValue("Syntax")
-        Session.database.getReference("categories/semantics").child("name").setValue("Semantics")
-        Session.database.getReference("categories/variables").child("name").setValue("Variables")
-        Session.database.getReference("categories/error_handling").child("name").setValue("Error Handling")
-        Session.database.getReference("categories/threads").child("name").setValue("Threads")
+        firebaseDatabase!!.getReference("categories/conditional_structures").child("name").setValue("Conditional Structures")
+        firebaseDatabase!!.getReference("categories/loops").child("name").setValue("Loops")
+        firebaseDatabase!!.getReference("categories/syntax").child("name").setValue("Syntax")
+        firebaseDatabase!!.getReference("categories/semantics").child("name").setValue("Semantics")
+        firebaseDatabase!!.getReference("categories/variables").child("name").setValue("Variables")
+        firebaseDatabase!!.getReference("categories/error_handling").child("name").setValue("Error Handling")
+        firebaseDatabase!!.getReference("categories/threads").child("name").setValue("Threads")
 
         // Creating the levels
-        Session.database.getReference("levels").push().child("id").setValue("1")
-        Session.database.getReference("levels").push().child("id").setValue("2")
-        Session.database.getReference("levels").push().child("id").setValue("3")
-        Session.database.getReference("levels").push().child("id").setValue("4")
-        Session.database.getReference("levels").push().child("id").setValue("5")
-        Session.database.getReference("levels").push().child("id").setValue("6")
-        Session.database.getReference("levels").push().child("id").setValue("7")
+        firebaseDatabase!!.getReference("levels").push().child("id").setValue("1")
+        firebaseDatabase!!.getReference("levels").push().child("id").setValue("2")
+        firebaseDatabase!!.getReference("levels").push().child("id").setValue("3")
+        firebaseDatabase!!.getReference("levels").push().child("id").setValue("4")
+        firebaseDatabase!!.getReference("levels").push().child("id").setValue("5")
+        firebaseDatabase!!.getReference("levels").push().child("id").setValue("6")
+        firebaseDatabase!!.getReference("levels").push().child("id").setValue("7")
+        firebaseDatabase!!.getReference("levels").push().child("id").setValue("8")
 
         // Set the questions
-        Session.database.getReference("questions/level/1/category/conditional_structures").push().setValue(q1)
-        Session.database.getReference("questions/level/1/category/conditional_structures").push().setValue(q2)
-        Session.database.getReference("questions/level/1/category/conditional_structures").push().setValue(q3)
-        Session.database.getReference("questions/level/1/category/conditional_structures").push().setValue(q4)
-        Session.database.getReference("questions/level/1/category/loops").push().setValue(q5)
-        Session.database.getReference("questions/level/1/category/loops").push().setValue(q6)
+        firebaseDatabase!!.getReference("questions/level/1/category/conditional_structures").push().setValue(q1)
+        firebaseDatabase!!.getReference("questions/level/1/category/conditional_structures").push().setValue(q2)
+        firebaseDatabase!!.getReference("questions/level/1/category/conditional_structures").push().setValue(q3)
+        firebaseDatabase!!.getReference("questions/level/1/category/conditional_structures").push().setValue(q4)
+        firebaseDatabase!!.getReference("questions/level/1/category/loops").push().setValue(q5)
+        firebaseDatabase!!.getReference("questions/level/1/category/loops").push().setValue(q6)
     }
 }

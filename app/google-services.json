@@ -8,50 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:249934953162:android:f66d193606de88be",
-        "android_client_info": {
-          "package_name": "com.avoid.playtolearn"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "249934953162-2vud783inb7pv8q8nlc778mcu1garqm8.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.avoid.playtolearn",
-            "certificate_hash": "096be3afd46430c15f4900e016639e0a6db1ff59"
-          }
-        },
-        {
-          "client_id": "249934953162-35nne4ci3mb2en3453negi2l2sapbv2r.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyA9cu2F3iQ-sFn-IeleiXHg-8mHlTJsaBo"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "249934953162-35nne4ci3mb2en3453negi2l2sapbv2r.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:249934953162:android:54a21457eb3ef544",
         "android_client_info": {
           "package_name": "com.ivantha.playtolearn"

@@ -8,13 +8,13 @@ import java.io.IOException
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 
-class SaveHelper(private val context: Context) {
+class SaveHelper {
 
     fun newGame() {
         Session.currentSaveFile = SaveFile()
     }
 
-    fun loadGame() {
+    fun loadGame(context: Context) {
         try {
             val fileInputStream = context.openFileInput("saveFile")
             val objectInputStream = ObjectInputStream(fileInputStream)
@@ -31,7 +31,7 @@ class SaveHelper(private val context: Context) {
 
     }
 
-    fun saveGame() {
+    fun saveGame(context: Context) {
         try {
             val fileOutputStream = context.openFileOutput("saveFile", Context.MODE_PRIVATE)
             val objectOutputStream = ObjectOutputStream(fileOutputStream)
@@ -44,7 +44,7 @@ class SaveHelper(private val context: Context) {
         }
     }
 
-    fun saveExists(): Boolean {
+    fun saveExists(context: Context): Boolean {
         try {
             val fileInputStream = context.openFileInput("saveFile")
             return fileInputStream != null

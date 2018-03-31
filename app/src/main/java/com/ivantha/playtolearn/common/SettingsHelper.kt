@@ -7,13 +7,13 @@ import java.io.IOException
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 
-class SettingsHelper(private val context: Context) {
+class SettingsHelper {
 
     fun newSettings() {
         Session.currentSettings = Settings()
     }
 
-    fun loadSettings() {
+    fun loadSettings(context: Context) {
         try {
             val fileInputStream = context.openFileInput("settingsFile")
             val objectInputStream = ObjectInputStream(fileInputStream)
@@ -30,7 +30,7 @@ class SettingsHelper(private val context: Context) {
 
     }
 
-    fun saveSettings() {
+    fun saveSettings(context: Context) {
         try {
             val fileOutputStream = context.openFileOutput("settingsFile", Context.MODE_PRIVATE)
             val objectOutputStream = ObjectOutputStream(fileOutputStream)
@@ -44,7 +44,7 @@ class SettingsHelper(private val context: Context) {
 
     }
 
-    fun settingsExists(): Boolean {
+    fun settingsExists(context: Context): Boolean {
         try {
             val fileInputStream = context.openFileInput("settingsFile")
             return fileInputStream != null

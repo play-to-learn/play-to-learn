@@ -35,17 +35,15 @@
             app:layout_constraintVertical_bias="0.00999999">
 
             <TextView
-                android:id="@+id/gold_status_text"
+                android:id="@+id/goldenStatusText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="50"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -71,16 +69,14 @@
             app:layout_constraintVertical_bias="0.0">
 
             <TextView
-                android:id="@+id/life_status_text"
+                android:id="@+id/lifeStatusText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="3"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -108,11 +104,10 @@
         app:layout_constraintRight_toRightOf="parent">
 
         <Button
-            android:id="@+id/restart_button"
+            android:id="@+id/boardRestartButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
@@ -120,15 +115,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/settings_button"
+            app:layout_constraintRight_toLeftOf="@+id/boardSettingsButton"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/settings_button"
+            android:id="@+id/boardSettingsButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/common_settings_button"
@@ -137,23 +131,22 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/menu_button"
+            android:id="@+id/boardMenuButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/common_menu_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toRightOf="@+id/back_button"
+            app:layout_constraintLeft_toRightOf="@+id/boardBackButton"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/back_button"
+            android:id="@+id/boardBackButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginBottom="8dp"
@@ -183,18 +176,12 @@
             tools:layout_editor_absoluteY="24dp">
 
             <TextView
-                android:id="@+id/time_status_text"
+                android:id="@+id/timeStatusTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginBottom="0dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="0dp"
                 android:text="00:00:19"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -233,7 +220,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
-            android:id="@+id/tile_grid_layout"
+            android:id="@+id/tileGridLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
