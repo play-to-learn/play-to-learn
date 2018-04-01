@@ -8,14 +8,16 @@ import java.util.*
 object Session {
 
     var profile: Profile? = null
-    var board: Board? = null
 
+    var currentLevel: Int = 1
     var score: Int = 0
 
-    val settingsHelper: SettingsHelper = SettingsHelper()
+    var board: Board? = null
 
     var COLUMN_COUNT = 6
     var ROW_COUNT = 10
     var boardLayoutGrid = ArrayList<ArrayList<BoardTileLayout>>()
+
+    val settingsHelper: SettingsHelper = SettingsHelper()
 
 }

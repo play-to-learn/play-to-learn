@@ -6,7 +6,10 @@ import java.util.*
 object FirebaseSaveHelper {
 
     fun newGame(uid: String){
-        FirebaseDatabase.getInstance().getReference("/users").child(uid).child("timestamp").setValue(Calendar.getInstance())
+        // Set profiles
+        var firebaseDatabase = FirebaseDatabase.getInstance()
+        firebaseDatabase.getReference("players/$uid").child("start_time").setValue(Date().time)
+        firebaseDatabase.getReference("players/$uid").child("current_level").setValue("1")
     }
 
     fun loadGame(uid: String){

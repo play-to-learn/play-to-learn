@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.activity.BoardActivity
+import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.model.Level
 
 class LevelRecyclerAdapter(private val levels: List<Level>) : RecyclerView.Adapter<LevelRecyclerAdapter.LevelViewHolder>() {
@@ -37,6 +38,7 @@ class LevelRecyclerAdapter(private val levels: List<Level>) : RecyclerView.Adapt
 
         init {
             appCompatButton.setOnClickListener({
+                Session.currentLevel = id
                 viewGroup!!.context.startActivity(Intent(viewGroup!!.context, BoardActivity::class.java))
             })
         }
