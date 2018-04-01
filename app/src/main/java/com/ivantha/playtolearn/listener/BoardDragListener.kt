@@ -32,7 +32,7 @@ class BoardDragListener : View.OnDragListener, Serializable {
                         Result.CORRECT -> {
                             previousBoardTileLayout.setBoardTileState(BoardTile.BoardTileState.CORRECT_ANSWER)
                             previousBoardTileLayout.removeView(boardTileButton)
-                            Session.saveHelper!!.currentSaveFile!!.profile!!.score = Session.saveHelper!!.currentSaveFile!!.profile!!.score + previousBoardTileLayout.score
+                            Session.localSaveHelper!!.currentSaveFile!!.profile!!.score = Session.localSaveHelper!!.currentSaveFile!!.profile!!.score + previousBoardTileLayout.score
 
                             v.setBoardTileState(BoardTile.BoardTileState.CURRENT)
                             v.addView(boardTileButton, boardTileButton.width, boardTileButton.height)
@@ -45,7 +45,7 @@ class BoardDragListener : View.OnDragListener, Serializable {
                         Result.WRONG -> {
                             previousBoardTileLayout.setBoardTileState(BoardTile.BoardTileState.WRONG_ANSWER)
                             previousBoardTileLayout.removeView(boardTileButton)
-                            Session.saveHelper!!.currentSaveFile!!.profile!!.score = Session.saveHelper!!.currentSaveFile!!.profile!!.score - previousBoardTileLayout.score
+                            Session.localSaveHelper!!.currentSaveFile!!.profile!!.score = Session.localSaveHelper!!.currentSaveFile!!.profile!!.score - previousBoardTileLayout.score
 
                             v.setBoardTileState(BoardTile.BoardTileState.CURRENT)
                             v.addView(boardTileButton, boardTileButton.width, boardTileButton.height)
@@ -60,7 +60,7 @@ class BoardDragListener : View.OnDragListener, Serializable {
                     }
                 }
 
-                Session.saveHelper!!.saveGame(v.context)
+                Session.localSaveHelper!!.saveGame(v.context)
                 return true
             }
             DragEvent.ACTION_DRAG_ENDED -> {

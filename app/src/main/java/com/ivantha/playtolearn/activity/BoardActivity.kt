@@ -21,11 +21,11 @@ class BoardActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
 
-        Session.saveHelper!!.saveGame(applicationContext)
+        Session.localSaveHelper!!.saveGame(applicationContext)
     }
 
     private fun createBoard() {
-        for (tileArrayList in Session.saveHelper!!.currentSaveFile!!.board!!.tileGrid) {
+        for (tileArrayList in Session.localSaveHelper!!.currentSaveFile!!.board!!.tileGrid) {
             val layoutArrayList = ArrayList<BoardTileLayout>()
             val tileColumnLayout = LinearLayout(this@BoardActivity)
             tileColumnLayout.orientation = LinearLayout.VERTICAL

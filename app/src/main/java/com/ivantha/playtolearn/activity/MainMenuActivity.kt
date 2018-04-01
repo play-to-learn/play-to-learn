@@ -9,7 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.ivantha.playtolearn.R
-import com.ivantha.playtolearn.common.SaveHelper
+import com.ivantha.playtolearn.common.LocalSaveHelper
 import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.common.SettingsHelper
 import com.ivantha.playtolearn.model.Question
@@ -27,12 +27,12 @@ class MainMenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main_menu)
 
         continueButton.setOnClickListener({
-            Session.saveHelper!!.loadGame(applicationContext)
+            Session.localSaveHelper!!.loadGame(applicationContext)
             startActivity(Intent(this@MainMenuActivity, LevelsActivity::class.java))
         })
 
         newGameButton.setOnClickListener({
-            Session.saveHelper!!.newGame()
+            Session.localSaveHelper!!.newGame()
             startActivity(Intent(this@MainMenuActivity, LevelsActivity::class.java))
         })
 
@@ -71,7 +71,7 @@ class MainMenuActivity : AppCompatActivity() {
     }
 
     private fun initializeSession() {
-        Session.saveHelper = SaveHelper()
+        Session.localSaveHelper = LocalSaveHelper()
 
         Session.settingsHelper = SettingsHelper()
         if (Session.settingsHelper!!.settingsExists(applicationContext)) {

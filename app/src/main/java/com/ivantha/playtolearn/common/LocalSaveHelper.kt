@@ -8,7 +8,8 @@ import java.io.IOException
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 
-class SaveHelper {
+@Deprecated (message = "LocalSaveHelper is replaced with FirebaseSaveHelper")
+class LocalSaveHelper {
 
     var currentSaveFile: SaveFile? = null
 

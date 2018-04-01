@@ -3,15 +3,11 @@ package com.ivantha.playtolearn.model
 import java.io.Serializable
 
 class Profile : Serializable {
-    var id: Int = 0
-    var firstName: String? = null
-    var lastName: String? = null
-    var score: Int = 0
+    var firstName: String? = "John"
+    var lastName: String? = "Doe"
 
-    init {
-        this.id = 0
-        this.firstName = "John"
-        this.lastName = "Doe"
-        this.score = 0
-    }
+    var completedLevels: ArrayList<Level> = ArrayList()
+    var currentLevel: Level = Level(1)
+
+    var score: Int = 0
 }

@@ -4,8 +4,8 @@ import com.ivantha.playtolearn.widget.BoardTileLayout
 import java.util.*
 
 object Session {
-    // SaveHelper files
-    var saveHelper: SaveHelper? = null
+    // LocalSaveHelper files
+    var localSaveHelper: LocalSaveHelper? = null
 
     // SettingsHelper
     var settingsHelper: SettingsHelper? = null
