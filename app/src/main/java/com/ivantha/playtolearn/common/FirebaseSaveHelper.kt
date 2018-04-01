@@ -1,20 +1,23 @@
 package com.ivantha.playtolearn.common
 
-class FirebaseSaveHelper {
+import com.google.firebase.database.FirebaseDatabase
+import java.util.*
 
-    fun newGame(){
+object FirebaseSaveHelper {
+
+    fun newGame(uid: String){
+        FirebaseDatabase.getInstance().getReference("/users").child(uid).child("timestamp").setValue(Calendar.getInstance())
+    }
+
+    fun loadGame(uid: String){
 
     }
 
-    fun loadGame(){
+    fun saveGame(uid: String){
 
     }
 
-    fun saveGame(){
-
-    }
-
-    fun saveExists(): Boolean{
-
+    fun saveExists(uid: String): Boolean{
+        return false
     }
 }

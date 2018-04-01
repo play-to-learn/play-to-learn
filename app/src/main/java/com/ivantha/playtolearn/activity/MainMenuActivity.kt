@@ -1,7 +1,6 @@
 package com.ivantha.playtolearn.activity
 
 import android.content.Intent
-import android.content.res.Resources
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
@@ -9,9 +8,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.ivantha.playtolearn.R
-import com.ivantha.playtolearn.common.LocalSaveHelper
+import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
-import com.ivantha.playtolearn.common.SettingsHelper
 import com.ivantha.playtolearn.model.Question
 import kotlinx.android.synthetic.main.activity_main_menu.*
 
@@ -27,12 +25,12 @@ class MainMenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main_menu)
 
         continueButton.setOnClickListener({
-            Session.localSaveHelper!!.loadGame(applicationContext)
+            FirebaseSaveHelper.loadGame(currentUser!!.uid)
             startActivity(Intent(this@MainMenuActivity, LevelsActivity::class.java))
         })
 
         newGameButton.setOnClickListener({
-            Session.localSaveHelper!!.newGame()
+            FirebaseSaveHelper.newGame(currentUser!!.uid)
             startActivity(Intent(this@MainMenuActivity, LevelsActivity::class.java))
         })
 
@@ -61,7 +59,7 @@ class MainMenuActivity : AppCompatActivity() {
         if (currentUser == null) {
             mAuth!!.signInAnonymously().addOnCompleteListener(this) { task ->
                 if (!task.isSuccessful) {
-                    Toast.makeText(this, "Anonymouse login unsuccessful", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Anonymous login unsuccessful", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -71,20 +69,16 @@ class MainMenuActivity : AppCompatActivity() {
     }
 
     private fun initializeSession() {
-        Session.localSaveHelper = LocalSaveHelper()
-
-        Session.settingsHelper = SettingsHelper()
-        if (Session.settingsHelper!!.settingsExists(applicationContext)) {
-            Session.settingsHelper!!.loadSettings(applicationContext)
+        if (Session.settingsHelper.settingsExists(applicationContext)) {
+            Session.settingsHelper.loadSettings(applicationContext)
         } else {
-            Session.settingsHelper!!.newSettings()
-            Session.settingsHelper!!.saveSettings(applicationContext)
+            Session.settingsHelper.newSettings()
+            Session.settingsHelper.saveSettings(applicationContext)
         }
 
-        Session.SCREEN_WIDTH = Resources.getSystem().displayMetrics.widthPixels
-        Session.SCREEN_HEIGHT = Resources.getSystem().displayMetrics.heightPixels
-
         this.addFirebaseData()
+
+
     }
 
     private fun addFirebaseData() {

@@ -2,6 +2,9 @@ package com.ivantha.playtolearn.listener
 
 import android.view.DragEvent
 import android.view.View
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.game.MovementLogic
 import com.ivantha.playtolearn.model.BoardTile
@@ -11,6 +14,9 @@ import com.ivantha.playtolearn.widget.BoardTileLayout
 import java.io.Serializable
 
 class BoardDragListener : View.OnDragListener, Serializable {
+
+    private var currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
+
     override fun onDrag(v: View, event: DragEvent): Boolean {
         when (event.action) {
             DragEvent.ACTION_DRAG_STARTED -> {
@@ -32,7 +38,7 @@ class BoardDragListener : View.OnDragListener, Serializable {
                         Result.CORRECT -> {
                             previousBoardTileLayout.setBoardTileState(BoardTile.BoardTileState.CORRECT_ANSWER)
                             previousBoardTileLayout.removeView(boardTileButton)
-                            Session.localSaveHelper!!.currentSaveFile!!.profile!!.score = Session.localSaveHelper!!.currentSaveFile!!.profile!!.score + previousBoardTileLayout.score
+                            Session.score = Session.score + previousBoardTileLayout.score
 
                             v.setBoardTileState(BoardTile.BoardTileState.CURRENT)
                             v.addView(boardTileButton, boardTileButton.width, boardTileButton.height)
@@ -45,7 +51,7 @@ class BoardDragListener : View.OnDragListener, Serializable {
                         Result.WRONG -> {
                             previousBoardTileLayout.setBoardTileState(BoardTile.BoardTileState.WRONG_ANSWER)
                             previousBoardTileLayout.removeView(boardTileButton)
-                            Session.localSaveHelper!!.currentSaveFile!!.profile!!.score = Session.localSaveHelper!!.currentSaveFile!!.profile!!.score - previousBoardTileLayout.score
+                            Session.score = Session.score - previousBoardTileLayout.score
 
                             v.setBoardTileState(BoardTile.BoardTileState.CURRENT)
                             v.addView(boardTileButton, boardTileButton.width, boardTileButton.height)
@@ -60,7 +66,7 @@ class BoardDragListener : View.OnDragListener, Serializable {
                     }
                 }
 
-                Session.localSaveHelper!!.saveGame(v.context)
+                FirebaseSaveHelper.saveGame(currentUser!!.uid)
                 return true
             }
             DragEvent.ACTION_DRAG_ENDED -> {

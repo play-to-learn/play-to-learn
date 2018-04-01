@@ -1,6 +1,7 @@
 package com.ivantha.playtolearn.widget
 
 import android.content.Context
+import android.content.res.Resources
 import android.widget.FrameLayout
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.activity.BoardActivity
@@ -55,7 +56,7 @@ class BoardTileLayout(context: Context, val boardTile: BoardTile) : FrameLayout(
     }
 
     private fun applyCustomDesign() {
-        val effectiveWidth = Session.SCREEN_WIDTH
+        val effectiveWidth = Resources.getSystem().displayMetrics.widthPixels
         val sizePx = effectiveWidth / (Session.COLUMN_COUNT + 1)
         val marginPx = (effectiveWidth - sizePx * Session.COLUMN_COUNT) / (Session.COLUMN_COUNT * 2)
 
