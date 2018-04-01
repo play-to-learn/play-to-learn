@@ -1,8 +1,6 @@
 package com.ivantha.playtolearn.model
 
-import java.io.Serializable
-
-class BoardTile : Serializable {
+class BoardTile {
     var row: Int = 0
     var column: Int = 0
     var boardTileState: BoardTileState? = BoardTileState.NOT_VISITED

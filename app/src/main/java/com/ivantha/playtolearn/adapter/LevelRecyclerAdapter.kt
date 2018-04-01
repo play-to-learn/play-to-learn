@@ -38,7 +38,7 @@ class LevelRecyclerAdapter(private val levels: List<Level>) : RecyclerView.Adapt
 
         init {
             appCompatButton.setOnClickListener({
-                Session.currentLevel = id
+                Session.currentLevel = Level(id)
                 viewGroup!!.context.startActivity(Intent(viewGroup!!.context, BoardActivity::class.java))
             })
         }

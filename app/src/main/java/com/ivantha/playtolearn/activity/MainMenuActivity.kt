@@ -10,25 +10,25 @@ import com.google.firebase.database.FirebaseDatabase
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
-import com.ivantha.playtolearn.model.Profile
 import com.ivantha.playtolearn.model.Question
 import kotlinx.android.synthetic.main.activity_main_menu.*
-import java.util.*
 
 
 class MainMenuActivity : AppCompatActivity() {
+
+    private var currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
 
         continueButton.setOnClickListener({
-            FirebaseSaveHelper.loadGame(Session.profile!!.uid)
+            FirebaseSaveHelper.loadGame(currentUser!!.uid)
             startActivity(Intent(this@MainMenuActivity, LevelsActivity::class.java))
         })
 
         newGameButton.setOnClickListener({
-            FirebaseSaveHelper.newGame(Session.profile!!.uid)
+            FirebaseSaveHelper.newGame(currentUser!!.uid)
             startActivity(Intent(this@MainMenuActivity, LevelsActivity::class.java))
         })
 
@@ -60,17 +60,13 @@ class MainMenuActivity : AppCompatActivity() {
 
     private fun firebaseSignIn() {
         // Sign in anonymously
-        var firebaseAuth: FirebaseAuth? = FirebaseAuth.getInstance()
-        var currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
         if (currentUser == null) {
-            firebaseAuth!!.signInAnonymously().addOnCompleteListener(this) { task ->
+            FirebaseAuth.getInstance().signInAnonymously().addOnCompleteListener(this) { task ->
                 if (!task.isSuccessful) {
                     Toast.makeText(this, "Anonymous login unsuccessful", Toast.LENGTH_SHORT).show()
                 }
             }
         }
-
-        Session.profile = Profile(currentUser!!.uid)
     }
 
     private fun initializeSettingsHelper() {

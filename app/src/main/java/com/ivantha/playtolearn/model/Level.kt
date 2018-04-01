@@ -1,8 +1,6 @@
 package com.ivantha.playtolearn.model
 
-import java.io.Serializable
-
-class Level(var id: Int) : Serializable{
+class Level(var id: Int){
     var enabled: Boolean = false
     var questions: ArrayList<Question> = ArrayList()
 

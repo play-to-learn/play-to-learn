@@ -1,8 +1,6 @@
 package com.ivantha.playtolearn.model
 
-import java.io.Serializable
-
-class Question : Serializable {
+class Question {
     var id: String? = null
     var title: String? = null
     var description: String? = null

@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
+import com.ivantha.playtolearn.model.Board
 import com.ivantha.playtolearn.widget.BoardTileLayout
 import kotlinx.android.synthetic.main.activity_board.*
 import java.util.*
@@ -30,6 +31,8 @@ class BoardActivity : AppCompatActivity() {
     }
 
     private fun createBoard() {
+        Session.board = Board(Session.ROW_COUNT, Session.COLUMN_COUNT)
+
         for (tileArrayList in Session.board!!.tileGrid) {
             val layoutArrayList = ArrayList<BoardTileLayout>()
             val tileColumnLayout = LinearLayout(this@BoardActivity)

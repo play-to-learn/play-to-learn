@@ -1,26 +1,27 @@
 package com.ivantha.playtolearn.activity
 
-import android.media.MediaCas
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.adapter.LevelRecyclerAdapter
+import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.model.Level
 import kotlinx.android.synthetic.main.activity_levels.*
 import java.util.*
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.ValueEventListener
-import com.ivantha.playtolearn.common.Session
-import org.json.JSONObject
 
 
 class LevelsActivity : AppCompatActivity() {
 
+    private var currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
     private val levels = ArrayList<Level>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,7 +59,7 @@ class LevelsActivity : AppCompatActivity() {
             }
         })
 
-        firebaseDatabase.getReference("players/${Session.profile!!.uid}/current_level").addValueEventListener(object : ValueEventListener {
+        firebaseDatabase.getReference("players/${currentUser!!.uid}/current_level").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot?) {
                 var x = dataSnapshot!!.value
                 if(x is String){

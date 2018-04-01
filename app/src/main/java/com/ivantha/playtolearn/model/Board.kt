@@ -1,35 +1,24 @@
 package com.ivantha.playtolearn.model
 
-import com.ivantha.playtolearn.common.Session
-import java.io.Serializable
 import java.util.*
 
-class Board : Serializable {
-    private val currentX = 0
-    private val currentY = 0
+class Board(var rowCount: Int, var colCount: Int) {
 
     var tileGrid = ArrayList<ArrayList<BoardTile>>()
+    var currentX = 0
+    var currentY = 0
 
     init {
         // Initialize board
-        for (col in 0 until Session.COLUMN_COUNT) {
+        for (col in 0 until colCount) {
             val tileColumn = ArrayList<BoardTile>()
-            for (row in 0 until Session.ROW_COUNT) {
+            for (row in 0 until rowCount) {
                 val boardTile = BoardTile()
                 boardTile.row = row
                 boardTile.column = col
-
-                if (col == currentX && row == currentY) {
-                    boardTile.boardTileState = BoardTile.BoardTileState.CURRENT
-//                    boardTile.setQuestion(QuestionCache.getQuestionArrayList().get(1));
-                }
                 tileColumn.add(boardTile)
             }
             tileGrid.add(tileColumn)
         }
-    }
-
-    fun getBoardTile(row: Int, column: Int): BoardTile {
-        return tileGrid[column][row]
     }
 }
