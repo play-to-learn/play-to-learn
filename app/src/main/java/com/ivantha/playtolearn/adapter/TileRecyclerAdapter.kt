@@ -1,11 +1,9 @@
 package com.ivantha.playtolearn.adapter
 
 import android.annotation.SuppressLint
-import android.content.res.Resources
 import android.support.v7.widget.AppCompatImageButton
 import android.support.v7.widget.RecyclerView
 import android.view.*
-import android.widget.FrameLayout
 import android.widget.Toast
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.common.Session.COLUMN_COUNT
@@ -15,6 +13,7 @@ import com.ivantha.playtolearn.model.Question
 import com.ivantha.playtolearn.model.Result
 import com.ivantha.playtolearn.model.Tile
 import com.ivantha.playtolearn.model.Tile.BoardTileState.*
+import com.ivantha.playtolearn.widget.SquareFrameLayout
 import kotlin.reflect.KFunction2
 
 class TileRecyclerAdapter(var board: Board,
@@ -61,7 +60,7 @@ class TileRecyclerAdapter(var board: Board,
 
     inner class TileViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val tileFrameLayout: FrameLayout = itemView.findViewById(R.id.tileFrameLayout)
+        val tileFrameLayout: SquareFrameLayout = itemView.findViewById(R.id.tileFrameLayout)
         var state: Tile.BoardTileState? = null
         var question: Question? = null
 
@@ -128,16 +127,6 @@ class TileRecyclerAdapter(var board: Board,
 
                 return@setOnDragListener true
             }
-
-            /////////// Change this part to properly size the grid
-            val effectiveWidth = Resources.getSystem().displayMetrics.widthPixels
-            val sizePx = effectiveWidth / (COLUMN_COUNT + 1)
-            val marginPx = (effectiveWidth - sizePx * COLUMN_COUNT) / (COLUMN_COUNT * 2)
-
-            val params = FrameLayout.LayoutParams(sizePx, sizePx)
-            params.setMargins(marginPx, marginPx, marginPx, marginPx)
-            tileFrameLayout.layoutParams = params
-            ///////////////////////////////////////////////////////////////////
         }
     }
 

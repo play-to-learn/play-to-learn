@@ -15,6 +15,12 @@ class Board(rowCount: Int, colCount: Int) {
                 tile.row = row
                 tile.column = col
 
+                var q = Question()
+                q.description = "asdasd"
+                q.title = "asdasd"
+                q.answer = 4
+                tile.question = q
+
                 tileColumn.add(tile)
             }
             tileGrid.add(tileColumn)
