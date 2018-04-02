@@ -2,18 +2,18 @@ package com.ivantha.playtolearn.game
 
 import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.common.Tuple
-import com.ivantha.playtolearn.model.BoardTile
+import com.ivantha.playtolearn.model.Tile
 import com.ivantha.playtolearn.model.Result
 
 import java.util.ArrayList
 
 object MovementLogic {
 
-    fun verifyMove(preBoardTile: BoardTile, newBoardTile: BoardTile): Tuple<Result, ArrayList<Tuple<Int, Int>>> {
-        val preX = preBoardTile.column
-        val preY = preBoardTile.row
-        val newX = newBoardTile.column
-        val newY = newBoardTile.row
+    fun verifyMove(preTile: Tile, newTile: Tile): Tuple<Result, ArrayList<Tuple<Int, Int>>> {
+        val preX = preTile.column
+        val preY = preTile.row
+        val newX = newTile.column
+        val newY = newTile.row
 
         if (newX < preX && newY <= preY || newX == preX && newY <= preY) {
             return Tuple<Result, ArrayList<Tuple<Int, Int>>>(Result.INVALID, null)
@@ -52,7 +52,7 @@ object MovementLogic {
                 }
             }
 
-            return if (preBoardTile.question!!.answer == difference) {
+            return if (preTile.question!!.answer == difference) {
                 Tuple(Result.CORRECT, visitedTileArrayList)
             } else {
                 Tuple(Result.WRONG, visitedTileArrayList)

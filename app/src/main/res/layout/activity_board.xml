@@ -219,13 +219,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <LinearLayout
-            android:id="@+id/tileGridLayout"
+        <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="0dp" />
+            android:id="@+id/tileRecyclerView">
+
+        </android.support.v7.widget.RecyclerView>
     </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

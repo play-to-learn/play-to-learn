@@ -1,6 +1,6 @@
 package com.ivantha.playtolearn.model
 
-class BoardTile {
+class Tile {
     var row: Int = 0
     var column: Int = 0
     var boardTileState: BoardTileState? = BoardTileState.NOT_VISITED

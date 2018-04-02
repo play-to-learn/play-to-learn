@@ -28,14 +28,14 @@ class BoardTouchListener(private val context: Context) : View.OnTouchListener, S
                 val boardTileLayout: BoardTileLayout
                 if (v is BoardTileLayout) {
                     boardTileLayout = v
-                    if (boardTileLayout.boardTile.question != null) {
-                        showQuestionDialog(context, boardTileLayout.boardTile.question!!.title,
-                                boardTileLayout.boardTile.question!!.description)
+                    if (boardTileLayout.tile.question != null) {
+                        showQuestionDialog(context, boardTileLayout.tile.question!!.title,
+                                boardTileLayout.tile.question!!.description)
                     }
                 } else if (v is BoardTileButton) {
                     boardTileLayout = v.getParent() as BoardTileLayout
-                    showQuestionDialog(context, boardTileLayout.boardTile.question!!.title,
-                            boardTileLayout.boardTile.question!!.description)
+                    showQuestionDialog(context, boardTileLayout.tile.question!!.title,
+                            boardTileLayout.tile.question!!.description)
                 }
             }
             MotionEvent.ACTION_MOVE -> if (v is BoardTileButton) {

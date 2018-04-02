@@ -7,7 +7,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.game.MovementLogic
-import com.ivantha.playtolearn.model.BoardTile
+import com.ivantha.playtolearn.model.Tile
 import com.ivantha.playtolearn.model.Result
 import com.ivantha.playtolearn.widget.BoardTileButton
 import com.ivantha.playtolearn.widget.BoardTileLayout
@@ -31,34 +31,34 @@ class BoardDragListener : View.OnDragListener, Serializable {
 
                     val previousBoardTileLayout = boardTileButton.parent as BoardTileLayout
 
-                    val ret = MovementLogic.verifyMove(previousBoardTileLayout.boardTile, v.boardTile)
+                    val ret = MovementLogic.verifyMove(previousBoardTileLayout.tile, v.tile)
                     val result = ret.x
 
                     when (result) {
                         Result.CORRECT -> {
-                            previousBoardTileLayout.setBoardTileState(BoardTile.BoardTileState.CORRECT_ANSWER)
+                            previousBoardTileLayout.setBoardTileState(Tile.BoardTileState.CORRECT_ANSWER)
                             previousBoardTileLayout.removeView(boardTileButton)
                             Session.score = Session.score + previousBoardTileLayout.score
 
-                            v.setBoardTileState(BoardTile.BoardTileState.CURRENT)
+                            v.setBoardTileState(Tile.BoardTileState.CURRENT)
                             v.addView(boardTileButton, boardTileButton.width, boardTileButton.height)
                             v.generateQuestion()
 
                             for (tile in ret.y!!) {
-                                Session.boardLayoutGrid[tile.x][tile.y!!].setBoardTileState(BoardTile.BoardTileState.VISITED)
+                                Session.boardLayoutGrid[tile.x][tile.y!!].setBoardTileState(Tile.BoardTileState.VISITED)
                             }
                         }
                         Result.WRONG -> {
-                            previousBoardTileLayout.setBoardTileState(BoardTile.BoardTileState.WRONG_ANSWER)
+                            previousBoardTileLayout.setBoardTileState(Tile.BoardTileState.WRONG_ANSWER)
                             previousBoardTileLayout.removeView(boardTileButton)
                             Session.score = Session.score - previousBoardTileLayout.score
 
-                            v.setBoardTileState(BoardTile.BoardTileState.CURRENT)
+                            v.setBoardTileState(Tile.BoardTileState.CURRENT)
                             v.addView(boardTileButton, boardTileButton.width, boardTileButton.height)
                             v.generateQuestion()
 
                             for (tile in ret.y!!) {
-                                Session.boardLayoutGrid[tile.x][tile.y!!].setBoardTileState(BoardTile.BoardTileState.VISITED)
+                                Session.boardLayoutGrid[tile.x][tile.y!!].setBoardTileState(Tile.BoardTileState.VISITED)
                             }
                         }
                         Result.INVALID ->
