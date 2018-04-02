@@ -11,14 +11,12 @@ import com.ivantha.playtolearn.adapter.TileRecyclerAdapter
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.model.Board
-import com.ivantha.playtolearn.model.Tile
+import com.ivantha.playtolearn.widget.ProblemDialog
 import kotlinx.android.synthetic.main.activity_board.*
-import java.util.*
 
 class BoardActivity : AppCompatActivity() {
 
     private var currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
-    private val tiles = ArrayList<Tile>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,17 +39,14 @@ class BoardActivity : AppCompatActivity() {
         tileRecyclerView.layoutManager = gridLayoutManager
         tileRecyclerView.setHasFixedSize(true)
 
-        var tileRecyclerAdapter = TileRecyclerAdapter(tiles)
-
-        // >>>>>>>>>>>>>>>>>>>>>>>> Move this to Board model
-        for(col in 0 until Session.board!!.colCount){
-            for(row in 0 until Session.board!!.rowCount){
-                tiles.add(Session.board!!.tileGrid[col][row])
-            }
-        }
-        //////////////////////////////////////////////////////
-
-        // Attach the tileRecyclerAdapter to tileRecyclerView
+        var tileRecyclerAdapter = TileRecyclerAdapter(Session.board!!, this::showQuestionDialog)
         tileRecyclerView.adapter = tileRecyclerAdapter
+    }
+
+    private fun showQuestionDialog(title: String?, description: String?) {
+        val problemDialog = ProblemDialog(this@BoardActivity)
+        problemDialog.setTitle(title!!)
+        problemDialog.setDescription(description!!)
+        problemDialog.show()
     }
 }

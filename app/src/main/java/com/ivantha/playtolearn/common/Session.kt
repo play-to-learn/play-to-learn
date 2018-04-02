@@ -2,8 +2,6 @@ package com.ivantha.playtolearn.common
 
 import com.ivantha.playtolearn.model.Board
 import com.ivantha.playtolearn.model.Level
-import com.ivantha.playtolearn.widget.BoardTileLayout
-import java.util.*
 
 object Session {
 
@@ -11,15 +9,8 @@ object Session {
     var score: Int = 0
     var board: Board? = null
 
-
-
-
-    var COLUMN_COUNT = 6
-    var ROW_COUNT = 10
-    var boardLayoutGrid = ArrayList<ArrayList<BoardTileLayout>>()
-
-
-
+    const val COLUMN_COUNT = 6
+    const val ROW_COUNT = 10
 
     val settingsHelper: SettingsHelper = SettingsHelper()
 
