@@ -35,13 +35,19 @@ class Board {
             tileGrid.add(tileColumn)
         }
 
+        refreshTileList()
+
+        // Set (0, 0) as the current tile
+        tileGrid[0][0].boardTileState = Tile.BoardTileState.CURRENT
+    }
+
+    fun refreshTileList(){
+        tileList.clear()
+
         for(row in 0 until rowCount){
             for(col in 0 until colCount){
                 tileList.add(tileGrid[col][row])
             }
         }
-
-        // Set (0, 0) as the current tile
-        tileGrid[0][0].boardTileState = Tile.BoardTileState.CURRENT
     }
 }

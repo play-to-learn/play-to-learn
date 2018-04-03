@@ -10,7 +10,6 @@ import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.adapter.TileRecyclerAdapter
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
-import com.ivantha.playtolearn.model.Board
 import com.ivantha.playtolearn.widget.ProblemDialog
 import kotlinx.android.synthetic.main.activity_board.*
 
