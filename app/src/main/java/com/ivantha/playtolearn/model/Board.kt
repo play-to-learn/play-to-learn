@@ -1,11 +1,20 @@
 package com.ivantha.playtolearn.model
 
-class Board(rowCount: Int, colCount: Int) {
+class Board {
 
+    var rowCount = 10
+    var colCount = 6
     var tileGrid = ArrayList<ArrayList<Tile>>()
     var tileList = ArrayList<Tile>()
     var currentX = 0
     var currentY = 0
+
+    constructor()
+
+    constructor(rowCount: Int, colCount: Int) {
+        this.rowCount = rowCount
+        this.colCount = colCount
+    }
 
     init {
         for (col in 0 until colCount) {

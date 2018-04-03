@@ -7,12 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.activity.BoardActivity
+import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.model.Level
 import com.ivantha.playtolearn.model.Question
@@ -48,6 +50,7 @@ class LevelRecyclerAdapter(private val levels: List<Level>) : RecyclerView.Adapt
         init {
             appCompatButton.setOnClickListener({
                 Session.currentLevel!!.id = id
+                Session.currentLevel!!.score = 0
 
                 FirebaseDatabase.getInstance().getReference("levels/$id/questions").addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot?) {
@@ -61,6 +64,8 @@ class LevelRecyclerAdapter(private val levels: List<Level>) : RecyclerView.Adapt
                         Toast.makeText(viewGroup!!.context, "Player current level retrieval error", Toast.LENGTH_SHORT).show()
                     }
                 })
+
+                FirebaseSaveHelper.saveGame(FirebaseAuth.getInstance().currentUser!!.uid)
 
                 viewGroup!!.context.startActivity(Intent(viewGroup!!.context, BoardActivity::class.java))
             })

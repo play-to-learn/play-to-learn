@@ -27,8 +27,7 @@ class MainMenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main_menu)
 
         continueButton.setOnClickListener({
-            FirebaseSaveHelper.loadGame(currentUser!!.uid)
-            startActivity(Intent(this@MainMenuActivity, LevelsActivity::class.java))
+            FirebaseSaveHelper.loadGame(currentUser!!.uid, this::openBoardActivity)
         })
 
         newGameButton.setOnClickListener({
@@ -59,7 +58,7 @@ class MainMenuActivity : AppCompatActivity() {
 
         initializeSettingsHelper()
 
-        addFirebaseData()
+//        addFirebaseData()
     }
 
     private fun firebaseSignIn() {
@@ -72,13 +71,14 @@ class MainMenuActivity : AppCompatActivity() {
             }
         }
 
+        // Disable continue button if no save exists
         FirebaseDatabase.getInstance().getReference("players/${currentUser!!.uid}/current_level").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot?) {
                 continueButton.isEnabled = (dataSnapshot!!.value != null)
             }
 
             override fun onCancelled(p0: DatabaseError?) {
-                TODO("not implemented")
+                TODO("Not implemented")
             }
         })
     }
@@ -90,6 +90,10 @@ class MainMenuActivity : AppCompatActivity() {
             Session.settingsHelper.newSettings()
             Session.settingsHelper.saveSettings(applicationContext)
         }
+    }
+
+    private fun openBoardActivity(){
+        startActivity(Intent(this@MainMenuActivity, BoardActivity::class.java))
     }
 
     private fun addFirebaseData() {
@@ -179,7 +183,7 @@ class MainMenuActivity : AppCompatActivity() {
         firebaseDatabase.getReference("categories").push().setValue(c7)
 
         // Set level info
-        firebaseDatabase.getReference("level_info").child("count").setValue("7")
+        firebaseDatabase.getReference("level_info").child("count").setValue(7)
 
         // Creating the levels
         firebaseDatabase.getReference("levels/1/questions").push().setValue(q1)

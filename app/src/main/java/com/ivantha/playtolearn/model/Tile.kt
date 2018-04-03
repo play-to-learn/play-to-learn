@@ -6,6 +6,8 @@ class Tile {
     var boardTileState: BoardTileState? = BoardTileState.NOT_VISITED
     var question: Question? = null
 
+    constructor()
+
     enum class BoardTileState {
         NOT_VISITED,
         VISITED,

@@ -5,7 +5,9 @@ import android.support.v7.widget.AppCompatImageButton
 import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.ivantha.playtolearn.R
+import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.common.Session.COLUMN_COUNT
 import com.ivantha.playtolearn.game.MovementLogic
@@ -102,7 +104,7 @@ class TileRecyclerAdapter(var board: Board,
                         }
                     }
 
-//                    TODO("Save game")
+                    FirebaseSaveHelper.saveGame(FirebaseAuth.getInstance().currentUser!!.uid)
 
                     return@setOnDragListener true
                 }
