@@ -106,6 +106,10 @@ class TileRecyclerAdapter(var board: Board,
                             }
 
                             notifyDataSetChanged()
+
+                            if(MovementLogic.isGameOver(posX, posY, question!!)){
+
+                            }
                         }
                         Result.WRONG -> {
                             previousTile.boardTileState = WRONG_ANSWER
@@ -125,6 +129,10 @@ class TileRecyclerAdapter(var board: Board,
                             }
 
                             notifyDataSetChanged()
+
+                            if(MovementLogic.isGameOver(posX, posY, question!!)){
+
+                            }
                         }
                         Result.INVALID -> {
                             Toast.makeText(viewGroup!!.context, "Invalid move. Better check this out!", Toast.LENGTH_SHORT).show()
@@ -132,6 +140,7 @@ class TileRecyclerAdapter(var board: Board,
                     }
 
 //                    TODO("Save game")
+
                     return@setOnDragListener true
                 }
 
