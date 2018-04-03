@@ -11,7 +11,7 @@
     android:layout_marginTop="4dp"
     android:background="@drawable/levels_button"
     android:fontFamily="casual"
-    android:textColor="@color/colorWoodText"
+    android:textColor="@color/colorYellow"
     android:textSize="24sp"
     android:textStyle="bold"
     app:layout_constraintBottom_toBottomOf="parent"

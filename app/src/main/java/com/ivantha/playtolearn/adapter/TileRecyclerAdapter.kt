@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.Toast
 import com.ivantha.playtolearn.R
+import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.common.Session.COLUMN_COUNT
 import com.ivantha.playtolearn.game.MovementLogic
 import com.ivantha.playtolearn.model.Board
@@ -14,13 +15,15 @@ import com.ivantha.playtolearn.model.Result
 import com.ivantha.playtolearn.model.Tile
 import com.ivantha.playtolearn.model.Tile.BoardTileState.*
 import com.ivantha.playtolearn.widget.SquareFrameLayout
+import kotlin.reflect.KFunction0
 import kotlin.reflect.KFunction2
 
 class TileRecyclerAdapter(var board: Board,
                           var showQuestionDialog: KFunction2<
                                   @ParameterName(name = "title") String?,
                                   @ParameterName(name = "description") String?,
-                                  Unit>)
+                                  Unit>,
+                          var updateGoldStatus: KFunction0<Unit>)
     : RecyclerView.Adapter<TileRecyclerAdapter.TileViewHolder>() {
 
     var viewGroup: ViewGroup? = null
@@ -58,6 +61,8 @@ class TileRecyclerAdapter(var board: Board,
         }
     }
 
+
+
     inner class TileViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val tileFrameLayout: SquareFrameLayout = itemView.findViewById(R.id.tileFrameLayout)
@@ -85,14 +90,17 @@ class TileRecyclerAdapter(var board: Board,
                     when (ret.first) {
                         Result.CORRECT -> {
                             previousTile.boardTileState = CORRECT_ANSWER
-//                           TODO("Allocate marks")
+                            Session.currentLevel!!.score += previousTile.question!!.correctPoints
+                            updateGoldStatus()
 
+                            // Set current tile
                             board.currentX = posX
                             board.currentY = posY
                             board.tileGrid[posX][posY].boardTileState = CURRENT
 
 //                           TODO("Generate question in current tile")
 
+                            // Set tiles as visited
                             for (pos in ret.second!!) {
                                 board.tileGrid[pos.x][pos.y].boardTileState = VISITED
                             }
@@ -101,15 +109,17 @@ class TileRecyclerAdapter(var board: Board,
                         }
                         Result.WRONG -> {
                             previousTile.boardTileState = WRONG_ANSWER
-//                           TODO("Allocate/remove marks")
+                            Session.currentLevel!!.score += previousTile.question!!.wrongPoints
+                            updateGoldStatus()
 
-                            board.tileGrid[board.currentX][board.currentY].boardTileState = VISITED
+                            // Set current tile
                             board.currentX = posX
                             board.currentY = posY
                             board.tileGrid[posX][posY].boardTileState = CURRENT
 
 //                           TODO("Generate question in current tile")
 
+                            // Set tiles as visited
                             for (pos in ret.second!!) {
                                 board.tileGrid[pos.x][pos.y].boardTileState = VISITED
                             }

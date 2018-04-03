@@ -39,8 +39,12 @@ class BoardActivity : AppCompatActivity() {
         tileRecyclerView.layoutManager = gridLayoutManager
         tileRecyclerView.setHasFixedSize(true)
 
-        var tileRecyclerAdapter = TileRecyclerAdapter(Session.currentBoard!!, this::showQuestionDialog)
+        var tileRecyclerAdapter = TileRecyclerAdapter(Session.currentBoard!!, this::showQuestionDialog, this::updateGoldStatus)
         tileRecyclerView.adapter = tileRecyclerAdapter
+    }
+
+    private fun updateGoldStatus(){
+        goldStatusTextView.text = Session.currentLevel!!.score.toString()
     }
 
     private fun showQuestionDialog(title: String?, description: String?) {
