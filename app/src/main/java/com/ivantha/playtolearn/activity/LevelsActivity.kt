@@ -44,7 +44,7 @@ class LevelsActivity : AppCompatActivity() {
                     levels.add(level)
                 }
 
-                for(i in 0..(Session.currentLevel!!.id - 1)){
+                for(i in 0..(Session.saveFile!!.currentLevel.id - 1)){
                     levels[i].enabled = true
                 }
 

@@ -1,6 +1,5 @@
 package com.ivantha.playtolearn.game
 
-import android.widget.Toast
 import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.model.Position
 import com.ivantha.playtolearn.model.Question
@@ -60,6 +59,6 @@ object MovementLogic {
 
     fun isGameOver(posX: Int, posY: Int, question: Question): Boolean{
         var tilesUntilEnd = ((Session.ROW_COUNT - posY - 1) * Session.COLUMN_COUNT) + (Session.COLUMN_COUNT - posX - 1)
-        return tilesUntilEnd < question!!.answer
+        return tilesUntilEnd < question.answer
     }
 }

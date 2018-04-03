@@ -1,12 +1,10 @@
 package com.ivantha.playtolearn.common
 
-import com.ivantha.playtolearn.model.Board
-import com.ivantha.playtolearn.model.Level
+import com.ivantha.playtolearn.model.SaveFile
 
 object Session {
 
-    var currentLevel: Level? = null
-    var currentBoard: Board? = null
+    var saveFile: SaveFile? = null
 
     const val COLUMN_COUNT = 6
     const val ROW_COUNT = 10

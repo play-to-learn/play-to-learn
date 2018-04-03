@@ -26,6 +26,15 @@ class TileRecyclerAdapter(var board: Board,
     : RecyclerView.Adapter<TileRecyclerAdapter.TileViewHolder>() {
 
     var viewGroup: ViewGroup? = null
+    var tileList: ArrayList<Tile> = ArrayList()
+
+    init {
+        for(row in 0 until Session.ROW_COUNT){
+            for(col in 0 until COLUMN_COUNT){
+                tileList.add(board.tileGrid[col][row])
+            }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TileViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_tile, parent, false)
@@ -35,16 +44,16 @@ class TileRecyclerAdapter(var board: Board,
     }
 
     override fun getItemCount(): Int {
-        return board.tileList.size
+        return tileList.size
     }
 
     override fun onBindViewHolder(holder: TileViewHolder, position: Int) {
-        holder.state = board.tileList[position].boardTileState
-        holder.question = board.tileList[position].question
-        holder.posX = board.tileList[position].column
-        holder.posY = board.tileList[position].row
+        holder.state = tileList[position].boardTileState
+        holder.question = tileList[position].question
+        holder.posX = tileList[position].column
+        holder.posY = tileList[position].row
 
-        when (board.tileList[position].boardTileState) {
+        when (tileList[position].boardTileState) {
             NOT_VISITED -> holder.tileFrameLayout.setBackgroundResource(R.drawable.board_tile_background_not_visited0)
             VISITED -> holder.tileFrameLayout.setBackgroundResource(R.drawable.board_tile_background_visited)
             CURRENT -> holder.tileFrameLayout.setBackgroundResource(R.color.colorTransparent)
@@ -54,7 +63,7 @@ class TileRecyclerAdapter(var board: Board,
         }
 
         // Add BoardTileButton if this is the current tile
-        if (board.tileList[position].boardTileState === CURRENT) {
+        if (tileList[position].boardTileState === CURRENT) {
             var boardTileButton = BoardTileButton()
             holder.tileFrameLayout.addView(boardTileButton)
         }
@@ -89,13 +98,13 @@ class TileRecyclerAdapter(var board: Board,
                     when (ret.first) {
                         Result.CORRECT -> {
                             previousTile.boardTileState = CORRECT_ANSWER
-                            Session.currentLevel!!.score += previousTile.question!!.correctPoints
+                            Session.saveFile!!.currentLevel.score += previousTile.question!!.correctPoints
 
                             processMove(ret.second!!)
                         }
                         Result.WRONG -> {
                             previousTile.boardTileState = WRONG_ANSWER
-                            Session.currentLevel!!.score += previousTile.question!!.wrongPoints
+                            Session.saveFile!!.currentLevel.score += previousTile.question!!.wrongPoints
 
                             processMove(ret.second!!)
                         }

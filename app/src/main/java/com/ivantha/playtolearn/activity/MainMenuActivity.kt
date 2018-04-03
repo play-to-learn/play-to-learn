@@ -13,10 +13,9 @@ import com.google.firebase.database.ValueEventListener
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
-import com.ivantha.playtolearn.model.Board
 import com.ivantha.playtolearn.model.Category
-import com.ivantha.playtolearn.model.Level
 import com.ivantha.playtolearn.model.Question
+import com.ivantha.playtolearn.model.SaveFile
 import kotlinx.android.synthetic.main.activity_main_menu.*
 
 
@@ -29,23 +28,14 @@ class MainMenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main_menu)
 
         continueButton.setOnClickListener({
-            // Set saved level
-            FirebaseDatabase.getInstance().getReference("players/${currentUser!!.uid}/current_level").addValueEventListener(object : ValueEventListener {
+            var firstTime = true
+            FirebaseDatabase.getInstance().getReference("players/${currentUser!!.uid}/save_file").addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                    Session.currentLevel = dataSnapshot!!.getValue(Level::class.java)
-
-                    // Set saved board
-                    FirebaseDatabase.getInstance().getReference("players/${currentUser!!.uid}/current_board").addValueEventListener(object : ValueEventListener {
-                        override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                            Session.currentBoard = dataSnapshot!!.getValue(Board::class.java)
-                            Session.currentBoard!!.refreshTileList()
-                            startActivity(Intent(this@MainMenuActivity, BoardActivity::class.java))
-                        }
-
-                        override fun onCancelled(error: DatabaseError?) {
-                            TODO("Not implemented")
-                        }
-                    })
+                    Session.saveFile = dataSnapshot!!.getValue(SaveFile::class.java)
+                    if(firstTime){
+                        firstTime = false
+                        startActivity(Intent(this@MainMenuActivity, BoardActivity::class.java))
+                    }
                 }
 
                 override fun onCancelled(error: DatabaseError?) {
@@ -97,7 +87,7 @@ class MainMenuActivity : AppCompatActivity() {
         }
 
         // Disable continue button if no save exists
-        FirebaseDatabase.getInstance().getReference("players/${currentUser!!.uid}/current_level").addValueEventListener(object : ValueEventListener {
+        FirebaseDatabase.getInstance().getReference("players/${currentUser!!.uid}/save_file").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot?) {
                 continueButton.isEnabled = (dataSnapshot!!.value != null)
             }
