@@ -9,10 +9,7 @@ import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.common.Session.COLUMN_COUNT
 import com.ivantha.playtolearn.game.MovementLogic
-import com.ivantha.playtolearn.model.Board
-import com.ivantha.playtolearn.model.Question
-import com.ivantha.playtolearn.model.Result
-import com.ivantha.playtolearn.model.Tile
+import com.ivantha.playtolearn.model.*
 import com.ivantha.playtolearn.model.Tile.BoardTileState.*
 import com.ivantha.playtolearn.widget.SquareFrameLayout
 import kotlin.reflect.KFunction0
@@ -91,48 +88,14 @@ class TileRecyclerAdapter(var board: Board,
                         Result.CORRECT -> {
                             previousTile.boardTileState = CORRECT_ANSWER
                             Session.currentLevel!!.score += previousTile.question!!.correctPoints
-                            updateGoldStatus()
 
-                            // Set current tile
-                            board.currentX = posX
-                            board.currentY = posY
-                            board.tileGrid[posX][posY].boardTileState = CURRENT
-
-//                           TODO("Generate question in current tile")
-
-                            // Set tiles as visited
-                            for (pos in ret.second!!) {
-                                board.tileGrid[pos.x][pos.y].boardTileState = VISITED
-                            }
-
-                            notifyDataSetChanged()
-
-                            if(MovementLogic.isGameOver(posX, posY, question!!)){
-
-                            }
+                            processMove(ret.second!!)
                         }
                         Result.WRONG -> {
                             previousTile.boardTileState = WRONG_ANSWER
                             Session.currentLevel!!.score += previousTile.question!!.wrongPoints
-                            updateGoldStatus()
 
-                            // Set current tile
-                            board.currentX = posX
-                            board.currentY = posY
-                            board.tileGrid[posX][posY].boardTileState = CURRENT
-
-//                           TODO("Generate question in current tile")
-
-                            // Set tiles as visited
-                            for (pos in ret.second!!) {
-                                board.tileGrid[pos.x][pos.y].boardTileState = VISITED
-                            }
-
-                            notifyDataSetChanged()
-
-                            if(MovementLogic.isGameOver(posX, posY, question!!)){
-
-                            }
+                            processMove(ret.second!!)
                         }
                         Result.INVALID -> {
                             Toast.makeText(viewGroup!!.context, "Invalid move. Better check this out!", Toast.LENGTH_SHORT).show()
@@ -145,6 +108,28 @@ class TileRecyclerAdapter(var board: Board,
                 }
 
                 return@setOnDragListener true
+            }
+        }
+
+        private fun processMove(positions: ArrayList<Position>){
+            updateGoldStatus()
+
+            // Set as current tile
+            board.currentX = posX
+            board.currentY = posY
+            board.tileGrid[posX][posY].boardTileState = CURRENT
+
+            //                           TODO("Generate question in current tile")
+
+            // Set as visited
+            for (pos in positions) {
+                board.tileGrid[pos.x][pos.y].boardTileState = VISITED
+            }
+
+            notifyDataSetChanged()
+
+            if(MovementLogic.isGameOver(posX, posY, question!!)){
+
             }
         }
     }

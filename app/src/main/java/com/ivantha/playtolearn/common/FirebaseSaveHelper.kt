@@ -1,15 +1,19 @@
 package com.ivantha.playtolearn.common
 
 import com.google.firebase.database.FirebaseDatabase
-import java.util.*
+import com.ivantha.playtolearn.model.Board
+import com.ivantha.playtolearn.model.Level
 
 object FirebaseSaveHelper {
 
     fun newGame(uid: String){
-        // Set profiles
         var firebaseDatabase = FirebaseDatabase.getInstance()
-        firebaseDatabase.getReference("players/$uid").child("start_time").setValue(Date().time)
-        firebaseDatabase.getReference("players/$uid").child("current_level").setValue("1")
+
+        Session.currentLevel = Level(1)
+        firebaseDatabase.getReference("players/$uid").child("current_level").setValue(Session.currentLevel)
+
+        Session.currentBoard = Board(Session.ROW_COUNT, Session.COLUMN_COUNT)
+        firebaseDatabase.getReference("players/$uid").child("current_board").setValue(Session.currentBoard)
     }
 
     fun loadGame(uid: String){
@@ -20,7 +24,4 @@ object FirebaseSaveHelper {
 
     }
 
-    fun saveExists(uid: String): Boolean{
-        return false
-    }
 }

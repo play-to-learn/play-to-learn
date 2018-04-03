@@ -6,7 +6,10 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
@@ -49,10 +52,10 @@ class MainMenuActivity : AppCompatActivity() {
             startActivity(Intent(this@MainMenuActivity, HelpActivity::class.java))
         })
 
-        firebaseSignIn()
-
         // Enable Firebase database persistence
         FirebaseDatabase.getInstance().setPersistenceEnabled(true)
+
+        firebaseSignIn()
 
         initializeSettingsHelper()
 
@@ -68,6 +71,16 @@ class MainMenuActivity : AppCompatActivity() {
                 }
             }
         }
+
+        FirebaseDatabase.getInstance().getReference("players/${currentUser!!.uid}/current_level").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot?) {
+                continueButton.isEnabled = (dataSnapshot!!.value != null)
+            }
+
+            override fun onCancelled(p0: DatabaseError?) {
+                TODO("not implemented")
+            }
+        })
     }
 
     private fun initializeSettingsHelper() {

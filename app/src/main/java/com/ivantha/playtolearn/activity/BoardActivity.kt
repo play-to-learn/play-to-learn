@@ -22,18 +22,6 @@ class BoardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board)
 
-        createBoard()
-    }
-
-    override fun onPause() {
-        super.onPause()
-
-        FirebaseSaveHelper.saveGame(currentUser!!.uid)
-    }
-
-    private fun createBoard() {
-        Session.currentBoard = Board(Session.ROW_COUNT, Session.COLUMN_COUNT)
-
         var gridLayoutManager = GridLayoutManager(this, Session.COLUMN_COUNT, LinearLayoutManager.VERTICAL, false)
 
         tileRecyclerView.layoutManager = gridLayoutManager
@@ -41,6 +29,12 @@ class BoardActivity : AppCompatActivity() {
 
         var tileRecyclerAdapter = TileRecyclerAdapter(Session.currentBoard!!, this::showQuestionDialog, this::updateGoldStatus)
         tileRecyclerView.adapter = tileRecyclerAdapter
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        FirebaseSaveHelper.saveGame(currentUser!!.uid)
     }
 
     private fun updateGoldStatus(){

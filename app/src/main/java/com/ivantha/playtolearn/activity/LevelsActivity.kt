@@ -60,15 +60,13 @@ class LevelsActivity : AppCompatActivity() {
 
         firebaseDatabase.getReference("players/${currentUser!!.uid}/current_level").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                var x = dataSnapshot!!.value
-                if(x is String){
-                    var playerCurrentLevel = x.toInt()
+                var level = dataSnapshot!!.getValue(Level::class.java)
 
-                    for(i in 0..(playerCurrentLevel - 1)){
-                        levels[i].enabled = true
-                    }
-                    levelRecyclerAdapter.notifyDataSetChanged()
+                for(i in 0..(level!!.id - 1)){
+                    levels[i].enabled = true
                 }
+
+                levelRecyclerAdapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError?) {
