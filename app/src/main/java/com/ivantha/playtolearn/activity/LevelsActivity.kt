@@ -13,7 +13,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.adapter.LevelRecyclerAdapter
-import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.model.Level
 import kotlinx.android.synthetic.main.activity_levels.*
 import java.util.*

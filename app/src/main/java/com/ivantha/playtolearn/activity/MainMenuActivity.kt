@@ -10,6 +10,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
+import com.ivantha.playtolearn.model.Category
 import com.ivantha.playtolearn.model.Question
 import kotlinx.android.synthetic.main.activity_main_menu.*
 
@@ -84,6 +85,15 @@ class MainMenuActivity : AppCompatActivity() {
         // Clear all previous data
         firebaseDatabase.getReference("/").setValue(null)
 
+        // Categories
+        var c1 = Category("conditional_structures", "Conditional Structures")
+        var c2 = Category("loops", "Loops")
+        var c3 = Category("syntax", "Syntax")
+        var c4 = Category("semantics","Semantics")
+        var c5 = Category("variables","Variables")
+        var c6 = Category("error_handling","Error Handling")
+        var c7 = Category("threads","Threads")
+
         // Sample questions
         val q1 = Question()
         q1.title = "One"
@@ -92,6 +102,7 @@ class MainMenuActivity : AppCompatActivity() {
                 "Z = X + Y\n" +
                 "GO Z steps forward"
         q1.answer = 3
+        q1.category = c1
 
         val q2 = Question()
         q2.title = "Two"
@@ -101,6 +112,7 @@ class MainMenuActivity : AppCompatActivity() {
                 "X = A - B + C\n" +
                 "GO X steps forward"
         q2.answer = 4
+        q2.category = c1
 
         val q3 = Question()
         q3.title = "Three"
@@ -109,6 +121,7 @@ class MainMenuActivity : AppCompatActivity() {
                 "Z = (X+Y)%X\n" +
                 "GO Z steps forward"
         q3.answer = 7
+        q3.category = c1
 
         val q4 = Question()
         q4.title = "Four"
@@ -121,6 +134,7 @@ class MainMenuActivity : AppCompatActivity() {
                 "X = 9\n" +
                 "GO X steps forward"
         q4.answer = 7
+        q4.category = c1
 
         val q5 = Question()
         q5.title = "Five"
@@ -129,6 +143,7 @@ class MainMenuActivity : AppCompatActivity() {
                 "\tX = X + 1\n" +
                 "\tGO 1 step forward"
         q5.answer = 8
+        q5.category = c2
 
         val q6 = Question()
         q6.title = "Six"
@@ -139,35 +154,34 @@ class MainMenuActivity : AppCompatActivity() {
                 "\tY = Y + 1\n" +
                 "GO Y steps forward"
         q6.answer = 8
+        q6.category = c2
 
         // Creating the categories
-        firebaseDatabase.getReference("categories/conditional_structures").child("name").setValue("Conditional Structures")
-        firebaseDatabase.getReference("categories/loops").child("name").setValue("Loops")
-        firebaseDatabase.getReference("categories/syntax").child("name").setValue("Syntax")
-        firebaseDatabase.getReference("categories/semantics").child("name").setValue("Semantics")
-        firebaseDatabase.getReference("categories/variables").child("name").setValue("Variables")
-        firebaseDatabase.getReference("categories/error_handling").child("name").setValue("Error Handling")
-        firebaseDatabase.getReference("categories/threads").child("name").setValue("Threads")
+        firebaseDatabase.getReference("categories").push().setValue(c1)
+        firebaseDatabase.getReference("categories").push().setValue(c2)
+        firebaseDatabase.getReference("categories").push().setValue(c3)
+        firebaseDatabase.getReference("categories").push().setValue(c4)
+        firebaseDatabase.getReference("categories").push().setValue(c5)
+        firebaseDatabase.getReference("categories").push().setValue(c6)
+        firebaseDatabase.getReference("categories").push().setValue(c7)
 
         // Set level info
-        firebaseDatabase.getReference("level_info").child("count").setValue("8")
+        firebaseDatabase.getReference("level_info").child("count").setValue("1")
 
         // Creating the levels
-        firebaseDatabase.getReference("levels").push().child("id").setValue("1")
-        firebaseDatabase.getReference("levels").push().child("id").setValue("2")
-        firebaseDatabase.getReference("levels").push().child("id").setValue("3")
-        firebaseDatabase.getReference("levels").push().child("id").setValue("4")
-        firebaseDatabase.getReference("levels").push().child("id").setValue("5")
-        firebaseDatabase.getReference("levels").push().child("id").setValue("6")
-        firebaseDatabase.getReference("levels").push().child("id").setValue("7")
-        firebaseDatabase.getReference("levels").push().child("id").setValue("8")
+        firebaseDatabase.getReference("levels/1/questions").push().setValue(q1)
+        firebaseDatabase.getReference("levels/1/questions").push().setValue(q2)
+        firebaseDatabase.getReference("levels/1/questions").push().setValue(q3)
+        firebaseDatabase.getReference("levels/1/questions").push().setValue(q4)
+        firebaseDatabase.getReference("levels/1/questions").push().setValue(q5)
+        firebaseDatabase.getReference("levels/1/questions").push().setValue(q6)
 
         // Set the questions
-        firebaseDatabase.getReference("questions/level/1/category/conditional_structures").push().setValue(q1)
-        firebaseDatabase.getReference("questions/level/1/category/conditional_structures").push().setValue(q2)
-        firebaseDatabase.getReference("questions/level/1/category/conditional_structures").push().setValue(q3)
-        firebaseDatabase.getReference("questions/level/1/category/conditional_structures").push().setValue(q4)
-        firebaseDatabase.getReference("questions/level/1/category/loops").push().setValue(q5)
-        firebaseDatabase.getReference("questions/level/1/category/loops").push().setValue(q6)
+        firebaseDatabase.getReference("questions/levels/1/categories/conditional_structures").push().setValue(q1)
+        firebaseDatabase.getReference("questions/levels/1/categories/conditional_structures").push().setValue(q2)
+        firebaseDatabase.getReference("questions/levels/1/categories/conditional_structures").push().setValue(q3)
+        firebaseDatabase.getReference("questions/levels/1/categories/conditional_structures").push().setValue(q4)
+        firebaseDatabase.getReference("questions/levels/1/categories/loops").push().setValue(q5)
+        firebaseDatabase.getReference("questions/levels/1/categories/loops").push().setValue(q6)
     }
 }

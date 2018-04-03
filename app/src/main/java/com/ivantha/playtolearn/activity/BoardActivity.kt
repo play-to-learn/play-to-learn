@@ -32,14 +32,14 @@ class BoardActivity : AppCompatActivity() {
     }
 
     private fun createBoard() {
-        Session.board = Board(Session.ROW_COUNT, Session.COLUMN_COUNT)
+        Session.currentBoard = Board(Session.ROW_COUNT, Session.COLUMN_COUNT)
 
         var gridLayoutManager = GridLayoutManager(this, Session.COLUMN_COUNT, LinearLayoutManager.VERTICAL, false)
 
         tileRecyclerView.layoutManager = gridLayoutManager
         tileRecyclerView.setHasFixedSize(true)
 
-        var tileRecyclerAdapter = TileRecyclerAdapter(Session.board!!, this::showQuestionDialog)
+        var tileRecyclerAdapter = TileRecyclerAdapter(Session.currentBoard!!, this::showQuestionDialog)
         tileRecyclerView.adapter = tileRecyclerAdapter
     }
 

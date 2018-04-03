@@ -6,8 +6,7 @@ import com.ivantha.playtolearn.model.Level
 object Session {
 
     var currentLevel: Level? = null
-    var score: Int = 0
-    var board: Board? = null
+    var currentBoard: Board? = null
 
     const val COLUMN_COUNT = 6
     const val ROW_COUNT = 10
