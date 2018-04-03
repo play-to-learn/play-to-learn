@@ -1,5 +1,6 @@
 package com.ivantha.playtolearn.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
@@ -12,6 +13,7 @@ import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.widget.ProblemDialog
 import kotlinx.android.synthetic.main.activity_board.*
+import kotlinx.android.synthetic.main.activity_main_menu.*
 
 class BoardActivity : AppCompatActivity() {
 
@@ -28,6 +30,20 @@ class BoardActivity : AppCompatActivity() {
 
         var tileRecyclerAdapter = TileRecyclerAdapter(Session.saveFile!!.currentBoard, this::showQuestionDialog, this::updateGoldStatus)
         tileRecyclerView.adapter = tileRecyclerAdapter
+
+        boardBackButton.setOnClickListener({
+        })
+
+        boardMenuButton.setOnClickListener({
+            startActivity(Intent(this@BoardActivity, MainMenuActivity::class.java))
+        })
+
+        boardRestartButton.setOnClickListener({
+        })
+
+        boardSettingsButton.setOnClickListener({
+            startActivity(Intent(this@BoardActivity, SettingsActivity::class.java))
+        })
     }
 
     override fun onPause() {
