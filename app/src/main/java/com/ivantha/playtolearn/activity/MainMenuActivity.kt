@@ -166,7 +166,7 @@ class MainMenuActivity : AppCompatActivity() {
         firebaseDatabase.getReference("categories").push().setValue(c7)
 
         // Set level info
-        firebaseDatabase.getReference("level_info").child("count").setValue("1")
+        firebaseDatabase.getReference("level_info").child("count").setValue("7")
 
         // Creating the levels
         firebaseDatabase.getReference("levels/1/questions").push().setValue(q1)
