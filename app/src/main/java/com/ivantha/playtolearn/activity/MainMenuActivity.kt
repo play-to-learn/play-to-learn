@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
+import com.ivantha.playtolearn.common.SettingsHelper
 import com.ivantha.playtolearn.model.Category
 import com.ivantha.playtolearn.model.Question
 import com.ivantha.playtolearn.model.SaveFile
@@ -99,11 +100,11 @@ class MainMenuActivity : AppCompatActivity() {
     }
 
     private fun initializeSettingsHelper() {
-        if (Session.settingsHelper.settingsExists(applicationContext)) {
-            Session.settingsHelper.loadSettings(applicationContext)
+        if (SettingsHelper.settingsExists(applicationContext)) {
+            SettingsHelper.loadSettings(applicationContext)
         } else {
-            Session.settingsHelper.newSettings()
-            Session.settingsHelper.saveSettings(applicationContext)
+            SettingsHelper.newSettings()
+            SettingsHelper.saveSettings(applicationContext)
         }
     }
 

@@ -1,17 +1,20 @@
 package com.ivantha.playtolearn.adapter
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.support.v7.widget.AppCompatImageButton
 import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.ivantha.playtolearn.R
+import com.ivantha.playtolearn.activity.LevelCompleteActivity
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
-import com.ivantha.playtolearn.common.Session.COLUMN_COUNT
 import com.ivantha.playtolearn.game.MovementLogic
 import com.ivantha.playtolearn.model.*
+import com.ivantha.playtolearn.model.Board.Companion.COLUMN_COUNT
+import com.ivantha.playtolearn.model.Board.Companion.ROW_COUNT
 import com.ivantha.playtolearn.model.Tile.BoardTileState.*
 import com.ivantha.playtolearn.widget.SquareFrameLayout
 import kotlin.reflect.KFunction0
@@ -29,8 +32,8 @@ class TileRecyclerAdapter(var board: Board,
     var tileList: ArrayList<Tile> = ArrayList()
 
     init {
-        for(row in 0 until Session.ROW_COUNT){
-            for(col in 0 until COLUMN_COUNT){
+        for (row in 0 until ROW_COUNT) {
+            for (col in 0 until COLUMN_COUNT) {
                 tileList.add(board.tileGrid[col][row])
             }
         }
@@ -68,7 +71,6 @@ class TileRecyclerAdapter(var board: Board,
             holder.tileFrameLayout.addView(boardTileButton)
         }
     }
-
 
 
     inner class TileViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -113,8 +115,6 @@ class TileRecyclerAdapter(var board: Board,
                         }
                     }
 
-                    FirebaseSaveHelper.saveGame(FirebaseAuth.getInstance().currentUser!!.uid)
-
                     return@setOnDragListener true
                 }
 
@@ -122,7 +122,7 @@ class TileRecyclerAdapter(var board: Board,
             }
         }
 
-        private fun processMove(positions: ArrayList<Position>){
+        private fun processMove(positions: ArrayList<Position>) {
             updateGoldStatus()
 
             // Set as current tile
@@ -139,8 +139,13 @@ class TileRecyclerAdapter(var board: Board,
 
             notifyDataSetChanged()
 
-            if(MovementLogic.isGameOver(posX, posY, question!!)){
+            FirebaseSaveHelper.saveGame(FirebaseAuth.getInstance().currentUser!!.uid)
 
+            if (MovementLogic.isGameOver(posX, posY, question!!)) {
+                val intent = Intent(viewGroup!!.context,LevelCompleteActivity::class.java)
+                intent.putExtra("level", Session.saveFile!!.currentLevel.id)
+                intent.putExtra("score", Session.saveFile!!.currentLevel.score)
+                viewGroup!!.context.startActivity(intent)
             }
         }
     }
@@ -149,7 +154,7 @@ class TileRecyclerAdapter(var board: Board,
     inner class BoardTileButton : AppCompatImageButton(viewGroup!!.context) {
 
         init {
-            this.setOnTouchListener(object : OnTouchListener{
+            this.setOnTouchListener(object : OnTouchListener {
                 private var mDownX: Float = 0.toFloat()
                 private var mDownY: Float = 0.toFloat()
                 private val scrollThreshold = 10f

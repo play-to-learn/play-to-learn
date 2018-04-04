@@ -11,9 +11,9 @@ import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.adapter.TileRecyclerAdapter
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
+import com.ivantha.playtolearn.model.Board.Companion.COLUMN_COUNT
 import com.ivantha.playtolearn.widget.ProblemDialog
 import kotlinx.android.synthetic.main.activity_board.*
-import kotlinx.android.synthetic.main.activity_main_menu.*
 
 class BoardActivity : AppCompatActivity() {
 
@@ -23,7 +23,7 @@ class BoardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board)
 
-        var gridLayoutManager = GridLayoutManager(this, Session.COLUMN_COUNT, LinearLayoutManager.VERTICAL, false)
+        var gridLayoutManager = GridLayoutManager(this, COLUMN_COUNT, LinearLayoutManager.VERTICAL, false)
 
         tileRecyclerView.layoutManager = gridLayoutManager
         tileRecyclerView.setHasFixedSize(true)
@@ -35,10 +35,12 @@ class BoardActivity : AppCompatActivity() {
         })
 
         boardMenuButton.setOnClickListener({
-            startActivity(Intent(this@BoardActivity, MainMenuActivity::class.java))
+            startActivity(Intent(this@BoardActivity, LevelsActivity::class.java))
         })
 
         boardRestartButton.setOnClickListener({
+            FirebaseSaveHelper.restartLevel(currentUser!!.uid)
+            startActivity(Intent(this@BoardActivity, BoardActivity::class.java))
         })
 
         boardSettingsButton.setOnClickListener({

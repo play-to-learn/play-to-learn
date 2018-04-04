@@ -1,9 +1,11 @@
 package com.ivantha.playtolearn.common
 
+import android.widget.Toast
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.ivantha.playtolearn.model.Question
 import com.ivantha.playtolearn.model.SaveFile
 
 object FirebaseSaveHelper {
@@ -16,20 +18,37 @@ object FirebaseSaveHelper {
     }
 
     fun loadGame(uid: String){
-        TODO("This method does not work correctly")
-        FirebaseDatabase.getInstance().getReference("players/$uid/save_file").addValueEventListener(object : ValueEventListener {
+        TODO("Not implemented")
+    }
+
+    fun saveGame(uid: String){
+        firebaseDatabase.getReference("players/$uid").child("save_file").setValue(Session.saveFile)
+    }
+
+    fun restartLevel(uid: String){
+        var tempId = Session.saveFile!!.currentLevel.id
+
+        Session.saveFile = SaveFile()
+        setLevel(tempId)
+        firebaseDatabase.getReference("players/$uid").child("save_file").setValue(Session.saveFile)
+    }
+
+    fun setLevel(id: Int){
+        Session.saveFile!!.currentLevel.id = id
+        Session.saveFile!!.currentLevel.score = 0
+
+        FirebaseDatabase.getInstance().getReference("levels/$id/questions").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                Session.saveFile = dataSnapshot!!.getValue(SaveFile::class.java)
+                for (child in dataSnapshot!!.children){
+                    var question = child.getValue(Question::class.java)
+                    Session.saveFile!!.currentLevel.questions.add(question!!)
+                }
             }
 
             override fun onCancelled(error: DatabaseError?) {
                 TODO("Not implemented")
             }
         })
-    }
-
-    fun saveGame(uid: String){
-        firebaseDatabase.getReference("players/$uid").child("save_file").setValue(Session.saveFile)
     }
 
 }

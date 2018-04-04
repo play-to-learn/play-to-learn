@@ -49,21 +49,7 @@ class LevelRecyclerAdapter(private val levels: List<Level>) : RecyclerView.Adapt
 
         init {
             appCompatButton.setOnClickListener({
-                Session.saveFile!!.currentLevel.id = id
-                Session.saveFile!!.currentLevel.score = 0
-
-                FirebaseDatabase.getInstance().getReference("levels/$id/questions").addValueEventListener(object : ValueEventListener {
-                    override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                        for (child in dataSnapshot!!.children){
-                            var question = child.getValue(Question::class.java)
-                            Session.saveFile!!.currentLevel.questions.add(question!!)
-                        }
-                    }
-
-                    override fun onCancelled(error: DatabaseError?) {
-                        Toast.makeText(viewGroup!!.context, "Player current level retrieval error", Toast.LENGTH_SHORT).show()
-                    }
-                })
+                FirebaseSaveHelper.setLevel(id)
 
                 FirebaseSaveHelper.saveGame(FirebaseAuth.getInstance().currentUser!!.uid)
 
