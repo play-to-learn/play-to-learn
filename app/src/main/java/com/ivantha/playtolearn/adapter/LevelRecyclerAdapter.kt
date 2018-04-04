@@ -6,18 +6,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.activity.BoardActivity
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.model.Level
-import com.ivantha.playtolearn.model.Question
 
 class LevelRecyclerAdapter(private val levels: List<Level>) : RecyclerView.Adapter<LevelRecyclerAdapter.LevelViewHolder>() {
 
@@ -49,9 +43,12 @@ class LevelRecyclerAdapter(private val levels: List<Level>) : RecyclerView.Adapt
 
         init {
             appCompatButton.setOnClickListener({
-                FirebaseSaveHelper.setLevel(id)
+                if(Session.saveFile!!.currentLevel.id == id){       // Load current save
+                    FirebaseSaveHelper.setLevel(id)
+                    FirebaseSaveHelper.saveGame(FirebaseAuth.getInstance().currentUser!!.uid)
+                }else{                                              // Load completed level
 
-                FirebaseSaveHelper.saveGame(FirebaseAuth.getInstance().currentUser!!.uid)
+                }
 
                 viewGroup!!.context.startActivity(Intent(viewGroup!!.context, BoardActivity::class.java))
             })

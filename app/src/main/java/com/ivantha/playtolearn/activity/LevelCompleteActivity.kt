@@ -31,7 +31,8 @@ class LevelCompleteActivity : AppCompatActivity() {
         })
 
         winPlayButton.setOnClickListener({
-
+            FirebaseSaveHelper.loadNextLevel(currentUser!!.uid)
+            startActivity(Intent(this@LevelCompleteActivity, BoardActivity::class.java))
         })
 
         winRestartButton.setOnClickListener({

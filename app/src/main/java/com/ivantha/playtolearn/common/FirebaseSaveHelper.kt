@@ -1,6 +1,5 @@
 package com.ivantha.playtolearn.common
 
-import android.widget.Toast
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -17,10 +16,6 @@ object FirebaseSaveHelper {
         firebaseDatabase.getReference("players/$uid").child("save_file").setValue(Session.saveFile)
     }
 
-    fun loadGame(uid: String){
-        TODO("Not implemented")
-    }
-
     fun saveGame(uid: String){
         firebaseDatabase.getReference("players/$uid").child("save_file").setValue(Session.saveFile)
     }
@@ -30,6 +25,14 @@ object FirebaseSaveHelper {
 
         Session.saveFile = SaveFile()
         setLevel(tempId)
+        firebaseDatabase.getReference("players/$uid").child("save_file").setValue(Session.saveFile)
+    }
+
+    fun loadNextLevel(uid: String){
+        var tempId = Session.saveFile!!.currentLevel.id
+
+        Session.saveFile = SaveFile()
+        setLevel(tempId + 1)
         firebaseDatabase.getReference("players/$uid").child("save_file").setValue(Session.saveFile)
     }
 
