@@ -39,10 +39,11 @@ object FirebaseSaveHelper {
         firebaseDatabase.getReference("players/$uid").child("enabled_level_Count").setValue(Session.saveFile!!.currentLevel.id)
     }
 
-    fun continueLevel(uid: String, levelId: Int){
+    fun continueLevel(uid: String, levelId: Int, onCompleteTask: () -> Unit){
         FirebaseDatabase.getInstance().getReference("players/$uid/save_data/$levelId").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot?) {
                 Session.saveFile = dataSnapshot!!.getValue(SaveFile::class.java)
+                onCompleteTask()
             }
 
             override fun onCancelled(error: DatabaseError?) {

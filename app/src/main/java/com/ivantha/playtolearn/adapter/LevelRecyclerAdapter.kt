@@ -45,8 +45,9 @@ class LevelRecyclerAdapter(private val levels: List<Level>) : RecyclerView.Adapt
 
         init {
             appCompatButton.setOnClickListener({
-                FirebaseSaveHelper.continueLevel(currentUser!!.uid, id)
-                viewGroup!!.context.startActivity(Intent(viewGroup!!.context, BoardActivity::class.java))
+                FirebaseSaveHelper.continueLevel(currentUser!!.uid, id, {
+                    viewGroup!!.context.startActivity(Intent(viewGroup!!.context, BoardActivity::class.java))
+                })
             })
         }
     }
