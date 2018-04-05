@@ -10,6 +10,10 @@ class ProblemDialog(context: Context) : Dialog(context, R.style.ProblemDialog) {
 
     init {
         this.setContentView(R.layout.dialog_problem)
+
+        okButton.setOnClickListener({
+            this.dismiss()
+        })
     }
 
     fun setTitle(title: String) {
@@ -19,4 +23,5 @@ class ProblemDialog(context: Context) : Dialog(context, R.style.ProblemDialog) {
     fun setDescription(description: String) {
         descriptionTextView.text = description
     }
+
 }
