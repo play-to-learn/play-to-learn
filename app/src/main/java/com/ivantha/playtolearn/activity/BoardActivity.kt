@@ -85,11 +85,10 @@ class BoardActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
 
-//        timeSwapBuff += timeInMilliseconds
-//        customHandler.removeCallbacks(updateTimerThread)
-//
-//        Session.saveFile!!.currentLevel.elapsedTime += timeSwapBuff
-        FirebaseSaveHelper.saveCurrentLevel(currentUser!!.uid)
+        timeSwapBuff += timeInMilliseconds
+        customHandler.removeCallbacks(updateTimerThread)
+
+        Session.saveFile!!.currentLevel.elapsedTime += timeSwapBuff
     }
 
     private fun updateGoldStatus(){
