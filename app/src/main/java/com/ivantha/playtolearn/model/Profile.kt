@@ -5,6 +5,7 @@ class Profile {
     var email: String? = null
     var displayName: String? = null
     var photoUrl: String? = null
+    var totalScore: Int? = null
 
     constructor()
 
