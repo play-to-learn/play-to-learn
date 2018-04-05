@@ -3,15 +3,13 @@ package com.ivantha.playtolearn.activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
+import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.common.SettingsHelper
 import com.ivantha.playtolearn.model.Category
 import com.ivantha.playtolearn.model.Question
@@ -19,8 +17,6 @@ import kotlinx.android.synthetic.main.activity_main_menu.*
 
 
 class MainMenuActivity : AppCompatActivity() {
-
-    private var currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +27,8 @@ class MainMenuActivity : AppCompatActivity() {
         })
 
         newGameButton.setOnClickListener({
-            FirebaseSaveHelper.clearSaveData(currentUser!!.uid)
-            FirebaseSaveHelper.newLevel(currentUser!!.uid, 1, {
+            FirebaseSaveHelper.clearSaveData(Session.currentUser!!.uid)
+            FirebaseSaveHelper.newLevel(Session.currentUser!!.uid, 1, {
                 startActivity(Intent(this@MainMenuActivity, BoardActivity::class.java))
             })
         })
@@ -51,39 +47,13 @@ class MainMenuActivity : AppCompatActivity() {
 
         helpButton.setOnClickListener({
 //            startActivity(Intent(this@MainMenuActivity, HelpActivity::class.java))
-
-//            TODO("Temporary")
             addFirebaseData()
         })
 
-        // Enable Firebase database persistence
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
-
-        firebaseSignIn()
+        // Disable continue button if no save exists
+        continueButton.isEnabled = (Session.enabledLevelCount >= 2)
 
         initializeSettingsHelper()
-    }
-
-    private fun firebaseSignIn() {
-        // Sign in anonymously
-        if (currentUser == null) {
-            FirebaseAuth.getInstance().signInAnonymously().addOnCompleteListener(this) { task ->
-                if (!task.isSuccessful) {
-                    Toast.makeText(this, "Anonymous login unsuccessful", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-
-        // Disable continue button if no save exists
-        FirebaseDatabase.getInstance().getReference("players/${currentUser!!.uid}/save_data/1").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                continueButton.isEnabled = (dataSnapshot!!.value != null)
-            }
-
-            override fun onCancelled(p0: DatabaseError?) {
-                TODO("Not implemented")
-            }
-        })
     }
 
     private fun initializeSettingsHelper() {
@@ -200,4 +170,5 @@ class MainMenuActivity : AppCompatActivity() {
         firebaseDatabase.getReference("questions/levels/1/categories/loops").push().setValue(q5)
         firebaseDatabase.getReference("questions/levels/1/categories/loops").push().setValue(q6)
     }
+
 }

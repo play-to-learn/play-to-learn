@@ -21,7 +21,6 @@ import java.util.*
 
 class LevelsActivity : AppCompatActivity() {
 
-    private var currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
     private val levels = ArrayList<Level>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,42 +34,16 @@ class LevelsActivity : AppCompatActivity() {
 
         var levelRecyclerAdapter = LevelRecyclerAdapter(levels)
 
-        var firebaseDatabase = FirebaseDatabase.getInstance()
-
-        // Get levels
-        firebaseDatabase.getReference("level_info/count").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                var levelCount = dataSnapshot!!.value.toString().toInt()
-
-                for (i in 1..levelCount) {
-                    var level = Level(i)
-                    levels.add(level)
-                }
-
-                levelRecyclerAdapter.notifyDataSetChanged()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@LevelsActivity, "Level count retrieval error", Toast.LENGTH_SHORT).show()
-            }
-        })
+        // Set levels
+        for (i in 1..Session.levelCount) {
+            var level = Level(i)
+            levels.add(level)
+        }
 
         // Set enabled levels
-        firebaseDatabase.getReference("players/${currentUser!!.uid}/enabled_level_Count").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                var enabledCount = dataSnapshot!!.value.toString().toInt()
-
-                for (i in 0..(enabledCount - 1)) {
-                    levels[i].enabled = true
-                }
-
-                levelRecyclerAdapter.notifyDataSetChanged()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@LevelsActivity, "Level count retrieval error", Toast.LENGTH_SHORT).show()
-            }
-        })
+        for (i in 0..(Session.enabledLevelCount - 1)) {
+            levels[i].enabled = true
+        }
 
         levelsRecyclerView.adapter = levelRecyclerAdapter
     }
