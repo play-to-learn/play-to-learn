@@ -1,6 +1,7 @@
 package com.ivantha.playtolearn.game
 
-import com.ivantha.playtolearn.common.Session
+import com.ivantha.playtolearn.model.Board.Companion.COLUMN_COUNT
+import com.ivantha.playtolearn.model.Board.Companion.ROW_COUNT
 import com.ivantha.playtolearn.model.Position
 import com.ivantha.playtolearn.model.Question
 import com.ivantha.playtolearn.model.Result
@@ -58,7 +59,7 @@ object MovementLogic {
     }
 
     fun isGameOver(posX: Int, posY: Int, question: Question): Boolean{
-        var tilesUntilEnd = ((Session.ROW_COUNT - posY - 1) * Session.COLUMN_COUNT) + (Session.COLUMN_COUNT - posX - 1)
+        var tilesUntilEnd = ((ROW_COUNT - posY - 1) * COLUMN_COUNT) + (COLUMN_COUNT - posX - 1)
         return tilesUntilEnd < question.answer
     }
 }

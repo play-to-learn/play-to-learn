@@ -7,7 +7,7 @@ import java.io.IOException
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 
-class SettingsHelper {
+object SettingsHelper {
 
     var currentSettings: Settings? = null
 
@@ -29,7 +29,6 @@ class SettingsHelper {
         } catch (e: IOException) {
             e.printStackTrace()
         }
-
     }
 
     fun saveSettings(context: Context) {

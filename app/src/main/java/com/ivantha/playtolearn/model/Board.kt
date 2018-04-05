@@ -1,9 +1,11 @@
 package com.ivantha.playtolearn.model
 
-import com.ivantha.playtolearn.common.Session.COLUMN_COUNT
-import com.ivantha.playtolearn.common.Session.ROW_COUNT
-
 class Board {
+
+    companion object {
+        const val COLUMN_COUNT = 6
+        const val ROW_COUNT = 10
+    }
 
     var tileGrid = ArrayList<ArrayList<Tile>>()
     var currentX = 0
@@ -18,12 +20,6 @@ class Board {
                 val tile = Tile()
                 tile.row = row
                 tile.column = col
-
-                var q = Question()
-                q.description = "asdasd"
-                q.title = "asdasd"
-                q.answer = 4
-                tile.question = q
 
                 tileColumn.add(tile)
             }

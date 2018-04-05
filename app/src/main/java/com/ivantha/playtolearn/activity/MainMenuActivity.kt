@@ -3,9 +3,6 @@ package com.ivantha.playtolearn.activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -13,40 +10,27 @@ import com.google.firebase.database.ValueEventListener
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
+import com.ivantha.playtolearn.common.SettingsHelper
 import com.ivantha.playtolearn.model.Category
 import com.ivantha.playtolearn.model.Question
-import com.ivantha.playtolearn.model.SaveFile
 import kotlinx.android.synthetic.main.activity_main_menu.*
 
 
 class MainMenuActivity : AppCompatActivity() {
-
-    private var currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
 
         continueButton.setOnClickListener({
-            var firstTime = true
-            FirebaseDatabase.getInstance().getReference("players/${currentUser!!.uid}/save_file").addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                    Session.saveFile = dataSnapshot!!.getValue(SaveFile::class.java)
-                    if(firstTime){
-                        firstTime = false
-                        startActivity(Intent(this@MainMenuActivity, BoardActivity::class.java))
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError?) {
-                    TODO("Not implemented")
-                }
-            })
+            startActivity(Intent(this@MainMenuActivity, LevelsActivity::class.java))
         })
 
         newGameButton.setOnClickListener({
-            FirebaseSaveHelper.newGame(currentUser!!.uid)
-            startActivity(Intent(this@MainMenuActivity, LevelsActivity::class.java))
+            FirebaseSaveHelper.clearSaveData(Session.currentUser!!.uid)
+            FirebaseSaveHelper.newLevel(Session.currentUser!!.uid, 1, {
+                startActivity(Intent(this@MainMenuActivity, BoardActivity::class.java))
+            })
         })
 
         optionsButton.setOnClickListener({
@@ -63,47 +47,21 @@ class MainMenuActivity : AppCompatActivity() {
 
         helpButton.setOnClickListener({
 //            startActivity(Intent(this@MainMenuActivity, HelpActivity::class.java))
-
-//            TODO("Temporary")
             addFirebaseData()
         })
 
-        // Enable Firebase database persistence
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
-
-        firebaseSignIn()
+        // Disable continue button if no save exists
+        continueButton.isEnabled = (Session.enabledLevelCount >= 2)
 
         initializeSettingsHelper()
     }
 
-    private fun firebaseSignIn() {
-        // Sign in anonymously
-        if (currentUser == null) {
-            FirebaseAuth.getInstance().signInAnonymously().addOnCompleteListener(this) { task ->
-                if (!task.isSuccessful) {
-                    Toast.makeText(this, "Anonymous login unsuccessful", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-
-        // Disable continue button if no save exists
-        FirebaseDatabase.getInstance().getReference("players/${currentUser!!.uid}/save_file").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                continueButton.isEnabled = (dataSnapshot!!.value != null)
-            }
-
-            override fun onCancelled(p0: DatabaseError?) {
-                TODO("Not implemented")
-            }
-        })
-    }
-
     private fun initializeSettingsHelper() {
-        if (Session.settingsHelper.settingsExists(applicationContext)) {
-            Session.settingsHelper.loadSettings(applicationContext)
+        if (SettingsHelper.settingsExists(applicationContext)) {
+            SettingsHelper.loadSettings(applicationContext)
         } else {
-            Session.settingsHelper.newSettings()
-            Session.settingsHelper.saveSettings(applicationContext)
+            SettingsHelper.newSettings()
+            SettingsHelper.saveSettings(applicationContext)
         }
     }
 
@@ -194,15 +152,15 @@ class MainMenuActivity : AppCompatActivity() {
         firebaseDatabase.getReference("categories").push().setValue(c7)
 
         // Set level info
-        firebaseDatabase.getReference("level_info").child("count").setValue(7)
+        firebaseDatabase.getReference("level_info").child("count").setValue(5)
 
         // Creating the levels
         firebaseDatabase.getReference("levels/1/questions").push().setValue(q1)
         firebaseDatabase.getReference("levels/1/questions").push().setValue(q2)
-        firebaseDatabase.getReference("levels/1/questions").push().setValue(q3)
-        firebaseDatabase.getReference("levels/1/questions").push().setValue(q4)
+        firebaseDatabase.getReference("levels/2/questions").push().setValue(q3)
+        firebaseDatabase.getReference("levels/2/questions").push().setValue(q4)
         firebaseDatabase.getReference("levels/1/questions").push().setValue(q5)
-        firebaseDatabase.getReference("levels/1/questions").push().setValue(q6)
+        firebaseDatabase.getReference("levels/2/questions").push().setValue(q6)
 
         // Set the questions
         firebaseDatabase.getReference("questions/levels/1/categories/conditional_structures").push().setValue(q1)
@@ -212,4 +170,5 @@ class MainMenuActivity : AppCompatActivity() {
         firebaseDatabase.getReference("questions/levels/1/categories/loops").push().setValue(q5)
         firebaseDatabase.getReference("questions/levels/1/categories/loops").push().setValue(q6)
     }
+
 }

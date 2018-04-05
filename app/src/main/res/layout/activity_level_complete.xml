@@ -43,7 +43,7 @@
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/common_window_panel" />
 
-        <com.avoid.playtolearn.widgets.WindowTitle
+        <com.ivantha.playtolearn.widget.WindowTitle
             android:id="@+id/panel_title"
             android:layout_width="150dp"
             android:layout_height="45dp"
@@ -62,57 +62,51 @@
             app:layout_constraintVertical_bias="0.00999999" />
 
         <Button
-            android:id="@+id/restart_button"
+            android:id="@+id/winRestartButton"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="0dp"
+            android:layout_marginEnd="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/common_restart_button"
-            android:onClick="okButtonOnClick"
             android:text=""
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toRightOf="@+id/play_button"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/panel_bg"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
 
         <Button
-            android:id="@+id/menu_button"
+            android:id="@+id/winMenuButton"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/common_menu_button"
-            android:onClick="okButtonOnClick"
             android:text=""
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/play_button"
+            app:layout_constraintStart_toStartOf="@+id/panel_bg"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
 
         <Button
-            android:id="@+id/play_button"
+            android:id="@+id/winPlayButton"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/common_play_button"
-            android:onClick="resetButtonOnClick"
             android:text=""
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/winRestartButton"
+            app:layout_constraintStart_toEndOf="@+id/winMenuButton"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            tools:layout_editor_absoluteX="105dp" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/text_level"
+            android:id="@+id/winLevelTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -120,26 +114,26 @@
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             android:fontFamily="monospace"
-            android:text="Level 1"
+            android:text="Level 0"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/text_score"
+            app:layout_constraintBottom_toTopOf="@+id/winScoreTextView"
             app:layout_constraintHorizontal_bias="0.511"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_stars" />
 
         <TextView
-            android:id="@+id/text_score"
+            android:id="@+id/winScoreTextView"
             android:layout_width="144dp"
             android:layout_height="35dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             android:fontFamily="monospace"
-            android:text="23,800"
+            android:text="23800"
             android:textAlignment="center"
             android:textColor="@color/colorYellow"
             android:textSize="30sp"
@@ -148,11 +142,11 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_stars"
-            app:layout_constraintBottom_toBottomOf="@+id/text_time"
+            app:layout_constraintBottom_toBottomOf="@+id/winTimeTextView"
             android:layout_marginBottom="8dp" />
 
         <TextView
-            android:id="@+id/text_time"
+            android:id="@+id/winTimeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -165,10 +159,10 @@
             android:textColor="@color/colorWhite"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/play_button"
+            app:layout_constraintBottom_toTopOf="@+id/winPlayButton"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_score" />
+            app:layout_constraintTop_toBottomOf="@+id/winScoreTextView" />
 
         <ImageView
             android:id="@+id/image_stars"

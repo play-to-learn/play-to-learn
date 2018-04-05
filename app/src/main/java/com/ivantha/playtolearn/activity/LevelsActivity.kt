@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -32,29 +34,16 @@ class LevelsActivity : AppCompatActivity() {
 
         var levelRecyclerAdapter = LevelRecyclerAdapter(levels)
 
-        var firebaseDatabase = FirebaseDatabase.getInstance()
+        // Set levels
+        for (i in 1..Session.levelCount) {
+            var level = Level(i)
+            levels.add(level)
+        }
 
-        // Get levels
-        firebaseDatabase.getReference("level_info/count").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                var levelCount = dataSnapshot!!.value.toString().toInt()
-
-                for (i in 1..levelCount) {
-                    var level = Level(i)
-                    levels.add(level)
-                }
-
-                for(i in 0..(Session.saveFile!!.currentLevel.id - 1)){
-                    levels[i].enabled = true
-                }
-
-                levelRecyclerAdapter.notifyDataSetChanged()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@LevelsActivity, "Level count retrieval error", Toast.LENGTH_SHORT).show()
-            }
-        })
+        // Set enabled levels
+        for (i in 0..(Session.enabledLevelCount - 1)) {
+            levels[i].enabled = true
+        }
 
         levelsRecyclerView.adapter = levelRecyclerAdapter
     }

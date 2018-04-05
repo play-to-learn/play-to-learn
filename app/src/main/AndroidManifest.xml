@@ -18,12 +18,13 @@
         </activity>
         <activity
             android:name=".activity.BoardActivity"
-            android:label="@string/title_activity_board"/>
+            android:label="@string/title_activity_board" />
         <activity android:name=".activity.HelpActivity" />
         <activity android:name=".activity.LeaderboardActivity" />
         <activity android:name=".activity.LevelsActivity" />
         <activity android:name=".activity.ProfileActivity" />
         <activity android:name=".activity.SettingsActivity" />
+        <activity android:name=".activity.LevelCompleteActivity"></activity>
     </application>
 
 </manifest>
