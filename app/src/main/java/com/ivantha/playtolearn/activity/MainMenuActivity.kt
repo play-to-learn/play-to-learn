@@ -34,8 +34,9 @@ class MainMenuActivity : AppCompatActivity() {
 
         newGameButton.setOnClickListener({
             FirebaseSaveHelper.clearSaveData(currentUser!!.uid)
-            FirebaseSaveHelper.newLevel(currentUser!!.uid, 1)
-            startActivity(Intent(this@MainMenuActivity, BoardActivity::class.java))
+            FirebaseSaveHelper.newLevel(currentUser!!.uid, 1, {
+                startActivity(Intent(this@MainMenuActivity, BoardActivity::class.java))
+            })
         })
 
         optionsButton.setOnClickListener({
@@ -76,16 +77,15 @@ class MainMenuActivity : AppCompatActivity() {
         }
 
         // Disable continue button if no save exists
-//        FirebaseDatabase.getInstance().getReference("players/${currentUser!!.uid}/save_file").addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot?) {
-//                continueButton.isEnabled = (dataSnapshot!!.value != null)
-//            }
-//
-//            override fun onCancelled(p0: DatabaseError?) {
-//                TODO("Not implemented")
-//            }
-//        })
-        continueButton.isEnabled = true
+        FirebaseDatabase.getInstance().getReference("players/${currentUser!!.uid}/save_data/1").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot?) {
+                continueButton.isEnabled = (dataSnapshot!!.value != null)
+            }
+
+            override fun onCancelled(p0: DatabaseError?) {
+                TODO("Not implemented")
+            }
+        })
     }
 
     private fun initializeSettingsHelper() {
@@ -184,7 +184,7 @@ class MainMenuActivity : AppCompatActivity() {
         firebaseDatabase.getReference("categories").push().setValue(c7)
 
         // Set level info
-        firebaseDatabase.getReference("level_info").child("count").setValue(7)
+        firebaseDatabase.getReference("level_info").child("count").setValue(5)
 
         // Creating the levels
         firebaseDatabase.getReference("levels/1/questions").push().setValue(q1)

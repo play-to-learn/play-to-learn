@@ -35,13 +35,15 @@ class LevelCompleteActivity : AppCompatActivity() {
         })
 
         winPlayButton.setOnClickListener({
-            FirebaseSaveHelper.nextLevel(currentUser!!.uid)
-            startActivity(Intent(this@LevelCompleteActivity, BoardActivity::class.java))
+            FirebaseSaveHelper.nextLevel(currentUser!!.uid, {
+                startActivity(Intent(this@LevelCompleteActivity, BoardActivity::class.java))
+            })
         })
 
         winRestartButton.setOnClickListener({
-            FirebaseSaveHelper.newLevel(currentUser!!.uid, Session.saveFile!!.currentLevel.id)
-            startActivity(Intent(this@LevelCompleteActivity, BoardActivity::class.java))
+            FirebaseSaveHelper.newLevel(currentUser!!.uid, Session.saveFile!!.currentLevel.id, {
+                startActivity(Intent(this@LevelCompleteActivity, BoardActivity::class.java))
+            })
         })
     }
 }

@@ -39,8 +39,9 @@ class BoardActivity : AppCompatActivity() {
         })
 
         boardRestartButton.setOnClickListener({
-            FirebaseSaveHelper.newLevel(currentUser!!.uid, Session.saveFile!!.currentLevel.id)
-            startActivity(Intent(this@BoardActivity, BoardActivity::class.java))
+            FirebaseSaveHelper.newLevel(currentUser!!.uid, Session.saveFile!!.currentLevel.id, {
+                startActivity(Intent(this@BoardActivity, BoardActivity::class.java))
+            })
         })
 
         boardSettingsButton.setOnClickListener({

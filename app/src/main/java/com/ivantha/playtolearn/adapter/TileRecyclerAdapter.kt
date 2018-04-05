@@ -130,7 +130,8 @@ class TileRecyclerAdapter(var board: Board,
             board.currentY = posY
             board.tileGrid[posX][posY].boardTileState = CURRENT
 
-            //                           TODO("Generate question in current tile")
+            // Generate random question in the tile
+            board.tileGrid[posX][posY].generateQuestion()
 
             // Set as visited
             for (pos in positions) {

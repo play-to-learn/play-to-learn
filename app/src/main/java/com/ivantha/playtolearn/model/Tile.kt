@@ -1,5 +1,7 @@
 package com.ivantha.playtolearn.model
 
+import com.ivantha.playtolearn.game.QuestionLogic
+
 class Tile {
     var row: Int = 0
     var column: Int = 0
@@ -7,6 +9,10 @@ class Tile {
     var question: Question? = null
 
     constructor()
+
+    fun generateQuestion(){
+        question = QuestionLogic.getRandomQuestion()
+    }
 
     enum class BoardTileState {
         NOT_VISITED,

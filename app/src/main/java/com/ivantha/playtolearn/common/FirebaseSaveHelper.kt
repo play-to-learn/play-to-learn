@@ -10,7 +10,7 @@ import com.ivantha.playtolearn.model.SaveFile
 object FirebaseSaveHelper {
     private var firebaseDatabase = FirebaseDatabase.getInstance()
 
-    fun newLevel(uid: String, levelId: Int){
+    fun newLevel(uid: String, levelId: Int, onCompleteTask: () -> Unit){
         // Create save file
         Session.saveFile = SaveFile()
         Session.saveFile!!.currentLevel.id = levelId
@@ -19,31 +19,23 @@ object FirebaseSaveHelper {
         firebaseDatabase.getReference("players/$uid/save_data").child(levelId.toString()).setValue(Session.saveFile)
         firebaseDatabase.getReference("players/$uid").child("enabled_level_Count").setValue(1)
 
-        // Retrieve questions
-        FirebaseDatabase.getInstance().getReference("levels/$levelId/questions").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                for (child in dataSnapshot!!.children){
-                    var question = child.getValue(Question::class.java)
-                    Session.questions.add(question!!)
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError?) {
-                TODO("Not implemented")
-            }
+        retrieveQuestions(levelId, {
+            Session.saveFile!!.currentBoard.tileGrid[0][0].generateQuestion()
+            onCompleteTask()
         })
     }
 
-    fun nextLevel(uid: String){
-        newLevel(uid, Session.saveFile!!.currentLevel.id + 1)
+    fun nextLevel(uid: String, onCompleteTask: () -> Unit){
+        newLevel(uid, Session.saveFile!!.currentLevel.id + 1, onCompleteTask)
         firebaseDatabase.getReference("players/$uid").child("enabled_level_Count").setValue(Session.saveFile!!.currentLevel.id)
+                .addOnCompleteListener({ onCompleteTask() })
     }
 
     fun continueLevel(uid: String, levelId: Int, onCompleteTask: () -> Unit){
         FirebaseDatabase.getInstance().getReference("players/$uid/save_data/$levelId").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot?) {
                 Session.saveFile = dataSnapshot!!.getValue(SaveFile::class.java)
-                onCompleteTask()
+                retrieveQuestions(levelId, onCompleteTask)
             }
 
             override fun onCancelled(error: DatabaseError?) {
@@ -58,6 +50,24 @@ object FirebaseSaveHelper {
 
     fun saveCurrentLevel(uid: String){
         firebaseDatabase.getReference("players/$uid/save_data").child(Session.saveFile!!.currentLevel.id.toString()).setValue(Session.saveFile)
+    }
+
+    private fun retrieveQuestions(levelId: Int, onCompleteTask: () -> Unit){
+        Session.questions.clear()
+
+        FirebaseDatabase.getInstance().getReference("levels/$levelId/questions").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot?) {
+                for (child in dataSnapshot!!.children){
+                    var question = child.getValue(Question::class.java)
+                    Session.questions.add(question!!)
+                    onCompleteTask()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError?) {
+                TODO("Not implemented")
+            }
+        })
     }
 
 }
