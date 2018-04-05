@@ -39,7 +39,7 @@ class BoardActivity : AppCompatActivity() {
         })
 
         boardRestartButton.setOnClickListener({
-            FirebaseSaveHelper.restartLevel(currentUser!!.uid)
+            FirebaseSaveHelper.newLevel(currentUser!!.uid, Session.saveFile!!.currentLevel.id)
             startActivity(Intent(this@BoardActivity, BoardActivity::class.java))
         })
 
@@ -51,7 +51,7 @@ class BoardActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
 
-        FirebaseSaveHelper.saveGame(currentUser!!.uid)
+        FirebaseSaveHelper.saveCurrentLevel(currentUser!!.uid)
     }
 
     private fun updateGoldStatus(){

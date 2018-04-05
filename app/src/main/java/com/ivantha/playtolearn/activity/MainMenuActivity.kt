@@ -29,25 +29,13 @@ class MainMenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main_menu)
 
         continueButton.setOnClickListener({
-            var firstTime = true
-            FirebaseDatabase.getInstance().getReference("players/${currentUser!!.uid}/save_file").addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                    Session.saveFile = dataSnapshot!!.getValue(SaveFile::class.java)
-                    if(firstTime){
-                        firstTime = false
-                        startActivity(Intent(this@MainMenuActivity, BoardActivity::class.java))
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError?) {
-                    TODO("Not implemented")
-                }
-            })
+            startActivity(Intent(this@MainMenuActivity, LevelsActivity::class.java))
         })
 
         newGameButton.setOnClickListener({
-            FirebaseSaveHelper.newGame(currentUser!!.uid)
-            startActivity(Intent(this@MainMenuActivity, LevelsActivity::class.java))
+            FirebaseSaveHelper.clearSaveData(currentUser!!.uid)
+            FirebaseSaveHelper.newLevel(currentUser!!.uid, 1)
+            startActivity(Intent(this@MainMenuActivity, BoardActivity::class.java))
         })
 
         optionsButton.setOnClickListener({
@@ -88,15 +76,16 @@ class MainMenuActivity : AppCompatActivity() {
         }
 
         // Disable continue button if no save exists
-        FirebaseDatabase.getInstance().getReference("players/${currentUser!!.uid}/save_file").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                continueButton.isEnabled = (dataSnapshot!!.value != null)
-            }
-
-            override fun onCancelled(p0: DatabaseError?) {
-                TODO("Not implemented")
-            }
-        })
+//        FirebaseDatabase.getInstance().getReference("players/${currentUser!!.uid}/save_file").addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot?) {
+//                continueButton.isEnabled = (dataSnapshot!!.value != null)
+//            }
+//
+//            override fun onCancelled(p0: DatabaseError?) {
+//                TODO("Not implemented")
+//            }
+//        })
+        continueButton.isEnabled = true
     }
 
     private fun initializeSettingsHelper() {

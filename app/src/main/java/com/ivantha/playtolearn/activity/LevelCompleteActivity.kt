@@ -7,11 +7,16 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
+import com.ivantha.playtolearn.common.Session
 import kotlinx.android.synthetic.main.activity_level_complete.*
 
 class LevelCompleteActivity : AppCompatActivity() {
 
     private var currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
+
+    init {
+        FirebaseSaveHelper.saveCurrentLevel(currentUser!!.uid)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,17 +31,16 @@ class LevelCompleteActivity : AppCompatActivity() {
         winTimeTextView.text = time
 
         winMenuButton.setOnClickListener({
-            FirebaseSaveHelper.saveGame(FirebaseAuth.getInstance().currentUser!!.uid)
             startActivity(Intent(this@LevelCompleteActivity, LevelsActivity::class.java))
         })
 
         winPlayButton.setOnClickListener({
-            FirebaseSaveHelper.loadNextLevel(currentUser!!.uid)
+            FirebaseSaveHelper.nextLevel(currentUser!!.uid)
             startActivity(Intent(this@LevelCompleteActivity, BoardActivity::class.java))
         })
 
         winRestartButton.setOnClickListener({
-            FirebaseSaveHelper.restartLevel(currentUser!!.uid)
+            FirebaseSaveHelper.newLevel(currentUser!!.uid, Session.saveFile!!.currentLevel.id)
             startActivity(Intent(this@LevelCompleteActivity, BoardActivity::class.java))
         })
     }

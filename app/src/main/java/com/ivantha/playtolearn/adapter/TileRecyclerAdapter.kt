@@ -139,7 +139,7 @@ class TileRecyclerAdapter(var board: Board,
 
             notifyDataSetChanged()
 
-            FirebaseSaveHelper.saveGame(FirebaseAuth.getInstance().currentUser!!.uid)
+            FirebaseSaveHelper.saveCurrentLevel(FirebaseAuth.getInstance().currentUser!!.uid)
 
             if (MovementLogic.isGameOver(posX, posY, question!!)) {
                 val intent = Intent(viewGroup!!.context,LevelCompleteActivity::class.java)

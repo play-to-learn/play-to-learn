@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -19,6 +21,7 @@ import java.util.*
 
 class LevelsActivity : AppCompatActivity() {
 
+    private var currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
     private val levels = ArrayList<Level>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +47,20 @@ class LevelsActivity : AppCompatActivity() {
                     levels.add(level)
                 }
 
-                for(i in 0..(Session.saveFile!!.currentLevel.id - 1)){
+                levelRecyclerAdapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@LevelsActivity, "Level count retrieval error", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        // Set enabled levels
+        firebaseDatabase.getReference("players/${currentUser!!.uid}/enabled_level_Count").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot?) {
+                var enabledCount = dataSnapshot!!.value.toString().toInt()
+
+                for (i in 0..(enabledCount - 1)) {
                     levels[i].enabled = true
                 }
 

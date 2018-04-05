@@ -7,15 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.activity.BoardActivity
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
-import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.model.Level
 
 class LevelRecyclerAdapter(private val levels: List<Level>) : RecyclerView.Adapter<LevelRecyclerAdapter.LevelViewHolder>() {
 
     var viewGroup: ViewGroup? = null
+    private var currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LevelViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_level, parent, false)
@@ -43,13 +45,7 @@ class LevelRecyclerAdapter(private val levels: List<Level>) : RecyclerView.Adapt
 
         init {
             appCompatButton.setOnClickListener({
-                if(Session.saveFile!!.currentLevel.id == id){       // Load current save
-                    FirebaseSaveHelper.setLevel(id)
-                    FirebaseSaveHelper.saveGame(FirebaseAuth.getInstance().currentUser!!.uid)
-                }else{                                              // Load completed level
-
-                }
-
+                FirebaseSaveHelper.continueLevel(currentUser!!.uid, id)
                 viewGroup!!.context.startActivity(Intent(viewGroup!!.context, BoardActivity::class.java))
             })
         }

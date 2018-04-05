@@ -10,41 +10,21 @@ import com.ivantha.playtolearn.model.SaveFile
 object FirebaseSaveHelper {
     private var firebaseDatabase = FirebaseDatabase.getInstance()
 
-    fun newGame(uid: String){
+    fun newLevel(uid: String, levelId: Int){
+        // Create save file
         Session.saveFile = SaveFile()
-        Session.saveFile!!.currentLevel.id = 1
-        firebaseDatabase.getReference("players/$uid").child("save_file").setValue(Session.saveFile)
-    }
+        Session.saveFile!!.currentLevel.id = levelId
 
-    fun saveGame(uid: String){
-        firebaseDatabase.getReference("players/$uid").child("save_file").setValue(Session.saveFile)
-    }
+        // Save
+        firebaseDatabase.getReference("players/$uid/save_data").child(levelId.toString()).setValue(Session.saveFile)
+        firebaseDatabase.getReference("players/$uid").child("enabled_level_Count").setValue(1)
 
-    fun restartLevel(uid: String){
-        var tempId = Session.saveFile!!.currentLevel.id
-
-        Session.saveFile = SaveFile()
-        setLevel(tempId)
-        firebaseDatabase.getReference("players/$uid").child("save_file").setValue(Session.saveFile)
-    }
-
-    fun loadNextLevel(uid: String){
-        var tempId = Session.saveFile!!.currentLevel.id
-
-        Session.saveFile = SaveFile()
-        setLevel(tempId + 1)
-        firebaseDatabase.getReference("players/$uid").child("save_file").setValue(Session.saveFile)
-    }
-
-    fun setLevel(id: Int){
-        Session.saveFile!!.currentLevel.id = id
-        Session.saveFile!!.currentLevel.score = 0
-
-        FirebaseDatabase.getInstance().getReference("levels/$id/questions").addValueEventListener(object : ValueEventListener {
+        // Retrieve questions
+        FirebaseDatabase.getInstance().getReference("levels/$levelId/questions").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot?) {
                 for (child in dataSnapshot!!.children){
                     var question = child.getValue(Question::class.java)
-                    Session.saveFile!!.currentLevel.questions.add(question!!)
+                    Session.questions.add(question!!)
                 }
             }
 
@@ -52,6 +32,31 @@ object FirebaseSaveHelper {
                 TODO("Not implemented")
             }
         })
+    }
+
+    fun nextLevel(uid: String){
+        newLevel(uid, Session.saveFile!!.currentLevel.id + 1)
+        firebaseDatabase.getReference("players/$uid").child("enabled_level_Count").setValue(Session.saveFile!!.currentLevel.id)
+    }
+
+    fun continueLevel(uid: String, levelId: Int){
+        FirebaseDatabase.getInstance().getReference("players/$uid/save_data/$levelId").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot?) {
+                Session.saveFile = dataSnapshot!!.getValue(SaveFile::class.java)
+            }
+
+            override fun onCancelled(error: DatabaseError?) {
+                TODO("Not implemented")
+            }
+        })
+    }
+
+    fun clearSaveData(uid: String){
+        firebaseDatabase.getReference("players/$uid").child("save_data").setValue(null)
+    }
+
+    fun saveCurrentLevel(uid: String){
+        firebaseDatabase.getReference("players/$uid/save_data").child(Session.saveFile!!.currentLevel.id.toString()).setValue(Session.saveFile)
     }
 
 }
