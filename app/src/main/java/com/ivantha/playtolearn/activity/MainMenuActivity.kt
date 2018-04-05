@@ -12,11 +12,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
-import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.common.SettingsHelper
 import com.ivantha.playtolearn.model.Category
 import com.ivantha.playtolearn.model.Question
-import com.ivantha.playtolearn.model.SaveFile
 import kotlinx.android.synthetic.main.activity_main_menu.*
 
 
@@ -189,10 +187,10 @@ class MainMenuActivity : AppCompatActivity() {
         // Creating the levels
         firebaseDatabase.getReference("levels/1/questions").push().setValue(q1)
         firebaseDatabase.getReference("levels/1/questions").push().setValue(q2)
-        firebaseDatabase.getReference("levels/1/questions").push().setValue(q3)
-        firebaseDatabase.getReference("levels/1/questions").push().setValue(q4)
+        firebaseDatabase.getReference("levels/2/questions").push().setValue(q3)
+        firebaseDatabase.getReference("levels/2/questions").push().setValue(q4)
         firebaseDatabase.getReference("levels/1/questions").push().setValue(q5)
-        firebaseDatabase.getReference("levels/1/questions").push().setValue(q6)
+        firebaseDatabase.getReference("levels/2/questions").push().setValue(q6)
 
         // Set the questions
         firebaseDatabase.getReference("questions/levels/1/categories/conditional_structures").push().setValue(q1)

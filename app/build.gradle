@@ -5,6 +5,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    signingConfigs {
+    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.ivantha.playtolearn"

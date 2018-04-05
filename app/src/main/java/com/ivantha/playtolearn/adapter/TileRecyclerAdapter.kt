@@ -52,7 +52,7 @@ class TileRecyclerAdapter(var board: Board,
 
     override fun onBindViewHolder(holder: TileViewHolder, position: Int) {
         holder.state = tileList[position].boardTileState
-        holder.question = tileList[position].question
+//        holder.question = tileList[position].question
         holder.posX = tileList[position].column
         holder.posY = tileList[position].row
 
@@ -77,7 +77,7 @@ class TileRecyclerAdapter(var board: Board,
 
         val tileFrameLayout: SquareFrameLayout = itemView.findViewById(R.id.tileFrameLayout)
         var state: Tile.BoardTileState? = null
-        var question: Question? = null
+//        var question: Question? = null
 
         // Position of the TileViewHolder in the grid
         var posX = 0
@@ -86,8 +86,8 @@ class TileRecyclerAdapter(var board: Board,
         init {
             // When a tile is clicked
             tileFrameLayout.setOnClickListener({
-                if (question != null) {
-                    showQuestionDialog(question!!.title, question!!.description)
+                if (board.tileGrid[posX][posY].question != null) {
+                    showQuestionDialog(board.tileGrid[posX][posY].question!!.title, board.tileGrid[posX][posY].question!!.description)
                 }
             })
 
@@ -125,6 +125,9 @@ class TileRecyclerAdapter(var board: Board,
         private fun processMove(positions: ArrayList<Position>) {
             updateGoldStatus()
 
+            var preX = board.currentX
+            var preY = board.currentY
+
             // Set as current tile
             board.currentX = posX
             board.currentY = posY
@@ -142,10 +145,11 @@ class TileRecyclerAdapter(var board: Board,
 
             FirebaseSaveHelper.saveCurrentLevel(FirebaseAuth.getInstance().currentUser!!.uid)
 
-            if (MovementLogic.isGameOver(posX, posY, question!!)) {
+            if (MovementLogic.isGameOver(posX, posY, board.tileGrid[posX][posY].question!!)) {
                 val intent = Intent(viewGroup!!.context,LevelCompleteActivity::class.java)
                 intent.putExtra("level", Session.saveFile!!.currentLevel.id)
                 intent.putExtra("score", Session.saveFile!!.currentLevel.score)
+                intent.putExtra("time", Session.saveFile!!.currentLevel.elapsedTime)
                 viewGroup!!.context.startActivity(intent)
             }
         }

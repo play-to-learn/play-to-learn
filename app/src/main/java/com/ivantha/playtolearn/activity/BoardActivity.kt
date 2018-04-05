@@ -2,6 +2,8 @@ package com.ivantha.playtolearn.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.SystemClock
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -18,6 +20,32 @@ import kotlinx.android.synthetic.main.activity_board.*
 class BoardActivity : AppCompatActivity() {
 
     private var currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
+
+    private val customHandler = Handler()
+
+    private var startTime = 0L
+    private var timeInMilliseconds = 0L
+    private var timeSwapBuff = 0L
+    private var updatedTime = 0L
+
+    private val updateTimerThread = object : Runnable {
+
+        override fun run() {
+            timeInMilliseconds = SystemClock.uptimeMillis() - startTime
+
+            updatedTime = timeSwapBuff + timeInMilliseconds
+
+            var secs = (updatedTime / 1000).toInt()
+            var mins = secs / 60
+            secs %= 60
+            var hrs = mins / 60
+            mins %= 60
+
+            timeStatusTextView!!.text = String.format("%02d:%02d:%02d", hrs, mins, secs)
+            customHandler.postDelayed(this, 1000)
+        }
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,11 +75,20 @@ class BoardActivity : AppCompatActivity() {
         boardSettingsButton.setOnClickListener({
             startActivity(Intent(this@BoardActivity, SettingsActivity::class.java))
         })
+
+        // Start timer
+        Session.saveFile!!.currentLevel.startTime = SystemClock.uptimeMillis()
+        startTime = Session.saveFile!!.currentLevel.startTime
+        customHandler.postDelayed(updateTimerThread, 1000)
     }
 
     override fun onPause() {
         super.onPause()
 
+//        timeSwapBuff += timeInMilliseconds
+//        customHandler.removeCallbacks(updateTimerThread)
+//
+//        Session.saveFile!!.currentLevel.elapsedTime += timeSwapBuff
         FirebaseSaveHelper.saveCurrentLevel(currentUser!!.uid)
     }
 
