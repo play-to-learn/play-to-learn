@@ -21,7 +21,5 @@ class LabelTextView : android.support.v7.widget.AppCompatTextView {
     private fun applyCustomFont() {
         val customFont = Font.getTypeface(Font.ACTION_MAN_BOLD_FONT, context)
         typeface = customFont
-
-        setTextColor(Color.WHITE)
     }
 }
