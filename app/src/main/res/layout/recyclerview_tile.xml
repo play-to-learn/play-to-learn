@@ -5,4 +5,10 @@
     android:layout_height="match_parent"
     android:id="@+id/tileFrameLayout">
 
+    <com.ivantha.playtolearn.widget.LabelTextView
+        android:id="@+id/tileNumberTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:textSize="15sp" />
 </com.ivantha.playtolearn.widget.SquareFrameLayout>

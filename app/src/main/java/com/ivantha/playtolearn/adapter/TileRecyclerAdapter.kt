@@ -5,6 +5,7 @@ import android.content.Intent
 import android.support.v7.widget.AppCompatImageButton
 import android.support.v7.widget.RecyclerView
 import android.view.*
+import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.ivantha.playtolearn.R
@@ -51,6 +52,7 @@ class TileRecyclerAdapter(var board: Board,
     }
 
     override fun onBindViewHolder(holder: TileViewHolder, position: Int) {
+        holder.tileNumberTextView.text = (position + 1).toString()
         holder.state = tileList[position].boardTileState
 //        holder.question = tileList[position].question
         holder.posX = tileList[position].column
@@ -76,6 +78,7 @@ class TileRecyclerAdapter(var board: Board,
     inner class TileViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val tileFrameLayout: SquareFrameLayout = itemView.findViewById(R.id.tileFrameLayout)
+        var tileNumberTextView: TextView = itemView.findViewById(R.id.tileNumberTextView)
         var state: Tile.BoardTileState? = null
 //        var question: Question? = null
 
