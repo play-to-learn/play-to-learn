@@ -10,7 +10,7 @@ class Tile {
 
     constructor()
 
-    fun generateQuestion(){
+    fun generateQuestion() {
         question = QuestionLogic.getRandomQuestion()
     }
 

@@ -13,9 +13,12 @@ import com.ivantha.playtolearn.activity.LevelCompleteActivity
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
 import com.ivantha.playtolearn.game.MovementLogic
-import com.ivantha.playtolearn.model.*
+import com.ivantha.playtolearn.model.Board
 import com.ivantha.playtolearn.model.Board.Companion.COLUMN_COUNT
 import com.ivantha.playtolearn.model.Board.Companion.ROW_COUNT
+import com.ivantha.playtolearn.model.Position
+import com.ivantha.playtolearn.model.Result
+import com.ivantha.playtolearn.model.Tile
 import com.ivantha.playtolearn.model.Tile.BoardTileState.*
 import com.ivantha.playtolearn.widget.SquareFrameLayout
 import kotlin.reflect.KFunction0
@@ -149,7 +152,7 @@ class TileRecyclerAdapter(var board: Board,
             FirebaseSaveHelper.saveCurrentLevel(FirebaseAuth.getInstance().currentUser!!.uid)
 
             if (MovementLogic.isGameOver(posX, posY, board.tileGrid[posX][posY].question!!)) {
-                val intent = Intent(viewGroup!!.context,LevelCompleteActivity::class.java)
+                val intent = Intent(viewGroup!!.context, LevelCompleteActivity::class.java)
                 intent.putExtra("level", Session.saveFile!!.currentLevel.id)
                 intent.putExtra("score", Session.saveFile!!.currentLevel.score)
                 intent.putExtra("time", Session.saveFile!!.currentLevel.elapsedTime)

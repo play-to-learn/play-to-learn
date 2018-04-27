@@ -91,7 +91,7 @@ class BoardActivity : AppCompatActivity() {
         Session.saveFile!!.currentLevel.elapsedTime += timeSwapBuff
     }
 
-    private fun updateGoldStatus(){
+    private fun updateGoldStatus() {
         goldStatusTextView.text = Session.saveFile!!.currentLevel.score.toString()
     }
 

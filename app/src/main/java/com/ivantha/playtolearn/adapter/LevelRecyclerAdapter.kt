@@ -29,7 +29,7 @@ class LevelRecyclerAdapter(private val levels: List<Level>) : RecyclerView.Adapt
     override fun onBindViewHolder(holder: LevelViewHolder, position: Int) {
         holder.id = levels[position].id
         holder.appCompatButton.isEnabled = levels[position].enabled
-        if(levels[position].enabled){
+        if (levels[position].enabled) {
             holder.appCompatButton.text = levels[position].id.toString()
         }
     }

@@ -2,8 +2,7 @@ package com.ivantha.playtolearn.common
 
 import android.content.Context
 import android.graphics.Typeface
-
-import java.util.Hashtable
+import java.util.*
 
 object Font {
     var ACTION_MAN_BOLD_FONT = "fonts/Action_Man_Bold.ttf"

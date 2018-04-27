@@ -10,7 +10,10 @@ import com.ivantha.playtolearn.R
 class WindowTitle : android.support.v7.widget.AppCompatButton {
 
     init {
-        applyCustomShape()
+        setBackgroundResource(R.drawable.common_window_title)
+        typeface = Typeface.createFromAsset(context.assets, "fonts/zantroke.otf")
+        textSize = 16f
+        setTextColor(Color.parseColor("#874f21"))
     }
 
     constructor(context: Context) : super(context)
@@ -18,12 +21,5 @@ class WindowTitle : android.support.v7.widget.AppCompatButton {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttrs: Int) : super(context, attrs, defStyleAttrs)
-
-    private fun applyCustomShape() {
-        setBackgroundResource(R.drawable.common_window_title)
-        typeface = Typeface.createFromAsset(context.assets, "fonts/zantroke.otf")
-        textSize = 16f
-        setTextColor(Color.parseColor("#874f21"))
-    }
 
 }

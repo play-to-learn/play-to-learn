@@ -6,11 +6,11 @@ import java.util.*
 
 object QuestionLogic {
 
-    fun getRandomQuestion(): Question{
+    fun getRandomQuestion(): Question {
         return Session.questions[random(0, Session.questions.size - 1)]
     }
 
-    private fun random(start: Int, end: Int): Int{
+    private fun random(start: Int, end: Int): Int {
         return Random().nextInt(end + 1 - start) + start
     }
 }

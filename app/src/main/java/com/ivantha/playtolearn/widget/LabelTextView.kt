@@ -1,7 +1,6 @@
 package com.ivantha.playtolearn.widget
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
 import com.ivantha.playtolearn.common.Font
 
@@ -9,7 +8,8 @@ import com.ivantha.playtolearn.common.Font
 class LabelTextView : android.support.v7.widget.AppCompatTextView {
 
     init {
-        applyCustomFont()
+        val customFont = Font.getTypeface(Font.ACTION_MAN_BOLD_FONT, context)
+        typeface = customFont
     }
 
     constructor(context: Context) : super(context)
@@ -18,8 +18,4 @@ class LabelTextView : android.support.v7.widget.AppCompatTextView {
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
-    private fun applyCustomFont() {
-        val customFont = Font.getTypeface(Font.ACTION_MAN_BOLD_FONT, context)
-        typeface = customFont
-    }
 }

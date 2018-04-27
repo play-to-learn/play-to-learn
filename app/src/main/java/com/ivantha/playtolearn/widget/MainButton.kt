@@ -11,7 +11,10 @@ import com.ivantha.playtolearn.R
 class MainButton : AppCompatButton {
 
     init {
-        applyCustomShape()
+        setBackgroundResource(R.drawable.common_main_button)
+        typeface = Typeface.createFromAsset(context.assets, "fonts/zantroke.otf")
+        textSize = 18f
+        setTextColor(Color.parseColor("#874f21"))
     }
 
     constructor(context: Context) : super(context)
@@ -19,12 +22,5 @@ class MainButton : AppCompatButton {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttrs: Int) : super(context, attrs, defStyleAttrs)
-
-    private fun applyCustomShape() {
-        setBackgroundResource(R.drawable.common_main_button)
-        typeface = Typeface.createFromAsset(context.assets, "fonts/zantroke.otf")
-        textSize = 18f
-        setTextColor(Color.parseColor("#874f21"))
-    }
 
 }

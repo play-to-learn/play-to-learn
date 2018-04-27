@@ -3,10 +3,7 @@ package com.ivantha.playtolearn.activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.ivantha.playtolearn.R
 import com.ivantha.playtolearn.common.FirebaseSaveHelper
 import com.ivantha.playtolearn.common.Session
@@ -46,8 +43,7 @@ class MainMenuActivity : AppCompatActivity() {
         })
 
         helpButton.setOnClickListener({
-//            startActivity(Intent(this@MainMenuActivity, HelpActivity::class.java))
-            addFirebaseData()
+            startActivity(Intent(this@MainMenuActivity, HelpActivity::class.java))
         })
 
         // Disable continue button if no save exists
@@ -75,10 +71,10 @@ class MainMenuActivity : AppCompatActivity() {
         var c1 = Category("conditional_structures", "Conditional Structures")
         var c2 = Category("loops", "Loops")
         var c3 = Category("syntax", "Syntax")
-        var c4 = Category("semantics","Semantics")
-        var c5 = Category("variables","Variables")
-        var c6 = Category("error_handling","Error Handling")
-        var c7 = Category("threads","Threads")
+        var c4 = Category("semantics", "Semantics")
+        var c5 = Category("variables", "Variables")
+        var c6 = Category("error_handling", "Error Handling")
+        var c7 = Category("threads", "Threads")
 
         // Sample questions
         val q1 = Question()

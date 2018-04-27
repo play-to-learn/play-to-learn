@@ -7,7 +7,7 @@
     tools:context=".activity.LeaderboardActivity"
     android:background="@drawable/common_background">
 
-    <com.avoid.playtolearn.widgets.MainButton
+    <com.ivantha.playtolearn.widget.MainButton
         android:id="@+id/button"
         android:layout_width="300dp"
         android:layout_height="80dp"

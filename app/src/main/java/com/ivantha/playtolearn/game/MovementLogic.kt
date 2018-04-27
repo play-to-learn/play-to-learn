@@ -58,7 +58,7 @@ object MovementLogic {
         }
     }
 
-    fun isGameOver(posX: Int, posY: Int, question: Question): Boolean{
+    fun isGameOver(posX: Int, posY: Int, question: Question): Boolean {
         var tilesUntilEnd = ((ROW_COUNT - posY - 1) * COLUMN_COUNT) + (COLUMN_COUNT - posX - 1)
         return tilesUntilEnd < question.answer
     }
