@@ -10,6 +10,13 @@ object QuestionLogic {
         return Session.questions[random(0, Session.questions.size - 1)]
     }
 
+    fun getNextQuestion() : Question {
+        var k = Session.saveFile!!.currentLevel.totalQuestions++ % Session.questions.size
+        println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        println(k)
+        return Session.questions[k]
+    }
+
     private fun random(start: Int, end: Int): Int {
         return Random().nextInt(end + 1 - start) + start
     }

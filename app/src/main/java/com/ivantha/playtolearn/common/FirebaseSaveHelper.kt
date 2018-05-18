@@ -59,6 +59,8 @@ object FirebaseSaveHelper {
             override fun onDataChange(dataSnapshot: DataSnapshot?) {
                 for (child in dataSnapshot!!.children) {
                     var question = child.getValue(Question::class.java)
+                    println("____________________________________________________")
+                    println(question!!.description)
                     Session.questions.add(question!!)
                     onCompleteTask()
                 }

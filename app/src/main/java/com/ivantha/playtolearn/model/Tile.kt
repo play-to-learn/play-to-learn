@@ -11,7 +11,7 @@ class Tile {
     constructor()
 
     fun generateQuestion() {
-        question = QuestionLogic.getRandomQuestion()
+        question = QuestionLogic.getNextQuestion()
     }
 
     enum class BoardTileState {

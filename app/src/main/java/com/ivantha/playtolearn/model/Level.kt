@@ -6,6 +6,7 @@ class Level {
     var score: Int = 0
     var startTime: Long = 0L
     var elapsedTime: Long = 0
+    var totalQuestions: Int = 0
 
     constructor()
 
